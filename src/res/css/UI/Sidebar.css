@@ -1,0 +1,24 @@
+.sidebar{
+    margin: 0;
+    position: fixed;
+    width: 10%;
+    left: 0;
+    height: 85%;
+    bottom: 0;
+    background-color: #052a52;
+    color: #a8acb2;
+}
+
+.sidebar h3 {
+    padding-left: 10px;
+}
+
+.sidebar .sidebarElement{
+    margin: 0;
+    padding: 5px 5px 5px 10px;
+
+}
+
+.sidebar .sidebarElement:hover {
+    background-color: #05386e;
+}

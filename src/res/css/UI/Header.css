@@ -1,0 +1,12 @@
+.header {
+    background-color: #a8acb2;
+    position: fixed;
+    z-index: 1;
+    height: 15%;
+    margin: 0;
+    width: 100%;
+}
+
+.header h1 {
+    margin: 15px;
+}

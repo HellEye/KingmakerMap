@@ -1,0 +1,18 @@
+.board {
+    z-index: -10;
+    background-color: #282c34;
+    position: absolute;
+    padding: 300px;
+}
+
+.board img {
+    position:relative;
+    z-index: -5;
+}
+
+.board input {
+    position: fixed;
+    right: 10%;
+    bottom: 10%;
+    z-index: 10;
+}
