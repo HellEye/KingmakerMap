@@ -1,12 +1,17 @@
 .board {
     z-index: -10;
     background-color: #282c34;
-    position: absolute;
-    padding: 300px;
+    display: inline-block;
+    /*padding: 300px;*/
+    position: fixed;
+}
+
+.map {
+    position: relative;
 }
 
 .board img {
-    position:relative;
+    /*position:relative;*/
     z-index: -5;
 }
 

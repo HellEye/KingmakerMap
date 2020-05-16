@@ -1,12 +1,16 @@
 .header {
     background-color: #a8acb2;
-    position: fixed;
+    /*position: fixed;*/
     z-index: 1;
-    height: 15%;
+    height: 12%;
     margin: 0;
+    padding: 15px;
     width: 100%;
 }
 
 .header h1 {
-    margin: 15px;
+    padding: 0;
+    margin: 0;
+    height:100%;
+    width: 100%;
 }

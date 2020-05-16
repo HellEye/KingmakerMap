@@ -1,0 +1,46 @@
+/*
+.hexagon {
+    background-color: transparent;
+    position: absolute;
+    display: block;
+
+    shape-outside: polygon(
+            6.66025% 25%,
+            6.66025% 75% ,
+            50% 100% ,
+            93.3% 75% ,
+            93.3% 25% ,
+            50% 0
+    );
+    clip-path: polygon(
+            6.66025% 25%,
+            6.66025% 75% ,
+            50% 100% ,
+            93.3% 75% ,
+            93.3% 25% ,
+            50% 0
+    );
+
+}
+
+
+.hexagon:hover{
+    background-color: red;
+}
+
+svg {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    !*display: flex;
+    align-content: center;
+    justify-content: center;*!
+}
+svg> polygon {
+    height: 100%;
+    width: 100%;
+}
+svg:hover {
+    background-color: red;
+}
+*/
