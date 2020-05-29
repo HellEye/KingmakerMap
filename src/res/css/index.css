@@ -33,6 +33,7 @@ body {
   height: 100%;
   z-index: -14;
   position: relative;
+  background-color: #282c34;
 }
 
 code {

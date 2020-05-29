@@ -1,0 +1,46 @@
+.kingdomName {
+    display: inline-block;
+    background-color: #333c4a;
+    color: #a8acb2;
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 1em;
+}
+
+.kingdomColor {
+    display: inline-block;
+    position: relative;
+    width: 40px;
+    border: 3px solid #cccccc;
+    margin-left: 20px;
+}
+
+.kingdomDisplay {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    margin: 15px;
+    max-height: fit-content;
+}
+
+.kingdomList {
+    margin-top: 30px;
+}
+
+.board h1 {
+    margin: 0 30px 10px 0;
+    padding: 0;
+    display: inline-block;
+}
+.colorPickerWrapper{
+    position: absolute;
+    z-index: 2;
+    top:40px;
+    left:-160%;
+}
+
+.colorPickerWrapper>div:last-child{
+    background-color: #333c4a;
+}
+

@@ -1,5 +1,8 @@
 .header {
-    background-color: #a8acb2;
+    box-sizing: border-box;
+    background-color: #333c4a;
+    color: #dddddd;
+    border-bottom: 5px solid #2a3340;
     /*position: fixed;*/
     z-index: 1;
     height: 12%;

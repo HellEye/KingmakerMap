@@ -1,9 +1,13 @@
+
+
 .board {
     z-index: -10;
     background-color: #282c34;
     display: inline-block;
-    /*padding: 300px;*/
+    padding: 30px;
     position: fixed;
+    color: #a8acb2;
+
 }
 
 .map {
@@ -15,7 +19,7 @@
     z-index: -5;
 }
 
-.board input {
+.board input[type="range"] {
     position: fixed;
     right: 10%;
     bottom: 10%;

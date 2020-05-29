@@ -1,21 +1,20 @@
-import React, {Component} from 'react';
-import '../../res/css/Board/Board.css';
-import HexGrid from "./HexGrid";
+import React, {Component} from 'react'
+import '../../res/css/Board/Board.css'
+
 
 class Board extends Component {
     state = {
         scale: 1.0,
-        image: require("../../res/img/stolenLandsMap.jpg"),
         dimensions: {},
         position: {
             x: 0, y: 0
         },
-    };
+    }
     scaleBounds = {
         min: 0.2,
         max: 1.5,
         step: 0.01
-    };
+    }
     dragData = {
         dragStartPosition: {
             x: 0, y: 0
@@ -24,20 +23,13 @@ class Board extends Component {
             x: 0, y: 0
         },
         dragging: false
-    };
+    }
     scalePos = {
         x: 0, y: 0
-    };
-
-
-    constructor(props) {
-        super(props);
-        const img = new Image();
-        img.src = this.state.image;
     }
 
     getMousePosOnImage(image, x, y, scale) {
-        let rect = image.getBoundingClientRect();
+        let rect = image.getBoundingClientRect()
         return {
             left: (x - rect.left) / scale,
             top: (y - rect.top) / scale
@@ -48,18 +40,18 @@ class Board extends Component {
         this.dragData = {
             dragStartPosition: {x: event.clientX, y: event.clientY},
             initialMapPosition: {x: this.state.position.x, y: this.state.position.y}
-        };
-        this.dragData.dragging = true;
-    };
+        }
+        this.dragData.dragging = true
+    }
 
     onMapDragHandler = (event) => {
-        if (!this.dragData.dragging) return;
+        if (!this.dragData.dragging) return
         let mousePos = {
             x: event.clientX,
             y: event.clientY
-        };
-        event.stopPropagation();
-        event.preventDefault();
+        }
+        event.stopPropagation()
+        event.preventDefault()
 
         this.setState(() => {
             return {
@@ -68,21 +60,21 @@ class Board extends Component {
                     y: this.dragData.initialMapPosition.y - this.dragData.dragStartPosition.y + mousePos.y
                 }
             }
-        });
+        })
 
-    };
+    }
 
     onMapScrollHandler = (event) => {
-        event.stopPropagation();
-        event.preventDefault();
-        let zoom = event.deltaY;
-        let mousePos = this.getMousePosOnImage(event.currentTarget, event.clientX, event.clientY, this.state.scale);
+        event.stopPropagation()
+        event.preventDefault()
+        let zoom = event.deltaY
+        let mousePos = this.getMousePosOnImage(event.currentTarget, event.clientX, event.clientY, this.state.scale)
 
-        let newScale = this.state.scale + zoom * this.scaleBounds.step;
-        if (newScale < this.scaleBounds.min) newScale = this.scaleBounds.min;
-        else if (newScale > this.scaleBounds.max) newScale = this.scaleBounds.max;
+        let newScale = this.state.scale + zoom * this.scaleBounds.step
+        if (newScale < this.scaleBounds.min) newScale = this.scaleBounds.min
+        else if (newScale > this.scaleBounds.max) newScale = this.scaleBounds.max
 
-        let newMousePos = this.getMousePosOnImage(event.currentTarget, event.clientX, event.clientY, newScale);
+        let newMousePos = this.getMousePosOnImage(event.currentTarget, event.clientX, event.clientY, newScale)
         this.setState((prevState) => {
             return {
                 scale: newScale,
@@ -91,11 +83,10 @@ class Board extends Component {
                     y: prevState.position.y + (newMousePos.top - mousePos.top) * newScale
                 }
             }
-        });
-    };
+        })
+    }
 
     render() {
-
         return (
             <div className={"board"}
                  onMouseMove={this.onMapDragHandler}
@@ -114,13 +105,7 @@ class Board extends Component {
                              transform: `scale(${this.state.scale})`
                          }
                      }>
-                    <img
-                        alt={"Map"}
-                        draggable={"false"}
-                        src={this.state.image}
-                    />
-                    <HexGrid dragData={this.dragData}/>
-
+                    {this.props.children}
                 </div>
                 <input type={"range"} min={0.2} max={1.5} step={0.05} value={this.state.scale}
                        readOnly={true}/>
@@ -129,4 +114,4 @@ class Board extends Component {
     }
 }
 
-export default Board;
+export default Board

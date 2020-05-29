@@ -1,0 +1,52 @@
+.tabNav {
+    background-color: #052a52;
+    display: inline-block;
+    height: 60px;
+    width: 100%;
+    position: fixed;
+}
+
+.tabNav ul {
+    margin: 10px;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    display: flex;
+
+}
+
+.tab {
+    bottom: 0;
+    border-radius: 10px 10px 0 0;
+    background-color: #333c4a;
+    display: inline-block;
+    align-content: center;
+    justify-content: center;
+    margin: 0;
+    width: 100px;
+    height: 50px;
+    left:-5px;
+    vertical-align: bottom;
+}
+
+
+.tab a {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    color: #dddddd;
+    text-decoration: none;
+
+}
+
+.tab:hover {
+    background-color: #2a3340;
+}
+.tab.activeTab:hover{
+    background-color: #282c34;
+}
+.tab.activeTab {
+    z-index: 5;
+    background-color: #282c34;
+}

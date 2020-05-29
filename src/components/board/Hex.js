@@ -1,12 +1,22 @@
 import React, {Component} from 'react'
 import Hexagon from "react-hexagon"
+import DisplaySettings from "../../scripts/settings/DisplaySettings"
+import {observer} from "mobx-react"
+
+const HexWrapper = observer((props) =>
+    <div style={props.divStyle}>
+        <Hexagon style={props.hexStyle}/>
+    </div>
+)
+
 
 class Hex extends Component {
-    static startOffsetX = 25;
-    static startOffsetY = 6;
-
+    static startOffsetX = 25
+    static startOffsetY = 6
+    hexData=null;
     constructor(props) {
-        super(props);
+        super(props)
+        this.hexData=props.hexData;
         this.renderData = {
             left:
                 Hex.startOffsetX + //align to hexes on board
@@ -17,10 +27,11 @@ class Hex extends Component {
                 Hex.startOffsetY //align to hexes on board
                 + this.props.coords.y * this.props.size *0.86 //offset by the size (reduced because of tiling
                 + this.props.margin * this.props.coords.y * 1.2 //add margin (with weird multiplier)
-        };
+        }
+        this.style = this.props.style
     }
 
-    getStyle() {
+    getDivStyle() {
         return {
             position: "absolute",
             top: `${this.renderData.top}px`,
@@ -29,19 +40,21 @@ class Hex extends Component {
             height: this.props.size
         }
     }
-
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        return nextProps.dragData.dragging;
+    getHexStyle() {
+        return Object.assign({}, this.props.style, {
+            stroke: (DisplaySettings.playerColor + (DisplaySettings.drawHexes ? "ff" : "00"))
+        })
     }
 
     render() {
+
         return (
-            <div style={this.getStyle()}>
-                <Hexagon style={this.props.style}/>
-            </div>
+            <HexWrapper divStyle={this.getDivStyle()} hexStyle={this.getHexStyle()}/>
         )
 
     }
 }
 
-export default Hex;
+
+
+export default observer(Hex)
