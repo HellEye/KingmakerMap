@@ -1,0 +1,25 @@
+.kingdomStats {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid:   [row1-start] "nav nav empty2 empty2 treasury consumption unrest select" 1fr [row1-end]
+            [row2-start] "empty empty empty2 empty2 economy loyalty stability size" 1fr [row2-end]
+            / 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+    justify-items: stretch;
+    align-items: stretch;
+}
+
+.kingdomStats h3, .kingdomStats h4, .kingdomStats h5, .kingdomStats h6{
+    margin: 0;
+    padding:0;
+    width: 100%;
+    text-align: center;
+}
+
+.tempText {
+    color: #555;
+}
+.kingdomStats > div {
+    border: 1px #444 solid;
+    padding: 10px
+}

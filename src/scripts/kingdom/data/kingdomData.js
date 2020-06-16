@@ -36,8 +36,11 @@ class KingdomData {
             warden: 0
         }
     }
+    constructor(){
+        //TODO
+    }
 
-    getEconomy() {
+    getEconomyMod() {
         return (
             this.data.economy +
             this.data.positions.rulerSelectedAttributes.economy * this.data.positions.ruler +
@@ -52,7 +55,7 @@ class KingdomData {
         )
     }
 
-    getStability() {
+    getStabilityMod() {
         return (this.data.stability +
             this.data.positions.rulerSelectedAttributes.stability * this.data.positions.ruler +
             this.data.positions.spymaster * this.data.positions.spymasterSelectedAttribute.stability +
@@ -65,7 +68,7 @@ class KingdomData {
 
     }
 
-    getLoyalty() {
+    getLoyaltyMod() {
         return (this.data.loyalty +
             this.data.positions.rulerSelectedAttributes.loyalty * this.data.positions.ruler +
             this.data.positions.spymaster * this.data.positions.spymasterSelectedAttribute.loyalty +
@@ -82,7 +85,6 @@ class KingdomData {
     getConsumption() {
         return this.data.consumptionModifier > this.data.consumption + this.data.size ? 0 : this.data.consumption + this.data.size - this.data.consumptionModifier
     }
-
 }
 
 export default KingdomData

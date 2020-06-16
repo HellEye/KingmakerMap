@@ -1,11 +1,12 @@
 import React, {Component} from "react"
-import "../../../res/css/UI/Header.css"
+import "../../../res/css/Panels/Header.css"
+import KingdomStats from "../../Panels/KingdomStats/KingdomStats"
 
 class Header extends Component{
     render(){
         return (
             <div className={"header"}>
-                <h1>Header</h1>
+                <KingdomStats/>
             </div>
         )
     }

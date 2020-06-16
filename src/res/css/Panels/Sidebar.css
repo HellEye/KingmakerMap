@@ -1,15 +1,17 @@
 .sidebar{
     margin: 0;
     /*position: fixed;*/
-    width: 10%;
-    display: inline-block;
-    left: 0;
-    top:0;
-    bottom: 0;
+    /*width: 10%;*/
+    /*display: inline-block;*/
+    /*left: 0;*/
+    /*top:0;*/
+    /*bottom: 0;*/
     height: 100%;
+    z-index: 1;
     background-color: #052a52;
     color: #a8acb2;
     border-right: #05386e 5px solid;
+    grid-area: sidebar;
 
 }
 
@@ -36,4 +38,13 @@
 
 .sidebar .sidebarElement:hover {
     background-color: #05386e;
+}
+
+.sidebarPanels {
+    margin-top: 15px;
+}
+
+.sidebarPanels h2 {
+    margin:0 0 10px;
+    display:block;
 }

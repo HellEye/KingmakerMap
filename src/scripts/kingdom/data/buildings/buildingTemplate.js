@@ -1,4 +1,6 @@
-class Building {
+import Building from "./building"
+
+class Name extends Building {
 	image = []
 	name = ""
 	bpCost = 0
@@ -22,4 +24,4 @@ class Building {
 	text = "Generic building, if you're seeing this I fucked up"
 }
 
-export default Building
+export default Name

@@ -1,0 +1,31 @@
+.selectKingdom__option {
+    color: #a8acb2 !important;
+    background-color: #2a3340 !important;
+}
+
+.selectKingdom__option:hover {
+    background-color: #333c4a !important;
+}
+
+.selectKingdom__control {
+    width: 250px;
+    border-color: #052a52 !important;
+    color: #a8acb2 !important;
+    background-color: #2a3340 !important;
+}
+
+.selectKingdom__control:hover {
+    border-color: #05386e !important;
+    background-color: #333c4a !important;
+}
+
+.selectKingdom__single-value {
+    color: #a8acb2 !important;
+}
+
+.selectKingdom__menu {
+    width: 250px !important;
+    background-color: #2a3340 !important;
+}
+
+

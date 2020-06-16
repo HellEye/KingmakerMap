@@ -1,0 +1,45 @@
+.cookiePopup{
+    position: fixed;
+    left: 20%;
+    bottom: 0;
+    height: 15%;
+    width: fit-content;
+    display: flex;
+    background-color: #052a52;
+    justify-content: space-around;
+    align-items: center;
+    border: #05386e solid 5px;
+    border-bottom: none;
+    border-radius: 30px;
+    box-sizing: border-box;
+    padding: 20px;
+
+
+}
+.cookiePopup img{
+    flex: 1;
+    height: 100%;
+    width: auto;
+    display: inline-block;
+}
+.cookiePopup >div{
+    display: flex;
+    width: 400px;
+    align-items: center;
+    flex-direction: column;
+}
+.cookiePopup h3 {
+    text-align: center;
+    margin:0 20px;
+    flex: 10;
+    width: auto;
+    color: #a8acb2;
+    display: block;
+}
+
+.cookiePopup input {
+    padding: 10px;
+    height: fit-content;
+    flex:2;
+    margin: 0 5%
+}

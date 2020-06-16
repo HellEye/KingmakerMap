@@ -3,10 +3,11 @@
 .board {
     z-index: -10;
     background-color: #282c34;
-    display: inline-block;
-    padding: 30px;
-    position: fixed;
+    /*display: inline-block;*/
+    /*padding: 30px;*/
+    /*position: fixed;*/
     color: #a8acb2;
+    grid-area: main
 
 }
 
@@ -20,8 +21,22 @@
 }
 
 .board input[type="range"] {
+
+}
+
+.boardZoomIndicator {
     position: fixed;
-    right: 10%;
-    bottom: 10%;
+    width: 10%;
+    right: 5%;
+    height: 10px;
+    padding: 3px;
+    background-color: #052a52;
+    bottom: 5%;
     z-index: 10;
+}
+
+.boardZoomIndicatorInner {
+    display:block;
+    height:90%;
+    background-color: #055a6e;
 }

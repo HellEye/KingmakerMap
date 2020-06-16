@@ -4,23 +4,20 @@ import {Kingdom, kingdoms} from "../../scripts/kingdom/data/kingdoms"
 import "../../res/css/UI/Button.css"
 import "../../res/css/Panels/KingdomDisplay.css"
 import {BlockPicker} from "react-color"
+import {observer} from "mobx-react"
+import makeCancelable from "../../scripts/utils/makeCancellable"
+
+const deleteIcon = require("../../res/img/icons/deleteIcon.png")
 
 class Kingdoms extends Component {
 
-	constructor(props) {
-		super(props)
-		this.state = {
-			kingdoms: kingdoms
-		}
-	}
-
 	addKingdom = () => {
-		kingdoms.push(new Kingdom("Name"))
-		this.forceUpdate()
+		kingdoms.push(new Kingdom(kingdoms.kingdoms[kingdoms.kingdoms.length - 1].id + 1, "Name"))
+			.then(() => this.forceUpdate())
 	}
 
 	render() {
-		const kingdomList = kingdoms.map((k, index) => <KingdomDisplay kingdom={k} key={index}/>)
+		const kingdomList = kingdoms.map((k, index) => <KingdomDisplay kingdom={k} index={index} key={index}/>)
 		return (
 			<div className={"board"}>
 				<h1>
@@ -42,8 +39,10 @@ class KingdomDisplay extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			index: props.index,
 			kingdom: props.kingdom,
-			pickingColor: false
+			pickingColor: false,
+			tryingToRemove: false
 		}
 	}
 
@@ -51,7 +50,7 @@ class KingdomDisplay extends Component {
 		x: 0,
 		y: 0
 	}
-
+	removePromise = null
 	updateKingdomName = (e) => {
 		const newState = this.state
 		newState.kingdom.name = e.target.value
@@ -72,18 +71,54 @@ class KingdomDisplay extends Component {
 		newState.pickingColor = false
 		newState.kingdom.color = color.hex
 		this.setState(newState)
+		this.editFinished()
+	}
+	removeThisKingdom = () => {
+		this.setState((oldState) => {
+			return {
+				...oldState,
+				tryingToRemove: true
+			}
+		})
 	}
 
-	render() {
-		const popover = {
 
-		}
+	confirmRemove = () => {
+		this.removePromise = makeCancelable(kingdoms.remove(this.state.index))
+		this.removePromise.promise
+			.then(() => {
+				this.setState({tryingToRemove: false})
+				this.removePromise=null
+			})
+			.catch((reason) => {
+				if (!reason.isCanceled)
+					console.error("Database failed", reason)
+				this.removePromise=null
+			})
+
+	}
+
+	componentWillUnmount = () => {
+		if (this.removePromise != null)
+			this.removePromise.cancel()
+		this.removePromise=null
+	}
+
+	editFinished = () => {
+		kingdoms.editFinished(this.state.index)
+			.then()
+	}
+	//TODO fix this stupid uncontrolled input error thing (when adding a new field and editing the name
+	//TODO and some random other error about cancelling async tasks?
+	render() {
+		const popover = {}
 		return (
 			<div className={"kingdomDisplay"}>
 				<input className={"kingdomName"}
 				       type={"text"}
 				       value={this.state.kingdom.name}
 				       onChange={this.updateKingdomName}
+				       onBlur={this.editFinished}
 				/>
 				<div className={"kingdomColor"}
 				     style={{
@@ -93,21 +128,38 @@ class KingdomDisplay extends Component {
 				>
 					{this.state.pickingColor ?
 						<div style={popover}
-							className={"colorPickerWrapper"}
+						     className={"colorPickerWrapper"}
 						>
-								<BlockPicker
-									className={"colorPicker"}
-									color={this.state.kingdom.color}
-									onChange={this.changeColor}
-									onChangeComplete={this.stopPickingColor}
-								/>
+							<BlockPicker
+								className={"colorPicker"}
+								color={this.state.kingdom.color}
+								onChange={this.changeColor}
+								onChangeComplete={this.stopPickingColor}
+							/>
 						</div>
 						: null}
 				</div>
+				<div className={"removeKingdom"} onClick={this.removeThisKingdom}>
+					<img src={deleteIcon} alt={"remove"}/>
+				</div>
+				{
+					this.state.tryingToRemove ?
+						<div className={"confirmRemoveKingdom"}>
+							<input type={"button"}
+							       className={"button"}
+							       onClick={this.confirmRemove}
+							       value={"Sure?"}
+							       style={{
+								       backgroundColor: "#ff3333",
+								       borderColor: "#aa3333",
+								       color: "#333c4a"
+							       }}/>
+						</div> : ""
+				}
 
 			</div>
 		)
 	}
 }
 
-export default Kingdoms
+export default observer(Kingdoms)

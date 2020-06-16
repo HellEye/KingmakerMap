@@ -1,12 +1,13 @@
 import React from "react"
-import Board from "./board/Board"
-import Sidebar from "./UI/Sidebar/Sidebar"
-import Header from "./UI/Header/Header"
-import HexGrid from "./board/HexGrid"
+import Board from "./board/Board.jsx"
+import Sidebar from "./UI/Sidebar/Sidebar.jsx"
+import Header from "./UI/Header/Header.jsx"
+import HexGrid from "./board/HexGrid.jsx"
 import {BrowserRouter, Route, Switch} from "react-router-dom"
-import SidebarElement from "./UI/Sidebar/SidebarElement"
-import SettingsSidebarElement from "./UI/Sidebar/SettingsSidebarElement"
-import Kingdoms from "./Panels/Kingdoms"
+import SidebarElement from "./UI/Sidebar/SidebarElement.jsx"
+import SettingsSidebarElement from "./UI/Sidebar/SettingsSidebarElement.jsx"
+import Kingdoms from "./Panels/Kingdoms.jsx"
+import CookiePopup from "./util/CookiePopup"
 
 const image = require("../res/img/stolenLandsMap.jpg")
 const tabs = [
@@ -17,36 +18,36 @@ const tabs = [
 ]
 
 function App() {
-	return (
-		<div>
-			<Header/>
-			<div className={'page'}>
-				<BrowserRouter>
-					<Sidebar>
-						<h3>Sidebar</h3>
-						{tabs}
-					</Sidebar>
-					<Switch>
-						<Route path={"/Map"}>
-							<Board>
-								<img
-									alt={"Map"}
-									draggable={"false"}
-									src={image}
-								/>
-								<HexGrid/>
-							</Board>
-						</Route>
-						<Route path={"/Stats"}>
-							<div> Stats</div>
-						</Route>
-						<Route path={"/Kingdoms"}>
-							<Kingdoms/>
-						</Route>
-					</Switch>
-				</BrowserRouter>
 
-			</div>
+	return (
+		<div className={'screen'}>
+			<Header/>
+			<BrowserRouter>
+				<Sidebar>
+					<h3>Sidebar</h3>
+					{tabs}
+				</Sidebar>
+				<Switch>
+					<Route path={"/Map"}>
+						<Board>
+							<img
+								alt={"Map"}
+								draggable={"false"}
+								src={image}
+							/>
+							<HexGrid/>
+						</Board>
+					</Route>
+					<Route path={"/Stats"}>
+						<div> Stats</div>
+					</Route>
+					<Route path={"/Kingdoms"}>
+						<Kingdoms/>
+					</Route>
+				</Switch>
+			</BrowserRouter>
+			<CookiePopup/>
+
 		</div>
 
 	)
