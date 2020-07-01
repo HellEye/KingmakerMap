@@ -1,20 +1,38 @@
 .button {
-    background-color: #052a52;
-    border: 3px solid #2a3340;
-    height:40px;
-    padding: 0;
+    background-color: #04325e;
+    border: 3px solid #24225e;
+    padding: 3px;
+    cursor:pointer;
+    user-select: none;
     display: inline-block;
-    width: 80px;
+    /*width: 80px;*/
     color: #a8acb2;
     font-size: 18px;
     font-weight: bold;
     outline: none;
+    border-radius: 5px;
+}
 
+.buttonGrey {
+    background-color: #353f4c;
+    border: 3px solid #2a3340 !important;
+    padding: 5px 3px !important;
+    margin:0 !important;
+
+    cursor:pointer;
+    user-select: none;
+    display: inline-block;
+    /*width: 80px;*/
+    color: #a8acb2;
+    font-size: 18px;
+    font-weight: bold;
+    outline: none;
+    border-radius: 5px !important;
 }
 .button::-moz-focus-inner {
     border: 0;
 }
 
 .button:hover {
-    background-color: #05386e;
+    background-color: #052a52;
 }

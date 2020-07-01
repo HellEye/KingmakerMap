@@ -12,14 +12,14 @@ const deleteIcon = require("../../res/img/icons/deleteIcon.png")
 class Kingdoms extends Component {
 
 	addKingdom = () => {
-		kingdoms.push(new Kingdom(kingdoms.kingdoms[kingdoms.kingdoms.length - 1].id + 1, "Name"))
+		kingdoms.push(new Kingdom("Name"))
 			.then(() => this.forceUpdate())
 	}
 
 	render() {
 		const kingdomList = kingdoms.map((k, index) => <KingdomDisplay kingdom={k} index={index} key={index}/>)
 		return (
-			<div className={"board"}>
+			<div className={"board kingdomDisplayWrapper"}>
 				<h1>
 					Kingdom display
 				</h1>

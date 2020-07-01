@@ -1,11 +1,7 @@
 .sidebar{
     margin: 0;
-    /*position: fixed;*/
-    /*width: 10%;*/
-    /*display: inline-block;*/
-    /*left: 0;*/
-    /*top:0;*/
-    /*bottom: 0;*/
+    padding: 5px;
+    box-sizing: border-box;
     height: 100%;
     z-index: 1;
     background-color: #052a52;
@@ -20,31 +16,34 @@
 }
 
 .sidebar .sidebarElement{
-    margin: 0;
-    padding: 5px 5px 5px 10px;
-    cursor: default;
+    margin:0 10px 0 0;
+    box-sizing: content-box;
+
 
 }
 .sidebar .sidebarElement a {
+    padding: 5px 5px 5px 10px;;
     color:inherit;
     text-decoration: none;
     height: 100%;
     width: 100%;
     display: block;
-    cursor: default;
+    cursor: pointer;
     border: none;
     outline: none;
 }
 
-.sidebar .sidebarElement:hover {
-    background-color: #05386e;
+.sidebar .sidebarElement a:hover, .sidebar .sidebarElement:hover {
+    border-radius: 5px;
+
+    background-color: #052a52;
 }
 
 .sidebarPanels {
     margin-top: 15px;
 }
 
-.sidebarPanels h2 {
-    margin:0 0 10px;
+.sidebarPanels h2, .sidebarPanels h3, .sidebarPanels h4 {
+    margin:10px 0 10px;
     display:block;
 }

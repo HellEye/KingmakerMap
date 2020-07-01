@@ -17,6 +17,10 @@
     margin-left: 20px;
 }
 
+.kingdomDisplayWrapper {
+    padding:10px;
+}
+
 .kingdomDisplay {
     display: flex;
     flex-direction: row;

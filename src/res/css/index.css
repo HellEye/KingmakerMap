@@ -37,7 +37,7 @@ code {
 .screen {
     background-color: #282c34;
     display: grid;
-    grid: [row1-start] "sidebar header" fit-content(10%) [row1-end] [row2-start] "sidebar main" auto [row2-end]
+    grid: [row1-start] "sidebar header" 25% [row1-end] [row2-start] "sidebar main" auto [row2-end]
         / 15% 85%;
 
     justify-items: stretch;

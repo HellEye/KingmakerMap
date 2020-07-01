@@ -42,3 +42,7 @@
 .page {
   background-color: #282c34;
 }
+
+.react-tabs {
+  /*z-index:-1;*/
+}

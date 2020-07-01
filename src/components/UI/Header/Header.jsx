@@ -6,7 +6,9 @@ class Header extends Component{
     render(){
         return (
             <div className={"header"}>
-                <KingdomStats/>
+                <KingdomStats>
+                    {this.props.children}
+                </KingdomStats>
             </div>
         )
     }

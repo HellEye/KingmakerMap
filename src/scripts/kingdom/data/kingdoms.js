@@ -1,31 +1,33 @@
-import {decorate, observable} from "mobx"
+import {decorate, observable, observe} from "mobx"
 import dbLoader from "../../utils/dbLoader"
-import KingdomData from "./kingdomData"
+import KingdomData, {emptyKingdomData} from "./kingdomData"
+import {getCookie} from "../../utils/cookies"
 
 const kingdomUrl = 'kingdoms'
+const kingdomDataUrl = 'kingdomStats'
+let selectedKingdom = observable.box(null)
 
 class Kingdom {
-	constructor(id, name, color = "#ffffff") {
+	constructor(name, color = "#ffffff", data = null, id = 0) {
 		this.id = id
 		this.name = name
 		this.color = color
+		this.kingdomData = new KingdomData(data)
 	}
-
-	color = "#ffffff"
-	name = ""
-
-	kingdomData=new KingdomData()
 
 	toFormData = () => {
 		const data = new FormData()
 		data.append("name", `'${this.name}'`)
 		data.append("color", `'${this.color}'`)
-		data.forEach((value, key) => {
-			console.log(`${key}: ${value}`)
-		})
 		return data
 	}
-	toString=()=>{
+	createKingdomData = async () => {
+		if (this.kingdomData.data != null) return
+		this.kingdomData.setData(emptyKingdomData)
+		this.kingdomData.data.kingdomId = this.id
+		await dbLoader(kingdomDataUrl, "PUT", this.kingdomData.toFormData())
+	}
+	toString = () => {
 		return this.name
 	}
 }
@@ -38,32 +40,36 @@ decorate(Kingdom, {
 class Kingdoms {
 	kingdoms = observable([])
 	finishedLoading = true
+	kingdomChanged = -1
 
 	constructor() {
 		this.finishedLoading = false
 		this.loadKingdomsFromDb()
-			.then(() => {this.finishedLoading = true
+			.then(() => {
+				this.finishedLoading = true
 			})
 	}
 
 	getIndexById = (id) => {
-		for(let i=0;i<this.kingdoms.length;i++){
-			if(this.kingdoms[i].id===id)
+		for (let i = 0; i < this.kingdoms.length; i++) {
+			if (this.kingdoms[i].id === id)
 				return i
 		}
 		return -1;
 	}
 	getById = (id) => {
-		for(let i=0;i<this.kingdoms.length;i++){
-			if(this.kingdoms[i].id===id){
-				return this.kingdoms[i]}
+		for (let i = 0; i < this.kingdoms.length; i++) {
+			if (this.kingdoms[i].id === id) {
+				return this.kingdoms[i]
+			}
 		}
 		return null;
 	}
-	getByName = (name)=>{
-		for(let i=0;i<this.kingdoms.length;i++){
-			if(this.kingdoms[i].name===name){
-				return this.kingdoms[i]}
+	getByName = (name) => {
+		for (let i = 0; i < this.kingdoms.length; i++) {
+			if (this.kingdoms[i].name === name) {
+				return this.kingdoms[i]
+			}
 		}
 		return null;
 	}
@@ -78,11 +84,24 @@ class Kingdoms {
 
 	editFinished = async (index) => {
 		await dbLoader(`${kingdomUrl}/${this.kingdoms[index].id}`, "POST", this.kingdoms[index].toFormData())
+		this.kingdomChanged = this.kingdoms[index].id
+		this.kingdomChanged = -1
+
 	}
 	loadKingdomsFromDb = async () => {
 		this.kingdoms = []
 		const kingdomList = await dbLoader(kingdomUrl, "GET")
-		kingdomList.forEach(k => this.kingdoms.push(new Kingdom(k[0], k[1], k[2])))
+		const kingdomData = await dbLoader(kingdomDataUrl, "GET")
+		kingdomList.forEach(k => {
+			this.kingdoms.push(new Kingdom(k[1], k[2]))
+			this.kingdoms[this.kingdoms.length - 1].id = k[0]
+		})
+		this.kingdoms.forEach(k => {
+			for (let i = 0; i < kingdomData.length; i++) {
+				if (k.id === kingdomData[i].kingdomId)
+					k.kingdomData.setData(kingdomData[i])
+			}
+		})
 	}
 	map = (f) => {
 		return this.kingdoms.map(f)
@@ -92,9 +111,18 @@ class Kingdoms {
 
 decorate(Kingdoms, {
 	kingdoms: observable,
-	finishedLoading: observable
+	finishedLoading: observable,
+	kingdomChanged: observable
 })
+
 const kingdoms = new Kingdoms()
+const kingdomsLoaded = observe(kingdoms, "finishedLoading", change => {
+	if (change.newValue) {
+		const loadedId = getCookie("lastLoadedKingdom")
+		if (loadedId !== "")
+			selectedKingdom.set(kingdoms.getById(parseInt(loadedId)))
+		kingdomsLoaded()
+	}
+})
 
-
-export {Kingdom, kingdoms}
+export {Kingdom, kingdoms, selectedKingdom}

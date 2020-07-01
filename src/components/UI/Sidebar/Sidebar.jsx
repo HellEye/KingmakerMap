@@ -5,27 +5,49 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary"
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails"
 import {observer} from "mobx-react"
+import {selectedHex} from "../../board/HexGrid"
+import {observe} from "mobx"
 
+/*const tabs = [
+	<SidebarElement key={0} href={"/Map"} onClick={() => console.log("clicked first")}>Map</SidebarElement>,
+	<SidebarElement key={1} href={"/Stats"}>Stats</SidebarElement>,
+	<SidebarElement key={2} href={"/Kingdoms"}>Kingdom overview</SidebarElement>,
+]*/
 class Sidebar extends Component {
-
-
 	constructor(props) {
 		super(props)
 		this.state = {
-			expanded: -1
+			expanded: [],
+			selectedHex: null
 		}
+
 	}
 
-	handleChange = (panel) => (event, isExpanded) => {
+	componentDidMount() {
+		this._isMounted = true
+		this.selectHex = observe(selectedHex, (change) => {
+			if (this._isMounted)
+				this.setState({...this.state, selectedHex: change.newValue})
+		})
+	}
+
+	componentWillUnmount() {
+		this._isMounted = false;
+		this.selectHex()
+	}
+
+	/*handleChange = (panel) => (event, isExpanded) => {
 		if (isExpanded)
-			this.setState({
-				expanded: panel
+			this.setState(state => {
+				state.expanded.push(panel)
+				return {expanded:state.expanded}
 			});
 		else
-			this.setState({
-				expanded: -1
+			this.setState(state => {
+				const newExpanded = state.expanded.filter((e)=>e===panel)
+				return {expanded:newExpanded}
 			})
-	}
+	}*/
 
 
 	panelStyle = {
@@ -41,13 +63,17 @@ class Sidebar extends Component {
 	render() {
 		return (
 			<div className={"sidebar"}>
-				<h3 className={"tempText"}> This will be moved to header nav or inside the panels </h3>
-				{this.props.children}
-				<h3 className={"tempText"}>This will stay</h3>
+				<h3>Selected hex:</h3>
+				<h3>
+					{
+						this.state.selectedHex != null ?
+							`x:${this.state.selectedHex.x}, y:${this.state.selectedHex.y}` : ""
+					}
+				</h3>
 				<div className={"sidebarPanels"}>
-					<ExpansionPanel
-						onChange={this.handleChange(0)}
-						expanded={this.state.expanded === 0}
+					{/*<ExpansionPanel
+						// onChange={this.handleChange(0)}
+						// expanded={this.state.expanded.includes(0)}
 						style={this.panelStyle}>
 						<ExpansionPanelSummary
 							expandIcon={<ExpandMoreIcon style={{stroke:"#052a52", fill: "#052a52"}}/>}
@@ -56,36 +82,36 @@ class Sidebar extends Component {
 							<h4 className={"sidebarPanelHeader"}>Nav or something</h4>
 						</ExpansionPanelSummary>
 						<ExpansionPanelDetails style={{flexDirection:"column"}}>
-							<h2>Some stuff?</h2>
+							{tabs}
 						</ExpansionPanelDetails>
-					</ExpansionPanel>
+					</ExpansionPanel>*/}
 
 					<ExpansionPanel
-						onChange={this.handleChange(1)}
-						expanded={this.state.expanded === 1}
+						// onChange={this.handleChange(1)}
+						// expanded={this.state.expanded.includes(1)}
 						style={this.panelStyle}>
 						<ExpansionPanelSummary
-							expandIcon={<ExpandMoreIcon style={{stroke:"#052a52", fill: "#052a52"}}/>}
+							expandIcon={<ExpandMoreIcon style={{stroke: "#052a52", fill: "#052a52"}}/>}
 							id="sidebarPanel1"
 							style={this.labelStyle}>
 							<h4 className={"sidebarPanelHeader"}>Hex improvements</h4>
 						</ExpansionPanelSummary>
-						<ExpansionPanelDetails style={{flexDirection:"column"}}>
+						<ExpansionPanelDetails style={{flexDirection: "column"}}>
 							<h2>Hex improvement stuff</h2>
 						</ExpansionPanelDetails>
 					</ExpansionPanel>
 
 					<ExpansionPanel
-						onChange={this.handleChange(2)}
-						expanded={this.state.expanded === 2}
+						// onChange={this.handleChange(2)}
+						// expanded={this.state.expanded.includes(2)}
 						style={this.panelStyle}>
 						<ExpansionPanelSummary
-							expandIcon={<ExpandMoreIcon style={{stroke:"#052a52", fill: "#052a52"}}/>}
+							expandIcon={<ExpandMoreIcon style={{stroke: "#052a52", fill: "#052a52"}}/>}
 							id="sidebarPanel2"
 							style={this.labelStyle}>
 							<h4 className={"sidebarPanelHeader"}>Settlement</h4>
 						</ExpansionPanelSummary>
-						<ExpansionPanelDetails style={{flexDirection:"column"}}>
+						<ExpansionPanelDetails style={{flexDirection: "column"}}>
 							<h2>District list and stuff</h2>
 							<h2>Or create settlement</h2>
 						</ExpansionPanelDetails>

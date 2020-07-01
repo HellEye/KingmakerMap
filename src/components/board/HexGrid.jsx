@@ -2,6 +2,9 @@ import React, {Component} from "react"
 import Hex from "./Hex"
 import {hexDataGrid} from "../../scripts/kingdom/data/hexData"
 import {observer} from "mobx-react"
+import {observable} from "mobx"
+
+let selectedHex = observable.box(null)
 
 class HexGrid extends Component {
 	//Magic numbers, do not touch
@@ -32,17 +35,20 @@ class HexGrid extends Component {
 				                 hexData={this.hexDataList[num.x + num.y * 29]}
 				/>)
 	}*/
-
+	selectHex = (hex) => {
+		selectedHex.set(hex)
+	}
 	createHexes = () => {
 		if (!this.loadComplete && hexDataGrid.loaded) {
 			this.hexes = []
 			for (let y = 0; y < 11; y++) {
-				for (let x = 0; x < (y%2===1?27:28); x++) {
+				for (let x = 0; x < (y % 2 === 1 ? 27 : 28); x++) {
 					this.hexes.push(<Hex
 						key={y * 28 + x}
 						size={this.hexSize}
 						margin={this.margin}
 						coords={{x: x, y: y}}
+						selectHex={this.selectHex}
 						hexData={hexDataGrid.getByCoords(x, y)}
 					/>)
 				}
@@ -62,3 +68,4 @@ class HexGrid extends Component {
 }
 
 export default observer(HexGrid)
+export {selectedHex}

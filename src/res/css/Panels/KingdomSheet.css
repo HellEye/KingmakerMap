@@ -1,0 +1,116 @@
+.kingdomSheet {
+    color: #a8acb2;
+    height:100%;
+    width:100%;
+    max-height: 100%;
+    display: grid;
+    grid:   [row1-start] "Tabs Tabs Tabs Tabs" 0.5fr [row1-end]
+            [row2-start] "Header Header KingdomSelect KingdomSelect2" 1fr [row2-end]
+            [row3-start] "content content content content" 5fr [row3-end]
+            / 1fr 1fr 1fr 1fr;
+}
+
+.kingdomSheet h1 {
+    display: inline-block;
+    grid-area: Header;
+}
+
+.kingdomSheetTitle {
+    display:inline-block;
+    padding: 0 20px;
+    margin:15px 0 0;
+    /*width: 600px;*/
+}
+.kingdomSheetTabs {
+    grid-area: Tabs;
+}
+.kingdomSheetContent {
+    grid-area: content;
+    max-height: 500px;
+    padding: 0 20px;
+}
+.selectKingdomWrap {
+    display: inline-block;
+}
+
+.kingdomSheetStats {
+    grid-area: content;
+    width:fit-content;
+    display:inline-flex;
+    flex-direction: column;
+}
+.kingdomSheetField {
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    box-sizing: content-box;
+}
+
+.kingdomSheetField > *{
+    margin-right: 15px;
+}
+
+.kingdomSheetField h4, .kingdomSheetField h3 {
+    display:inline-block;
+    width: 100px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.kingdomSheetField h4 {
+    text-align: right;
+}
+
+.kingdomSheetField input[type=number] {
+    background-color: #333c4a;
+    color: #a8acb2;
+    margin-right:0;
+    border: #282c34 3px solid;
+    border-radius: 5px;
+    height: fit-content;
+    box-sizing: content-box;
+    padding: 8px 15px;
+    font-size: 1em;
+    width: 100px;
+}
+/* Chrome, Safari, Edge, Opera */
+.kingdomSheet input[type=number]::-webkit-outer-spin-button,
+.kingdomSheet input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+.kingdomSheet input[type=number] {
+    -moz-appearance: textfield;
+}
+
+
+
+.kingdomSheetRulers{
+    width:100%;
+    flex-wrap: wrap;
+    max-height: 500px;
+    -webkit-flex-wrap: wrap;
+}
+.kingdomSheetRulers .kingdomSheetField{
+    width: 40%;
+}
+
+
+.kingdomSheetRulerCheck {
+    display: flex;
+    width: 50px !important;
+    flex-direction: row;
+}
+.kingdomSheetRulerCheck .MuiFormControlLabel-label {
+    color:#a8acb2 !important;
+}
+.kingdomSheetRulerCheck .MuiButtonBase-root {
+    color: #055a6e !important;
+    display: inline-flex !important;
+    flex-direction: row !important;
+}
+.kingdomSheetRulerCheck .MuiButtonBase-root:hover {
+    background-color: #055a6e20 !important;
+}

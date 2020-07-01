@@ -3,6 +3,8 @@ import Hexagon from "react-hexagon"
 import DisplaySettings from "../../scripts/settings/DisplaySettings"
 import {observer} from "mobx-react"
 import "../../res/css/Board/Hexagon.css"
+import {selectedHex} from "./HexGrid"
+import {observe} from "mobx"
 
 
 class Hex extends Component {
@@ -47,17 +49,28 @@ class Hex extends Component {
 		return {
 			stroke: stroke,
 			cursor: 'default',
-			fill: "#ffffff01"
+			fill: this.props.hexData===selectedHex.get()?"#ffffff40":"#ffffff01"
 		}
 	}
 
 	onHexClick = (e) => {
 		if (Math.abs(e.clientX - this.draggingStart.x) < 10 && Math.abs(e.clientY - this.draggingStart.y) < 10)
-			console.log(this.props.hexData)
+			this.props.selectHex(this.props.hexData)
 	}
 
 	onDragStart = (e) => {
 		this.draggingStart = {x: e.clientX, y: e.clientY}
+	}
+	componentDidMount() {
+		this._isMounted=true
+		this.onHexChange=observe(selectedHex, (change)=>{
+			if(this._isMounted)
+				this.forceUpdate()
+		})
+	}
+	componentWillUnmount() {
+		this._isMounted=false;
+		this.onHexChange()
 	}
 
 
