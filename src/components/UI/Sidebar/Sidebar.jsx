@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import "../../../res/css/Panels/Sidebar.css"
+import "../../../res/css/Panels/Sidebar/Sidebar.css"
 import ExpansionPanel from "@material-ui/core/ExpansionPanel"
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary"
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -7,6 +7,7 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails"
 import {observer} from "mobx-react"
 import {selectedHex} from "../../board/HexGrid"
 import {observe} from "mobx"
+import SidebarSettlement from "./SidebarComponents/SidebarSettlement"
 
 /*const tabs = [
 	<SidebarElement key={0} href={"/Map"} onClick={() => console.log("clicked first")}>Map</SidebarElement>,
@@ -71,21 +72,6 @@ class Sidebar extends Component {
 					}
 				</h3>
 				<div className={"sidebarPanels"}>
-					{/*<ExpansionPanel
-						// onChange={this.handleChange(0)}
-						// expanded={this.state.expanded.includes(0)}
-						style={this.panelStyle}>
-						<ExpansionPanelSummary
-							expandIcon={<ExpandMoreIcon style={{stroke:"#052a52", fill: "#052a52"}}/>}
-							id="sidebarPanel0"
-							style={this.labelStyle}>
-							<h4 className={"sidebarPanelHeader"}>Nav or something</h4>
-						</ExpansionPanelSummary>
-						<ExpansionPanelDetails style={{flexDirection:"column"}}>
-							{tabs}
-						</ExpansionPanelDetails>
-					</ExpansionPanel>*/}
-
 					<ExpansionPanel
 						// onChange={this.handleChange(1)}
 						// expanded={this.state.expanded.includes(1)}
@@ -111,9 +97,11 @@ class Sidebar extends Component {
 							style={this.labelStyle}>
 							<h4 className={"sidebarPanelHeader"}>Settlement</h4>
 						</ExpansionPanelSummary>
-						<ExpansionPanelDetails style={{flexDirection: "column"}}>
-							<h2>District list and stuff</h2>
-							<h2>Or create settlement</h2>
+						<ExpansionPanelDetails style={{
+								flexDirection: "column",
+								padding:"5px 5px 15px",
+							}}>
+							<SidebarSettlement/>
 						</ExpansionPanelDetails>
 					</ExpansionPanel>
 				</div>
