@@ -11,13 +11,14 @@
     font-weight: bold;
     outline: none;
     border-radius: 5px;
+    transition: background-color 200ms;
 }
 
 .buttonGrey {
     background-color: #353f4c;
-    border: 3px solid #2a3340 !important;
-    padding: 5px 3px !important;
-    margin:0 !important;
+    border: 3px solid #2a3340;
+    padding: 5px 3px ;
+    margin:0 ;
 
     cursor:pointer;
     user-select: none;
@@ -27,7 +28,18 @@
     font-size: 18px;
     font-weight: bold;
     outline: none;
-    border-radius: 5px !important;
+    border-radius: 5px;
+    transition: background-color 200ms;
+}
+
+
+.buttonRed {
+    background-color: #ff3333;
+    border-color: #aa3333;
+    color: #333c4a;
+}
+.buttonRed:hover {
+    background-color: #cf3333 !important;
 }
 .button::-moz-focus-inner {
     border: 0;
@@ -35,4 +47,7 @@
 
 .button:hover {
     background-color: #052a52;
+}
+.buttonGrey:hover{
+    background-color: #454f5c;
 }

@@ -7,6 +7,7 @@ import {Tab, TabList, TabPanel, Tabs} from "react-tabs"
 import "../../../../res/css/UI/Tabs.css"
 import KingdomSheetRuler from "./KingdomSheetRuler"
 import {kingdoms, selectedKingdom} from "../../../../scripts/kingdom/data/kingdoms"
+import {hexDataGrid} from "../../../../scripts/kingdom/data/hexData"
 
 
 const statsToDisplay = [
@@ -101,6 +102,7 @@ class KingdomSheet extends Component {
 						: ""}
 				</div>
 			)
+		const settlementBonuses=hexDataGrid.getModifiersByKingdomId(this.state.kingdom.id)
 		return (
 			<div>
 				<Tabs className={"kingdomSheet"}>
@@ -136,6 +138,7 @@ class KingdomSheet extends Component {
 											saveCallback={this.saveKingdomData}
 											changeCallback={this.changeKingdomStats}
 											kingdom={this.state.kingdom}
+											settlementBonuses={settlementBonuses}
 										/>))
 								}
 							</div>

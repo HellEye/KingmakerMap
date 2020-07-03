@@ -1,34 +1,12 @@
+//gets rid of the stupid warning without having to sort all this stuff
+/*eslint no-use-before-define: [0, { "classes": false }]*/
+/*eslint-env es6*/
+
 import Building from "./building"
 
-class Academy extends Building {
-	static inst = new Academy()
-	id = 1
-	image = []
-	name = "Academy"
-	bpCost = 52
-	size = 2
-	bonus = {
-		...super.bonus,
-		economy: 2,
-		loyalty: 2
-	}
-	settlementBonus = {
-		...super.settlementBonus,
-		lore: 2,
-		productivity: 1,
-		society: 2
-	}
-	discounts = [CastersTower, Library, MagicShop]
-	discountedBy = [Cathedral, University]
-	upgradesFrom = Library
-	limit = ""
-	special = "Increase Lore bonus by 2 for questions to one Knowledge or Profession skill"
-	magicItems = "3 minor scroll or wondrous item, 2 medium scroll or wondrous item"
-	text = "An institution of higher learning."
-}
 
 class Alchemist extends Building {
-	static inst = new Alchemist()
+
 	id = 2
 	image = []
 	name = "Alchemist"
@@ -48,33 +26,9 @@ class Alchemist extends Building {
 	text = "The laboratory and home of a crafter of poisons, potionions, or alchemical items."
 }
 
-class Arena extends Building {
-	static inst = new Arena()
-	id = 3
-	image = []
-	name = "Arena"
-	bpCost = 40
-	size = 4
-	bonus = {
-		...super.bonus,
-		stability: 4,
-		fame: 1
-	}
-	settlementBonus = {
-		...super.settlementBonus,
-		crime: 1
-	}
-	discounts = [Brothel, Garrison, Inn, Stable, Theater]
-	discountedBy = []
-	upgradesFrom = Theater
-	limit = "1 per Settlement"
-	special = ""
-	magicItems = ""
-	text = "A large public structure for competitions and team sports"
-}
 
 class Bank extends Building {
-	static inst = new Bank()
+
 	id = 4
 	image = []
 	name = "Bank"
@@ -95,10 +49,10 @@ class Bank extends Building {
 }
 
 class BardicCollege extends Building {
-	static inst = new BardicCollege()
+
 	id = 5
 	image = []
-	name = "BardicCollege"
+	name = "Bardic College"
 	bpCost = 40
 	size = 2
 	bonus = {
@@ -119,7 +73,7 @@ class BardicCollege extends Building {
 }
 
 class Barracks extends Building {
-	static inst = new Barracks()
+
 	id = 6
 	image = []
 	name = "Barracks"
@@ -144,10 +98,10 @@ class Barracks extends Building {
 }
 
 class BlackMarket extends Building {
-	static inst = new BlackMarket()
+
 	id = 7
 	image = []
-	name = "BlackMarket"
+	name = "Black Market"
 	bpCost = 50
 	size = 1
 	bonus = {
@@ -171,7 +125,7 @@ class BlackMarket extends Building {
 }
 
 class Brewery extends Building {
-	static inst = new Brewery()
+
 	id = 8
 	image = []
 	name = "Brewery"
@@ -193,7 +147,7 @@ class Brewery extends Building {
 }
 
 class Bridge extends Building {
-	static inst = new Bridge()
+
 	id = 9
 	image = []
 	name = "Bridge"
@@ -214,7 +168,7 @@ class Bridge extends Building {
 }
 
 class Brothel extends Building {
-	static inst = new Brothel()
+
 	id = 10
 	image = []
 	name = "Brothel"
@@ -241,7 +195,7 @@ class Brothel extends Building {
 }
 
 class Bureau extends Building {
-	static inst = new Bureau()
+
 	id = 11
 	image = []
 	name = "Bureau"
@@ -268,10 +222,10 @@ class Bureau extends Building {
 }
 
 class CastersTower extends Building {
-	static inst = new CastersTower()
+
 	id = 12
 	image = []
-	name = "CastersTower"
+	name = "Casters Tower"
 	bpCost = 30
 	size = 1
 	bonus = {
@@ -290,7 +244,7 @@ class CastersTower extends Building {
 }
 
 class Castle extends Building {
-	static inst = new Castle()
+
 	id = 13
 	image = []
 	name = "Castle"
@@ -316,7 +270,7 @@ class Castle extends Building {
 }
 
 class Cathedral extends Building {
-	static inst = new Cathedral()
+
 	id = 14
 	image = []
 	name = "Cathedral"
@@ -343,7 +297,7 @@ class Cathedral extends Building {
 }
 
 class Cistern extends Building {
-	static inst = new Cistern()
+
 	id = 15
 	image = []
 	name = "Cistern"
@@ -361,10 +315,10 @@ class Cistern extends Building {
 }
 
 class CityWall extends Building {
-	static inst = new CityWall()
+
 	id = 16
 	image = []
-	name = "CityWall"
+	name = "City Wall"
 	bpCost = 2
 	size = 0
 	bonus = {
@@ -383,7 +337,7 @@ class CityWall extends Building {
 }
 
 class Dump extends Building {
-	static inst = new Dump()
+
 	id = 17
 	image = []
 	name = "Dump"
@@ -404,10 +358,10 @@ class Dump extends Building {
 }
 
 class EverflowingSpring extends Building {
-	static inst = new EverflowingSpring()
+
 	id = 18
 	image = []
-	name = "EverflowingSpring"
+	name = "Everflowing Spring"
 	bpCost = 5
 	size = 0
 	bonus = {...super.bonus}
@@ -422,10 +376,10 @@ class EverflowingSpring extends Building {
 }
 
 class ExoticArtisan extends Building {
-	static inst = new ExoticArtisan()
+
 	id = 19
 	image = []
-	name = "ExoticArtisan"
+	name = "Exotic Artisan"
 	bpCost = 10
 	size = 1
 	bonus = {
@@ -444,10 +398,10 @@ class ExoticArtisan extends Building {
 }
 
 class ForeignQuarter extends Building {
-	static inst = new ForeignQuarter()
+
 	id = 20
 	image = []
-	name = "ForeignQuarter"
+	name = "Foreign Quarter"
 	bpCost = 30
 	size = 4
 	bonus = {
@@ -471,7 +425,7 @@ class ForeignQuarter extends Building {
 }
 
 class Foundry extends Building {
-	static inst = new Foundry()
+
 	id = 21
 	image = []
 	name = "Foundry"
@@ -496,31 +450,9 @@ class Foundry extends Building {
 	text = "Processes ore and refines it into finished metal. Perfect for Saturday nights"
 }
 
-class Garrison extends Building {
-	static inst = new Garrison()
-	id = 22
-	image = []
-	name = "Garrison"
-	bpCost = 28
-	size = 2
-	bonus = {
-		...super.bonus,
-		loyalty: 2,
-		stability: 2,
-		unrest: -2
-	}
-	settlementBonus = {...super.settlementBonus}
-	discounts = [CityWall, Granary, Jail]
-	discountedBy = [Arena]
-	upgradesFrom = Barracks
-	limit = ""
-	special = ""
-	magicItems = ""
-	text = "A large building to house armies, train guards, and recruit militia"
-}
 
 class Granary extends Building {
-	static inst = new Granary()
+
 	id = 23
 	image = []
 	name = "Granary"
@@ -542,7 +474,7 @@ class Granary extends Building {
 }
 
 class Graveyard extends Building {
-	static inst = new Graveyard()
+
 	id = 24
 	image = []
 	name = "Graveyard"
@@ -562,35 +494,8 @@ class Graveyard extends Building {
 	text = "A plot of land to honor and bury the dead."
 }
 
-class Guildhall extends Building {
-	static inst = new Guildhall()
-	id = 25
-	image = []
-	name = "Guildhall"
-	bpCost = 34
-	size = 2
-	bonus = {
-		...super.bonus,
-		economy: 2,
-		loyalty: 2
-	}
-	settlementBonus = {
-		...super.settlementBonus,
-		law: 1,
-		productivity: 2
-	}
-	discounts = [Pier, Stable, TradeShop]
-	discountedBy = [Waterfront]
-	upgradesFrom = TradeShop
-	Shop
-	limit = ""
-	special = "Base Value +1,00gp"
-	magicItems = ""
-	text = "The headquarters for a guild or similar organization."
-}
-
 class Herbalist extends Building {
-	static inst = new Herbalist()
+
 	id = 26
 	image = []
 	name = "Herbalist"
@@ -612,7 +517,7 @@ class Herbalist extends Building {
 }
 
 class Hospital extends Building {
-	static inst = new Hospital()
+
 	id = 27
 	image = []
 	name = "Hospital"
@@ -637,29 +542,8 @@ class Hospital extends Building {
 	text = "A building devoted to healing the sick"
 }
 
-class House extends Building {
-	static inst = new House()
-	id = 28
-	image = []
-	name = "House"
-	bpCost = 3
-	size = 1
-	bonus = {
-		...super.bonus,
-		unrest: -1
-	}
-	settlementBonus = {...super.settlementBonus}
-	discounts = []
-	discountedBy = []
-	upgradesFrom = Tenement
-	limit = ""
-	special = "The first House you build during the Improvement phase does not count against the total number of buildings you can build during the phase"
-	magicItems = ""
-	text = "A number of mid-sized houses for citizens."
-}
-
 class Inn extends Building {
-	static inst = new Inn()
+
 	id = 29
 	image = []
 	name = "Inn"
@@ -684,7 +568,7 @@ class Inn extends Building {
 }
 
 class Jail extends Building {
-	static inst = new Jail()
+
 	id = 30
 	image = []
 	name = "Jail"
@@ -711,7 +595,7 @@ class Jail extends Building {
 }
 
 class Library extends Building {
-	static inst = new Library()
+
 	id = 31
 	image = []
 	name = "Library"
@@ -735,53 +619,12 @@ class Library extends Building {
 	text = "A large building containing an archive of books."
 }
 
-class LuxuryStore extends Building {
-	static inst = new LuxuryStore()
-	id = 32
-	image = []
-	name = "LuxuryStore"
-	bpCost = 28
-	size = 1
-	bonus = {
-		...super.bonus,
-		economy: 1
-	}
-	settlementBonus = {...super.settlementBonus}
-	discounts = []
-	discountedBy = [NobleVilla]
-	upgradesFrom = Shop
-	limit = "Adjacent to 1 House"
-	special = "Base Value +2,00gp"
-	magicItems = "2 minor rings, wands or wondrous item"
-	text = "A shop that specializes in expensive comforts for the wealthy."
-}
-
-class MagicShop extends Building {
-	static inst = new MagicShop()
-	id = 33
-	image = []
-	name = "MagicShop"
-	bpCost = 68
-	size = 1
-	bonus = {
-		...super.bonus,
-		economy: 1
-	}
-	settlementBonus = {...super.settlementBonus}
-	discounts = []
-	discountedBy = [Academy, MagicalAcademy]
-	upgradesFrom = LuxuryStore
-	limit = "Adjacent to 2 House"
-	special = "Base Value +2,00gp"
-	magicItems = "4 minor wondrous item, 2 medium wondrous item, 1 major wondrous item"
-	text = "A shop that specializes in magic items and spells"
-}
 
 class MagicalAcademy extends Building {
-	static inst = new MagicalAcademy()
+
 	id = 34
 	image = []
-	name = "MagicalAcademy"
+	name = "Magical Academy"
 	bpCost = 58
 	size = 2
 	bonus = {
@@ -804,12 +647,12 @@ class MagicalAcademy extends Building {
 }
 
 class MagicalStreetlamps extends Building {
-	static inst = new MagicalStreetlamps()
+
 	id = 35
 	image = []
-	name = "MagicalStreetlamps"
+	name = "Magical Streetlamps"
 	bpCost = 5
-	size =0
+	size = 0
 	bonus = {...super.bonus}
 	settlementBonus = {
 		...super.settlementBonus,
@@ -825,7 +668,7 @@ class MagicalStreetlamps extends Building {
 }
 
 class Mansion extends Building {
-	static inst = new Mansion()
+
 	id = 36
 	image = []
 	name = "Mansion"
@@ -849,30 +692,9 @@ class Mansion extends Building {
 	text = "A single huge manor housing a rich family and its servants."
 }
 
-class Market extends Building {
-	static inst = new Market()
-	id = 37
-	image = []
-	name = "Market"
-	bpCost = 48
-	size = 2
-	bonus = {
-		...super.bonus,
-		economy: 2,
-		stability: 2
-	}
-	settlementBonus = {...super.settlementBonus}
-	discounts = [BlackMarket, Inn, Shop]
-	discountedBy = [Waterfront]
-	upgradesFrom = Shop
-	limit = "Adjacent to 2 House"
-	special = "Base Value +2,00gp"
-	magicItems = "2 minor wondrous item"
-	text = "An open area for traveling merchants and bargain hunters."
-}
 
 class Menagerie extends Building {
-	static inst = new Menagerie()
+
 	id = 38
 	image = []
 	name = "Menagerie"
@@ -894,10 +716,10 @@ class Menagerie extends Building {
 }
 
 class MilitaryAcademy extends Building {
-	static inst = new MilitaryAcademy()
+
 	id = 39
 	image = []
-	name = "MilitaryAcademy"
+	name = "Military Academy"
 	bpCost = 36
 	size = 2
 	bonus = {
@@ -921,7 +743,7 @@ class MilitaryAcademy extends Building {
 }
 
 class Mill extends Building {
-	static inst = new Mill()
+
 	id = 40
 	image = []
 	name = "Mill"
@@ -946,7 +768,7 @@ class Mill extends Building {
 }
 
 class Mint extends Building {
-	static inst = new Mint()
+
 	id = 41
 	image = []
 	name = "Mint"
@@ -970,12 +792,12 @@ class Mint extends Building {
 }
 
 class Moat extends Building {
-	static inst = new Moat()
+
 	id = 42
 	image = []
 	name = "Moat"
 	bpCost = 2
-	size =0
+	size = 0
 	bonus = {
 		...super.bonus,
 		unrest: -1,
@@ -992,7 +814,7 @@ class Moat extends Building {
 }
 
 class Monastery extends Building {
-	static inst = new Monastery()
+
 	id = 43
 	image = []
 	name = "Monastery"
@@ -1017,7 +839,7 @@ class Monastery extends Building {
 }
 
 class Monument extends Building {
-	static inst = new Monument()
+
 	id = 44
 	image = []
 	name = "Monument"
@@ -1039,7 +861,7 @@ class Monument extends Building {
 }
 
 class Museum extends Building {
-	static inst = new Museum()
+
 	id = 45
 	image = []
 	name = "Museum"
@@ -1065,35 +887,9 @@ class Museum extends Building {
 	text = "A place to display art and artifacts both modern and historical. The GM may allow the kingdom leaders to display a valuable item (such as a magic item or bejeweled statue) in the museum, increasing Fame during this display by 1 for every 10,00 gp of the item’s price (maximum +5 Fame), and by an additional 1 if the item is significant to the kingdom’s history."
 }
 
-class NobleVilla extends Building {
-	static inst = new NobleVilla()
-	id = 46
-	image = []
-	name = "NobleVilla"
-	bpCost = 24
-	size = 2
-	bonus = {
-		...super.bonus,
-		economy: 1,
-		loyalty: 1,
-		stability: 1,
-		fame: 1
-	}
-	settlementBonus = {
-		...super.settlementBonus,
-		society: 1
-	}
-	discounts = [ExoticArtisan, LuxuryStore, Mansion]
-	discountedBy = [Castle, Palace]
-	upgradesFrom = Mansion
-	limit = ""
-	special = ""
-	magicItems = ""
-	text = "A sprawling manor with luxurious grounds that houses a noble’s family and staff."
-}
 
 class Observatory extends Building {
-	static inst = new Observatory()
+
 	id = 47
 	image = []
 	name = "Observatory"
@@ -1117,7 +913,7 @@ class Observatory extends Building {
 }
 
 class Orphanage extends Building {
-	static inst = new Orphanage()
+
 	id = 48
 	image = []
 	name = "Orphanage"
@@ -1139,7 +935,7 @@ class Orphanage extends Building {
 }
 
 class Palace extends Building {
-	static inst = new Palace()
+
 	id = 49
 	image = []
 	name = "Palace"
@@ -1166,7 +962,7 @@ class Palace extends Building {
 }
 
 class Park extends Building {
-	static inst = new Park()
+
 	id = 50
 	image = []
 	name = "Park"
@@ -1188,12 +984,12 @@ class Park extends Building {
 }
 
 class PavedStreets extends Building {
-	static inst = new PavedStreets()
+
 	id = 51
 	image = []
-	name = "PavedStreets"
+	name = "Paved Streets"
 	bpCost = 24
-	size =0
+	size = 0
 	bonus = {
 		...super.bonus,
 		economy: 2,
@@ -1213,7 +1009,7 @@ class PavedStreets extends Building {
 }
 
 class Pier extends Building {
-	static inst = new Pier()
+
 	id = 52
 	image = []
 	name = "Pier"
@@ -1238,12 +1034,12 @@ class Pier extends Building {
 }
 
 class SewerSystem extends Building {
-	static inst = new SewerSystem()
+
 	id = 53
 	image = []
-	name = "SewerSystem"
+	name = "Sewer System"
 	bpCost = 24
-	size =0
+	size = 0
 	bonus = {
 		...super.bonus,
 		loyalty: 1,
@@ -1264,7 +1060,7 @@ class SewerSystem extends Building {
 }
 
 class Shop extends Building {
-	static inst = new Shop()
+
 	id = 54
 	image = []
 	name = "Shop"
@@ -1288,7 +1084,7 @@ class Shop extends Building {
 }
 
 class Shrine extends Building {
-	static inst = new Shrine()
+
 	id = 55
 	image = []
 	name = "Shrine"
@@ -1310,7 +1106,7 @@ class Shrine extends Building {
 }
 
 class Smithy extends Building {
-	static inst = new Smithy()
+
 	id = 56
 	image = []
 	name = "Smithy"
@@ -1332,7 +1128,7 @@ class Smithy extends Building {
 }
 
 class Stable extends Building {
-	static inst = new Stable()
+
 	id = 57
 	image = []
 	name = "Stable"
@@ -1354,7 +1150,7 @@ class Stable extends Building {
 }
 
 class Stockyard extends Building {
-	static inst = new Stockyard()
+
 	id = 58
 	image = []
 	name = "Stockyard"
@@ -1379,7 +1175,7 @@ class Stockyard extends Building {
 }
 
 class Tannery extends Building {
-	static inst = new Tannery()
+
 	id = 59
 	image = []
 	name = "Tannery"
@@ -1404,7 +1200,7 @@ class Tannery extends Building {
 }
 
 class Tavern extends Building {
-	static inst = new Tavern()
+
 	id = 60
 	image = []
 	name = "Tavern"
@@ -1428,31 +1224,9 @@ class Tavern extends Building {
 	text = "An eating or drinking establishment."
 }
 
-class Temple extends Building {
-	static inst = new Temple()
-	id = 61
-	image = []
-	name = "Temple"
-	bpCost = 32
-	size = 2
-	bonus = {
-		...super.bonus,
-		loyalty: 2,
-		stability: 2,
-		unrest: -2
-	}
-	settlementBonus = {...super.settlementBonus}
-	discounts = [Graveyard, Monument, Shrine]
-	discountedBy = [Cathedral]
-	upgradesFrom = Shrine
-	limit = ""
-	special = ""
-	magicItems = "2 minor items"
-	text = "A large place of worship dedicated to a deity."
-}
 
 class Tenement extends Building {
-	static inst = new Tenement()
+
 	id = 62
 	image = []
 	name = "Tenement"
@@ -1473,7 +1247,7 @@ class Tenement extends Building {
 }
 
 class Theater extends Building {
-	static inst = new Theater()
+
 	id = 63
 	image = []
 	name = "Theater"
@@ -1495,10 +1269,10 @@ class Theater extends Building {
 }
 
 class TownHall extends Building {
-	static inst = new TownHall()
+
 	id = 64
 	image = []
-	name = "TownHall"
+	name = "Town Hall"
 	bpCost = 22
 	size = 2
 	bonus = {
@@ -1521,10 +1295,10 @@ class TownHall extends Building {
 }
 
 class TradeShop extends Building {
-	static inst = new TradeShop()
+
 	id = 65
 	image = []
-	name = "TradeShop"
+	name = "Trade Shop"
 	bpCost = 10
 	size = 1
 	bonus = {
@@ -1545,8 +1319,305 @@ class TradeShop extends Building {
 	text = "A shop front for a tradesperson, such as a baker, butcher, candle maker, cobbler, rope maker, or wainwright."
 }
 
+
+class Watchtower extends Building {
+
+	id = 67
+	image = []
+	name = "Watchtower"
+	bpCost = 12
+	size = 1
+	bonus = {
+		...super.bonus,
+		stability: 1,
+		unrest: -1,
+		defense: 2
+	}
+	settlementBonus = {...super.settlementBonus}
+	discounts = []
+	discountedBy = [TownHall]
+	upgradesFrom = null
+	limit = ""
+	special = ""
+	magicItems = ""
+	text = "A tall structure that serves as a guard post."
+}
+
+class Watergate extends Building {
+
+	id = 69
+	image = []
+	name = "Watergate"
+	bpCost = 2
+	size = 0
+	bonus = {...super.bonus}
+	settlementBonus = {...super.settlementBonus}
+	discounts = []
+	discountedBy = []
+	upgradesFrom = null
+	limit = ""
+	special = "Shares City Wall, can be constructed together with it"
+	magicItems = ""
+	text = "A gate in a City Wall that allows water (such as a river, Aqueduct, or Waterway) to enter the settlement. Blocks unwanted access."
+}
+
+class Waterway extends Building {
+
+	id = 70
+	image = []
+	name = "Waterway"
+	bpCost = 3
+	size = 1
+	bonus = {...super.bonus}
+	settlementBonus = {...super.settlementBonus}
+	discounts = []
+	discountedBy = []
+	upgradesFrom = null
+	limit = ""
+	special = "Counts as district water border for Adjacent to buildings, can build two Adjacent to in one turn for the same cost"
+	magicItems = ""
+	text = "A river or canal occupying part of the District Grid. At the GM’s option, a natural Waterway may already exist on the grid"
+}
+
+class Academy extends Building {
+
+	id = 1
+	image = []
+	name = "Academy"
+	bpCost = 52
+	size = 2
+	bonus = {
+		...super.bonus,
+		economy: 2,
+		loyalty: 2
+	}
+	settlementBonus = {
+		...super.settlementBonus,
+		lore: 2,
+		productivity: 1,
+		society: 2
+	}
+	discounts = [CastersTower, Library, MagicShop]
+	discountedBy = [Cathedral, University]
+	upgradesFrom = Library
+	limit = ""
+	special = "Increase Lore bonus by 2 for questions to one Knowledge or Profession skill"
+	magicItems = "3 minor scroll or wondrous item, 2 medium scroll or wondrous item"
+	text = "An institution of higher learning."
+}
+
+class Arena extends Building {
+
+	id = 3
+	image = []
+	name = "Arena"
+	bpCost = 40
+	size = 4
+	bonus = {
+		...super.bonus,
+		stability: 4,
+		fame: 1
+	}
+	settlementBonus = {
+		...super.settlementBonus,
+		crime: 1
+	}
+	discounts = [Brothel, Garrison, Inn, Stable, Theater]
+	discountedBy = []
+	upgradesFrom = Theater
+	limit = "1 per Settlement"
+	special = ""
+	magicItems = ""
+	text = "A large public structure for competitions and team sports"
+}
+
+class Garrison extends Building {
+
+	id = 22
+	image = []
+	name = "Garrison"
+	bpCost = 28
+	size = 2
+	bonus = {
+		...super.bonus,
+		loyalty: 2,
+		stability: 2,
+		unrest: -2
+	}
+	settlementBonus = {...super.settlementBonus}
+	discounts = [CityWall, Granary, Jail]
+	discountedBy = [Arena]
+	upgradesFrom = Barracks
+	limit = ""
+	special = ""
+	magicItems = ""
+	text = "A large building to house armies, train guards, and recruit militia"
+}
+
+class Guildhall extends Building {
+
+	id = 25
+	image = []
+	name = "Guildhall"
+	bpCost = 34
+	size = 2
+	bonus = {
+		...super.bonus,
+		economy: 2,
+		loyalty: 2
+	}
+	settlementBonus = {
+		...super.settlementBonus,
+		law: 1,
+		productivity: 2
+	}
+	discounts = [Pier, Stable, TradeShop]
+	discountedBy = [Waterfront]
+	upgradesFrom = TradeShop
+	Shop
+	limit = ""
+	special = "Base Value +1,00gp"
+	magicItems = ""
+	text = "The headquarters for a guild or similar organization."
+}
+
+class House extends Building {
+
+	id = 28
+	image = []
+	name = "House"
+	bpCost = 3
+	size = 1
+	bonus = {
+		...super.bonus,
+		unrest: -1
+	}
+	settlementBonus = {...super.settlementBonus}
+	discounts = []
+	discountedBy = []
+	upgradesFrom = Tenement
+	limit = ""
+	special = "The first House you build during the Improvement phase does not count against the total number of buildings you can build during the phase"
+	magicItems = ""
+	text = "A number of mid-sized houses for citizens."
+}
+
+class LuxuryStore extends Building {
+
+	id = 32
+	image = []
+	name = "Luxury Store"
+	bpCost = 28
+	size = 1
+	bonus = {
+		...super.bonus,
+		economy: 1
+	}
+	settlementBonus = {...super.settlementBonus}
+	discounts = []
+	discountedBy = [NobleVilla]
+	upgradesFrom = Shop
+	limit = "Adjacent to 1 House"
+	special = "Base Value +2,00gp"
+	magicItems = "2 minor rings, wands or wondrous item"
+	text = "A shop that specializes in expensive comforts for the wealthy."
+}
+
+class MagicShop extends Building {
+
+	id = 33
+	image = []
+	name = "Magic Shop"
+	bpCost = 68
+	size = 1
+	bonus = {
+		...super.bonus,
+		economy: 1
+	}
+	settlementBonus = {...super.settlementBonus}
+	discounts = []
+	discountedBy = [Academy, MagicalAcademy]
+	upgradesFrom = LuxuryStore
+	limit = "Adjacent to 2 House"
+	special = "Base Value +2,00gp"
+	magicItems = "4 minor wondrous item, 2 medium wondrous item, 1 major wondrous item"
+	text = "A shop that specializes in magic items and spells"
+}
+
+class Market extends Building {
+
+	id = 37
+	image = []
+	name = "Market"
+	bpCost = 48
+	size = 2
+	bonus = {
+		...super.bonus,
+		economy: 2,
+		stability: 2
+	}
+	settlementBonus = {...super.settlementBonus}
+	discounts = [BlackMarket, Inn, Shop]
+	discountedBy = [Waterfront]
+	upgradesFrom = Shop
+	limit = "Adjacent to 2 House"
+	special = "Base Value +2,00gp"
+	magicItems = "2 minor wondrous item"
+	text = "An open area for traveling merchants and bargain hunters."
+}
+
+class NobleVilla extends Building {
+
+	id = 46
+	image = []
+	name = "Noble Villa"
+	bpCost = 24
+	size = 2
+	bonus = {
+		...super.bonus,
+		economy: 1,
+		loyalty: 1,
+		stability: 1,
+		fame: 1
+	}
+	settlementBonus = {
+		...super.settlementBonus,
+		society: 1
+	}
+	discounts = [ExoticArtisan, LuxuryStore, Mansion]
+	discountedBy = [Castle, Palace]
+	upgradesFrom = Mansion
+	limit = ""
+	special = ""
+	magicItems = ""
+	text = "A sprawling manor with luxurious grounds that houses a noble’s family and staff."
+}
+
+class Temple extends Building {
+
+	id = 61
+	image = []
+	name = "Temple"
+	bpCost = 32
+	size = 2
+	bonus = {
+		...super.bonus,
+		loyalty: 2,
+		stability: 2,
+		unrest: -2
+	}
+	settlementBonus = {...super.settlementBonus}
+	discounts = [Graveyard, Monument, Shrine]
+	discountedBy = [Cathedral]
+	upgradesFrom = Shrine
+	limit = ""
+	special = ""
+	magicItems = "2 minor items"
+	text = "A large place of worship dedicated to a deity."
+}
+
 class University extends Building {
-	static inst = new University()
+
 	id = 66
 	image = []
 	name = "University"
@@ -1572,31 +1643,8 @@ class University extends Building {
 	text = "An institution of higher learning, focusing mainly on mundane subjects but dabbling in magical theory."
 }
 
-class Watchtower extends Building {
-	static inst = new Watchtower()
-	id = 67
-	image = []
-	name = "Watchtower"
-	bpCost = 12
-	size = 1
-	bonus = {
-		...super.bonus,
-		stability: 1,
-		unrest: -1,
-		defense: 2
-	}
-	settlementBonus = {...super.settlementBonus}
-	discounts = []
-	discountedBy = [TownHall]
-	upgradesFrom = null
-	limit = ""
-	special = ""
-	magicItems = ""
-	text = "A tall structure that serves as a guard post."
-}
-
 class Waterfront extends Building {
-	static inst = new Waterfront()
+
 	id = 68
 	image = []
 	name = "Waterfront"
@@ -1619,111 +1667,170 @@ class Waterfront extends Building {
 	text = "A port for waterborne arrival and departure, with facilities for shipping and shipbuilding."
 }
 
-class Watergate extends Building {
-	static inst = new Watergate()
-	id = 69
-	image = []
-	name = "Watergate"
-	bpCost = 2
-	size =0
-	bonus = {...super.bonus}
-	settlementBonus = {...super.settlementBonus}
-	discounts = []
-	discountedBy = []
-	upgradesFrom = null
-	limit = ""
-	special = "Shares City Wall, can be constructed together with it"
-	magicItems = ""
-	text = "A gate in a City Wall that allows water (such as a river, Aqueduct, or Waterway) to enter the settlement. Blocks unwanted access."
+class BuildingList {
+	static buildings = [
+		new Academy(),
+		new Alchemist(),
+		new Arena(),
+		new Bank(),
+		new BardicCollege(),
+		new Barracks(),
+		new BlackMarket(),
+		new Brewery(),
+		new Bridge(),
+		new Brothel(),
+		new Bureau(),
+		new CastersTower(),
+		new Castle(),
+		new Cathedral(),
+		new Cistern(),
+		new CityWall(),
+		new Dump(),
+		new EverflowingSpring(),
+		new ExoticArtisan(),
+		new ForeignQuarter(),
+		new Foundry(),
+		new Garrison(),
+		new Granary(),
+		new Graveyard(),
+		new Guildhall(),
+		new Herbalist(),
+		new Hospital(),
+		new House(),
+		new Inn(),
+		new Jail(),
+		new Library(),
+		new LuxuryStore(),
+		new MagicShop(),
+		new MagicalAcademy(),
+		new MagicalStreetlamps(),
+		new Mansion(),
+		new Market(),
+		new Menagerie(),
+		new MilitaryAcademy(),
+		new Mill(),
+		new Mint(),
+		new Moat(),
+		new Monastery(),
+		new Monument(),
+		new Museum(),
+		new NobleVilla(),
+		new Observatory(),
+		new Orphanage(),
+		new Palace(),
+		new Park(),
+		new PavedStreets(),
+		new Pier(),
+		new SewerSystem(),
+		new Shop(),
+		new Shrine(),
+		new Smithy(),
+		new Stable(),
+		new Stockyard(),
+		new Tannery(),
+		new Tavern(),
+		new Temple(),
+		new Tenement(),
+		new Theater(),
+		new TownHall(),
+		new TradeShop(),
+		new University(),
+		new Watchtower(),
+		new Waterfront(),
+		new Watergate(),
+		new Waterway()
+	]
+	static getById = (id) => {
+		for (let key in BuildingList.buildings) {
+			if (BuildingList.buildings[key].id === id)
+				return BuildingList.buildings[key]
+		}
+		return null
+	}
+	static getByName = (name) => {
+		for (let key in BuildingList.buildings) {
+			if (BuildingList.buildings[key].name === name) {
+				return BuildingList.buildings[key]
+			}
+		}
+		return null
+	}
+	//leaving just in case I ever have to actually sort
+	// all the functions and then initiate classes
+	/*static init = () => {
+		this.buildings = {
+			Academy: new Academy(),
+			Alchemist: new Alchemist(),
+			Arena: new Arena(),
+			Bank: new Bank(),
+			BardicCollege: new BardicCollege(),
+			Barracks: new Barracks(),
+			BlackMarket: new BlackMarket(),
+			Brewery: new Brewery(),
+			Bridge: new Bridge(),
+			Brothel: new Brothel(),
+			Bureau: new Bureau(),
+			CastersTower: new CastersTower(),
+			Castle: new Castle(),
+			Cathedral: new Cathedral(),
+			Cistern: new Cistern(),
+			CityWall: new CityWall(),
+			Dump: new Dump(),
+			EverflowingSpring: new EverflowingSpring(),
+			ExoticArtisan: new ExoticArtisan(),
+			ForeignQuarter: new ForeignQuarter(),
+			Foundry: new Foundry(),
+			Garrison: new Garrison(),
+			Granary: new Granary(),
+			Graveyard: new Graveyard(),
+			Guildhall: new Guildhall(),
+			Herbalist: new Herbalist(),
+			Hospital: new Hospital(),
+			House: new House(),
+			Inn: new Inn(),
+			Jail: new Jail(),
+			Library: new Library(),
+			LuxuryStore: new LuxuryStore(),
+			MagicShop: new MagicShop(),
+			MagicalAcademy: new MagicalAcademy(),
+			MagicalStreetlamps: new MagicalStreetlamps(),
+			Mansion: new Mansion(),
+			Market: new Market(),
+			Menagerie: new Menagerie(),
+			MilitaryAcademy: new MilitaryAcademy(),
+			Mill: new Mill(),
+			Mint: new Mint(),
+			Moat: new Moat(),
+			Monastery: new Monastery(),
+			Monument: new Monument(),
+			Museum: new Museum(),
+			NobleVilla: new NobleVilla(),
+			Observatory: new Observatory(),
+			Orphanage: new Orphanage(),
+			Palace: new Palace(),
+			Park: new Park(),
+			PavedStreets: new PavedStreets(),
+			Pier: new Pier(),
+			SewerSystem: new SewerSystem(),
+			Shop: new Shop(),
+			Shrine: new Shrine(),
+			Smithy: new Smithy(),
+			Stable: new Stable(),
+			Stockyard: new Stockyard(),
+			Tannery: new Tannery(),
+			Tavern: new Tavern(),
+			Temple: new Temple(),
+			Tenement: new Tenement(),
+			Theater: new Theater(),
+			TownHall: new TownHall(),
+			TradeShop: new TradeShop(),
+			University: new University(),
+			Watchtower: new Watchtower(),
+			Waterfront: new Waterfront(),
+			Watergate: new Watergate(),
+			Waterway: new Waterway()
+		}
+	}*/
 }
 
-class Waterway extends Building {
-	static inst = new Waterway()
-	id = 70
-	image = []
-	name = "Waterway"
-	bpCost = 3
-	size = 1
-	bonus = {...super.bonus}
-	settlementBonus = {...super.settlementBonus}
-	discounts = []
-	discountedBy = []
-	upgradesFrom = null
-	limit = ""
-	special = "Counts as district water border for Adjacent to buildings, can build two Adjacent to in one turn for the same cost"
-	magicItems = ""
-	text = "A river or canal occupying part of the District Grid. At the GM’s option, a natural Waterway may already exist on the grid"
-}
-
-export {
-	Academy,
-	Alchemist,
-	Arena,
-	Bank,
-	BardicCollege,
-	Barracks,
-	BlackMarket,
-	Brewery,
-	Bridge,
-	Brothel,
-	Bureau,
-	CastersTower,
-	Castle,
-	Cathedral,
-	Cistern,
-	CityWall,
-	Dump,
-	EverflowingSpring,
-	ExoticArtisan,
-	ForeignQuarter,
-	Foundry,
-	Garrison,
-	Granary,
-	Graveyard,
-	Guildhall,
-	Herbalist,
-	Hospital,
-	House,
-	Inn,
-	Jail,
-	Library,
-	LuxuryStore,
-	MagicShop,
-	MagicalAcademy,
-	MagicalStreetlamps,
-	Mansion,
-	Market,
-	Menagerie,
-	MilitaryAcademy,
-	Mill,
-	Mint,
-	Moat,
-	Monastery,
-	Monument,
-	Museum,
-	NobleVilla,
-	Observatory,
-	Orphanage,
-	Palace,
-	Park,
-	PavedStreets,
-	Pier,
-	SewerSystem,
-	Shop,
-	Shrine,
-	Smithy,
-	Stable,
-	Stockyard,
-	Tannery,
-	Tavern,
-	Temple,
-	Tenement,
-	Theater,
-	TownHall,
-	TradeShop,
-	University,
-	Watchtower,
-	Waterfront,
-	Watergate,
-	Waterway
-}
+export {BuildingList}

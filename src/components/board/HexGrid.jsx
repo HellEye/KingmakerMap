@@ -14,27 +14,6 @@ class HexGrid extends Component {
 	loadComplete = false
 	hexes = []
 
-	/*loadHexData() {
-		this.loadComplete = false
-
-	}*/
-
-	/*constructor(props) {
-		super(props)
-		this.loadHexData()
-		this.hexes =
-			Array.from(new Array(28 * 11),
-				(val, index) => ({
-					index: index, x: index % (Math.floor(index / 28) % 2 === 1 ? 27 : 28), y: Math.floor(index / 28)
-				}))
-				.map(num => <Hex key={num.index}
-				                 size={this.hexSize}
-				                 margin={this.margin}
-				                 coords={num}
-				                 style={{stroke: "blue"}}
-				                 hexData={this.hexDataList[num.x + num.y * 29]}
-				/>)
-	}*/
 	selectHex = (hex) => {
 		selectedHex.set(hex)
 	}

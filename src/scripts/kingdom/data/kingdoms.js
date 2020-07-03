@@ -58,6 +58,7 @@ class Kingdoms {
 		return -1;
 	}
 	getById = (id) => {
+		if(id<=0) return null
 		for (let i = 0; i < this.kingdoms.length; i++) {
 			if (this.kingdoms[i].id === id) {
 				return this.kingdoms[i]

@@ -6,6 +6,7 @@ import "../../res/css/Panels/KingdomDisplay.css"
 import {BlockPicker} from "react-color"
 import {observer} from "mobx-react"
 import makeCancelable from "../../scripts/utils/makeCancellable"
+import ConfirmButton from "../util/ConfirmButton"
 
 const deleteIcon = require("../../res/img/icons/deleteIcon.png")
 
@@ -21,14 +22,14 @@ class Kingdoms extends Component {
 		return (
 			<div className={"board kingdomDisplayWrapper"}>
 				<h1>
-					Kingdom display
+					Kingdom list
 				</h1>
-				<input type={"button"} className={"button"} value={"Add"} onClick={this.addKingdom}/>
+				<input type={"button"} className={"button"} value={"Add"} onClick={this.addKingdom}
+				style={{width:80}}/>
 
 				<div className={"kingdomList"}>
 					{kingdomList}
 				</div>
-
 			</div>
 		)
 	}
@@ -73,17 +74,9 @@ class KingdomDisplay extends Component {
 		this.setState(newState)
 		this.editFinished()
 	}
-	removeThisKingdom = () => {
-		this.setState((oldState) => {
-			return {
-				...oldState,
-				tryingToRemove: true
-			}
-		})
-	}
 
 
-	confirmRemove = () => {
+	confirmRemove = (e) => {
 		this.removePromise = makeCancelable(kingdoms.remove(this.state.index))
 		this.removePromise.promise
 			.then(() => {
@@ -111,6 +104,7 @@ class KingdomDisplay extends Component {
 	//TODO fix this stupid uncontrolled input error thing (when adding a new field and editing the name
 	//TODO and some random other error about cancelling async tasks?
 	render() {
+		console.log(deleteIcon)
 		const popover = {}
 		return (
 			<div className={"kingdomDisplay"}>
@@ -139,22 +133,15 @@ class KingdomDisplay extends Component {
 						</div>
 						: null}
 				</div>
-				<div className={"removeKingdom"} onClick={this.removeThisKingdom}>
-					<img src={deleteIcon} alt={"remove"}/>
-				</div>
+
 				{
-					this.state.tryingToRemove ?
-						<div className={"confirmRemoveKingdom"}>
-							<input type={"button"}
-							       className={"button"}
-							       onClick={this.confirmRemove}
-							       value={"Sure?"}
-							       style={{
-								       backgroundColor: "#ff3333",
-								       borderColor: "#aa3333",
-								       color: "#333c4a"
-							       }}/>
-						</div> : ""
+					<ConfirmButton
+						callback={this.confirmRemove}
+						first={deleteIcon}
+						firstClass={"removeKingdom"}
+						second={"Confirm"}
+						secondClass={"buttonRed button confirmRemoveKingdom"}
+					/>
 				}
 
 			</div>

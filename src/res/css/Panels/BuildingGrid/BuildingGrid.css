@@ -1,0 +1,178 @@
+.buildingGrid{
+    padding:20px;
+    display:grid;
+    grid:[row1-start] "name improvements improvements improvements" 10%[row1-end]
+        [row2-start] "buildings buildings filter filter" 1fr [row2-end]
+        / 350px 350px 0.5fr 0.5fr;
+    box-sizing: border-box;
+    /*min-height: 0;*/
+    /*min-width: 0;*/
+    /*overflow: hidden;*/
+    height:100%;
+    max-height: 100%;
+}
+
+.buildingGrid > h1 {
+    grid-area: name;
+}
+.buildingGrid > * {
+    border: 1px #2a3340 solid;
+    /*padding:5px;*/
+}
+.buildingGridBuildings {
+    grid-area: buildings;
+}
+
+.buildingGridImprovements {
+    grid-area: improvements;
+}
+
+.buildingGridDetails {
+    grid-area: details;
+}
+
+.buildingGridFilter {
+    grid-area: filter;
+    height:100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    min-height: 0;
+    overflow-y:scroll;
+}
+.buildingGridFilterTopWrap{
+    position:relative;
+    height:fit-content;
+}
+.buildingGridFilterTop {
+    display:flex;
+    padding: 2px 5px 2px;
+    position:sticky;
+    z-index: 1;
+    top:0;
+    background-color: #282c34;
+    width:95%;
+}
+.buildingGridFilterTop > * {
+    margin-right: 5px;
+}
+.buildingGridFilterTop > * :last-child{
+    margin-right: 0;
+}
+.buildingGridFilterTop > input[type=text]{
+    font-size: 0.7em;
+    width:calc(40% - 10px)
+}
+.buildingGridFilterTop > input[type=button] {
+    font-size: 0.5em;
+    width:15%;
+    box-sizing: border-box;
+    border: #353f4c;
+    background-color: #2a3340;
+}
+.buildingGridFilterTop > input[type=button]:hover {
+}
+.buildingGridFilterText {
+    background-color: #2a3340;
+    color: #a8acb2;
+    box-sizing: border-box;
+    border: 2px #252f3c solid;
+    border-radius: 5px;
+    padding:5px;
+    width:40%;
+}
+
+.buildingGridFilterText:focus {
+    border-color: #052a52;
+}
+.buildingGridFilterBuildings {
+    padding:5px 5px 0;
+}
+.buildingGridFilterBuilding {
+    display:flex;
+    width:100%;
+    margin-bottom: 5px;
+    flex-direction: row;
+    font-size: 0.7em;
+}
+.buildingGridFilterBuilding > h3 {
+    width:15%;
+    padding:0 5px;
+    box-sizing: border-box;
+    margin-right: 5px;
+}
+.buildingGridFilterBuilding > h3:last-child{
+    margin-right: 0;
+}
+.buildingGridFilterBuilding > h3:first-child {
+    width:40%;
+    cursor: pointer;
+}
+.buildingGridFilterBuilding > h3:first-child:hover {
+    background-color: #353f4c;
+}
+
+.buildingGridFilterTooltip{
+    width:600px;
+    height:400px;
+    background-color: #353f4c;
+    padding:10px;
+    z-index: 50;
+    border: 3px #a8acb2 solid;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.buildingGridBuildings{
+    width:100%;
+    position:relative;
+    height:100%;
+    padding:10px;
+    box-sizing: border-box;
+}
+
+.buildingGridBuildingsGrid{
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px 20px;
+    height:600px;
+    width:600px;
+}
+.buildingGridBuildingsGridInner{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    height:100%;
+    width:100%;
+}
+.buildingGridBuildingsGridInner > *{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border: 3px #353f4c solid;
+}
+/*.buildingGridBuildingsImage{
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.3;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+}*/
+.buildingGridBuildingsGridSquare_selected{
+    background-color: #353f4c;
+}
+/*
+Maybe in the future resize when smaller screen?
+@media only screen and (max-width: 1350px){
+    .buildingGridBuildings{
+        transform: scale(calc(100 - 1350));
+    }
+
+}*/

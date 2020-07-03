@@ -8,6 +8,7 @@ import {observer} from "mobx-react"
 import {selectedHex} from "../../board/HexGrid"
 import {observe} from "mobx"
 import SidebarSettlement from "./SidebarComponents/SidebarSettlement"
+import SidebarHex from "./SidebarComponents/SidebarHex"
 
 /*const tabs = [
 	<SidebarElement key={0} href={"/Map"} onClick={() => console.log("clicked first")}>Map</SidebarElement>,
@@ -37,20 +38,6 @@ class Sidebar extends Component {
 		this.selectHex()
 	}
 
-	/*handleChange = (panel) => (event, isExpanded) => {
-		if (isExpanded)
-			this.setState(state => {
-				state.expanded.push(panel)
-				return {expanded:state.expanded}
-			});
-		else
-			this.setState(state => {
-				const newExpanded = state.expanded.filter((e)=>e===panel)
-				return {expanded:newExpanded}
-			})
-	}*/
-
-
 	panelStyle = {
 		backgroundColor: "#05386e",
 		color: "#a8acb2"
@@ -68,7 +55,7 @@ class Sidebar extends Component {
 				<h3>
 					{
 						this.state.selectedHex != null ?
-							`x:${this.state.selectedHex.x}, y:${this.state.selectedHex.y}` : ""
+							`x:${this.state.selectedHex.x}, y:${this.state.selectedHex.y}` : "None"
 					}
 				</h3>
 				<div className={"sidebarPanels"}>
@@ -82,8 +69,10 @@ class Sidebar extends Component {
 							style={this.labelStyle}>
 							<h4 className={"sidebarPanelHeader"}>Hex improvements</h4>
 						</ExpansionPanelSummary>
-						<ExpansionPanelDetails style={{flexDirection: "column"}}>
-							<h2>Hex improvement stuff</h2>
+						<ExpansionPanelDetails
+							style={{flexDirection: "column"}}
+						>
+							<SidebarHex/>
 						</ExpansionPanelDetails>
 					</ExpansionPanel>
 
@@ -98,10 +87,13 @@ class Sidebar extends Component {
 							<h4 className={"sidebarPanelHeader"}>Settlement</h4>
 						</ExpansionPanelSummary>
 						<ExpansionPanelDetails style={{
-								flexDirection: "column",
-								padding:"5px 5px 15px",
-							}}>
-							<SidebarSettlement/>
+							flexDirection: "column",
+							padding: "5px 5px 15px"
+						}}>
+							<SidebarSettlement
+								onDistrictSelect={this.props.onDistrictSelect}
+								onDistrictRemoved={this.props.onDistrictRemoved}
+							/>
 						</ExpansionPanelDetails>
 					</ExpansionPanel>
 				</div>

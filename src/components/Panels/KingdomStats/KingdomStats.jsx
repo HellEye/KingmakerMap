@@ -4,9 +4,7 @@ import "../../../res/css/Panels/KingdomStats.css"
 import {Accumulator, hexDataGrid} from "../../../scripts/kingdom/data/hexData"
 import {selectedKingdom} from "../../../scripts/kingdom/data/kingdoms"
 import {observe} from "mobx"
-
-import {Tab, TabList, TabPanel, Tabs} from "react-tabs"
-import {selectedTab} from "../../App"
+import NumberInput from "../../util/NumberInput"
 // const navArea = (
 //
 // )
@@ -17,8 +15,10 @@ class KingdomStats extends Component {
 		super(props);
 		this.state = {
 			kingdom: null,
-			modifiers: new Accumulator()
+			modifiers: new Accumulator(),
+			treasuryChange: 0
 		}
+		this.bpFieldRef = React.createRef()
 	}
 
 	componentDidMount() {
@@ -49,6 +49,30 @@ class KingdomStats extends Component {
 		})
 	}
 
+	updateTreasuryChange = ({value}) => {
+		this.setState({
+			...this.state,
+			treasuryChange: value
+		})
+	}
+
+	updateTreasury = value => event => {
+		const lastKingdom = this.state.kingdom
+		lastKingdom.kingdomData.data.treasury += value * this.state.treasuryChange
+		this.setState({
+			...this.state,
+			kingdom: lastKingdom,
+		})
+	}
+
+	resetTreasuryInput = (event) => {
+		this.bpFieldRef.current.setValue(0)
+
+	}
+
+	saveKingdomData = () => {
+		this.state.kingdom.kingdomData.saveToDb()
+	}
 
 	render() {
 		if (this.state.kingdom == null || this.state.kingdom.kingdomData == null || this.state.kingdom.kingdomData.data == null)
@@ -75,26 +99,26 @@ class KingdomStats extends Component {
 			//TODO refactor this mess somehow
 			<div className={"kingdomStats"}>
 				<div style={{gridArea: "select"}}>
-					<h6>{this.state.kingdom.name}</h6>
+					<h3>{this.state.kingdom.name}</h3>
 				</div>
 				<div style={{gridArea: "stability"}}>
 					<h5>Stability</h5>
-					<h4>{parseInt(this.state.kingdom.kingdomData.getStabilityMod()) + parseInt(this.state.kingdom.kingdomData.data.stability||0) + parseInt(this.state.modifiers.stability||0)}</h4>
+					<h4>{parseInt(this.state.kingdom.kingdomData.getStabilityMod()) + parseInt(this.state.kingdom.kingdomData.data.stability || 0) + parseInt(this.state.modifiers.stability || 0)}</h4>
 				</div>
 				<div style={{gridArea: "loyalty"}}>
 					<h5>Loyalty</h5>
-					<h4>{parseInt(this.state.kingdom.kingdomData.getLoyaltyMod()) + parseInt(this.state.kingdom.kingdomData.data.loyalty||0) + parseInt(this.state.modifiers.loyalty||0)}</h4>
+					<h4>{parseInt(this.state.kingdom.kingdomData.getLoyaltyMod()) + parseInt(this.state.kingdom.kingdomData.data.loyalty || 0) + parseInt(this.state.modifiers.loyalty || 0)}</h4>
 				</div>
 				<div style={{gridArea: "economy"}}>
 					<h5>Economy</h5>
-					<h4>{parseInt(this.state.kingdom.kingdomData.getEconomyMod()) + parseInt(this.state.kingdom.kingdomData.data.economy||0) + parseInt(this.state.modifiers.economy||0)}</h4>
+					<h4>{parseInt(this.state.kingdom.kingdomData.getEconomyMod()) + parseInt(this.state.kingdom.kingdomData.data.economy || 0) + parseInt(this.state.modifiers.economy || 0)}</h4>
 				</div>
 				<div style={{gridArea: "treasury"}}>
 					<h3>{this.state.kingdom.kingdomData.data.treasury} BP</h3>
 				</div>
 				<div style={{gridArea: "size"}}>
 					<h5>Size</h5>
-					<h4> {this.state.kingdom.kingdomData.data.size}</h4>
+					<h4> {this.state.kingdom.kingdomData.size}</h4>
 				</div>
 				<div style={{gridArea: "unrest"}}>
 					{this.state.kingdom.kingdomData.data.unrest > 0 ? (
@@ -104,9 +128,34 @@ class KingdomStats extends Component {
 				<div style={{gridArea: "consumption"}}>
 					<h3>Consumption: {this.state.kingdom.kingdomData.data.consumption}</h3>
 				</div>
-				<div style={{gridArea: "empty2"}}>
-					<h3 className={"tempText"}>[Probably build point add/subtract]</h3>
-					<h3 className={"tempText"}>[Or some other simple control thing]</h3>
+				<div style={{gridArea: "bp"}}>
+					<NumberInput
+						ref={this.bpFieldRef}
+						name={"treasury"}
+						disableButtons={true}
+						value={this.state.treasuryChange}
+						className={"kingdomStatsBuildPointsInput"}
+						changeCallback={this.updateTreasuryChange}
+						onFocus={this.resetTreasuryInput}
+						saveCallback={this.saveKingdomData}
+					/>
+					<div className={"kingdomStatsBpButtons"}>
+						<input
+							type={"button"}
+							className={"button buttonGrey"}
+							onClick={this.updateTreasury(1)}
+							value={"Add"}
+						/>
+						<input
+							type={"button"}
+							className={"button buttonGrey"}
+							onClick={this.updateTreasury(-1)}
+							value={"Remove"}
+						/>
+					</div>
+				</div>
+				<div style={{gridArea:"empty"}}>
+
 				</div>
 				{this.props.children}
 

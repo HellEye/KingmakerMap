@@ -1,5 +1,6 @@
-import {decorate, observable} from "mobx"
+import {computed, decorate, observable} from "mobx"
 import dbLoader from "../../utils/dbLoader"
+import {hexDataGrid} from "./hexData"
 
 const emptyKingdomData = observable({
 	alignment: 0,
@@ -105,7 +106,6 @@ class KingdomData {
 			Math.floor(this.data.positions.viceroy / 2) +
 			((this.data.alignment % 3 === 2) ? 2 : 0) +
 			((Math.floor(this.data.alignment / 3) === 0) ? 2 : 0)
-
 		)
 	}
 
@@ -136,6 +136,13 @@ class KingdomData {
 			((this.data.alignment % 3 === 0) ? 2 : 0) +
 			((Math.floor(this.data.alignment / 3) === 2) ? 2 : 0)
 		)
+	}
+
+	get size() {
+		if (this.data != null) {
+			return hexDataGrid.getByKingdom(this.data.kingdomId).length
+		}
+		return 0
 	}
 
 	getConsumptionMod() {
@@ -188,7 +195,8 @@ class KingdomData {
 }
 
 decorate(KingdomData, {
-	data: observable
+	data: observable,
+	size: computed
 })
 export default KingdomData
 export {emptyKingdomData}

@@ -1,11 +1,9 @@
 import React, {Component} from 'react'
 import Hexagon from "react-hexagon"
-import DisplaySettings from "../../scripts/settings/DisplaySettings"
 import {observer} from "mobx-react"
 import "../../res/css/Board/Hexagon.css"
 import {selectedHex} from "./HexGrid"
 import {observe} from "mobx"
-
 
 class Hex extends Component {
 	static startOffsetX = 25
@@ -17,6 +15,10 @@ class Hex extends Component {
 
 	constructor(props) {
 		super(props)
+		/*this.state = {
+			hexData: props.hexData,
+			kingdom: null
+		}*/
 		this.renderData = {
 			left:
 				Hex.startOffsetX + //align to hexes on board
@@ -42,14 +44,14 @@ class Hex extends Component {
 	}
 
 	getHexStyle() {
-		let stroke = "#00000000"
+		let stroke = "#00000001"
 		if (this.props.hexData && this.props.hexData.ownedBy) {
-			stroke = this.props.hexData.ownedBy.color + (DisplaySettings.drawHexes ? "ff" : "00")
+			stroke = this.props.hexData.ownedBy.color + "a0"
 		}
 		return {
 			stroke: stroke,
 			cursor: 'default',
-			fill: this.props.hexData===selectedHex.get()?"#ffffff40":"#ffffff01"
+			fill: this.props.hexData === selectedHex.get() ? "#ffffff40" : "#ffffff01"
 		}
 	}
 
@@ -61,15 +63,35 @@ class Hex extends Component {
 	onDragStart = (e) => {
 		this.draggingStart = {x: e.clientX, y: e.clientY}
 	}
+
 	componentDidMount() {
-		this._isMounted=true
-		this.onHexChange=observe(selectedHex, (change)=>{
-			if(this._isMounted)
+		this._isMounted = true
+		this.onHexChange = observe(selectedHex, (change) => {
+			if (this._isMounted)
 				this.forceUpdate()
 		})
+		/*const kingdomsLoaded = observe(kingdoms, "finishedLoading", change => {
+			if (change && this._isMounted) {
+				this.setState({
+					...this.state,
+					kingdom: this.state.hexData.ownedBy
+				})
+				kingdomsLoaded()
+			}
+		})
+
+		this.onKingdomChange = observe(this.state.hexData, "ownedBy", change => {
+			if (this._isMounted)
+				this.setState({
+						...this.state,
+						kingdom: this.state.hexData.ownedBy
+					}
+				)
+		})*/
 	}
+
 	componentWillUnmount() {
-		this._isMounted=false;
+		this._isMounted = false;
 		this.onHexChange()
 	}
 

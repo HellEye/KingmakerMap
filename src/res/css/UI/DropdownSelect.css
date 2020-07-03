@@ -1,0 +1,34 @@
+.dropdownSelect__option {
+    color: #a8acb2 !important;
+    background-color: #2a3340 !important;
+}
+
+.dropdownSelect__option:hover {
+    background-color: #333c4a !important;
+}
+.dropdownSelect--is-disabled .dropdownSelect__control--is-disabled {
+    background-color: #555f6c !important;
+    color:#888c72 !important;
+}
+.dropdownSelect__control {
+    width: 250px !important;
+    border-color: #052a52 !important;
+    color: #a8acb2 !important;
+    background-color: #2a3340 !important;
+}
+
+.dropdownSelect__control:hover {
+    border-color: #05386e !important;
+    background-color: #333c4a !important;
+}
+
+.dropdownSelect__single-value {
+    color: #a8acb2 !important;
+}
+
+.dropdownSelect__menu {
+    width: 250px !important;
+    background-color: #2a3340 !important;
+}
+
+

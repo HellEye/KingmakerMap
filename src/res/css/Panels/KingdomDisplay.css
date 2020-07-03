@@ -67,11 +67,14 @@
     width:32px;
     height:32px;
     border-radius: 50%;
+    z-index: 1;
+    cursor: pointer;
     background-color: #ff3333;
 }
 
 .confirmRemoveKingdom {
     margin-left: 15px;
-    width:75px;
+    z-index: 1;
+    width:90px;
 }
 

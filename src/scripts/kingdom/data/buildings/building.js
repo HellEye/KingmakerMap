@@ -1,5 +1,4 @@
 class Building {
-	inst = new Building()
 	image = []
 	name = ""
 	bpCost = 0
