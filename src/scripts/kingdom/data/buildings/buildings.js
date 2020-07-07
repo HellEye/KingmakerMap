@@ -1,22 +1,19 @@
 //gets rid of the stupid warning without having to sort all this stuff
 /*eslint no-use-before-define: [0, { "classes": false }]*/
 /*eslint-env es6*/
-
 import Building from "./building"
 
-
-class Alchemist extends Building {
-
+class Alchemist {
 	id = 2
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Alchemist.png")]
 	name = "Alchemist"
 	bpCost = 18
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = []
 	upgradesFrom = null
@@ -26,19 +23,17 @@ class Alchemist extends Building {
 	text = "The laboratory and home of a crafter of poisons, potionions, or alchemical items."
 }
 
-
-class Bank extends Building {
-
+class Bank {
 	id = 4
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Bank.png")]
 	name = "Bank"
 	bpCost = 28
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 4
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = []
 	upgradesFrom = null
@@ -48,21 +43,24 @@ class Bank extends Building {
 	text = "A secure building for storing valuables and granting loans."
 }
 
-class BardicCollege extends Building {
-
+class BardicCollege {
 	id = 5
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/BardicCollege_0.png"),
+		require("../../../../res/img/BuildingImages/BardicCollege_1.png"),
+		require("../../../../res/img/BuildingImages/BardicCollege.png")
+	]
 	name = "Bardic College"
 	bpCost = 40
 	size = 2
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1,
 		loyalty: 3,
 		stability: 1,
 		fame: 1
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = [Library, Museum, Theater]
 	discountedBy = [University]
 	upgradesFrom = null
@@ -72,20 +70,19 @@ class BardicCollege extends Building {
 	text = "A center for artistic learning. Education in a Bardic College also includes research into a wide-range of historical topics"
 }
 
-class Barracks extends Building {
-
+class Barracks {
 	id = 6
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Barracks.png")]
 	name = "Barracks"
 	bpCost = 6
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		unrest: -1,
 		defense: 2
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		law: 1
 	}
 	discounts = []
@@ -97,21 +94,20 @@ class Barracks extends Building {
 	text = "A building to house conscripts, guards, militia, soldiers, or similar military forces."
 }
 
-class BlackMarket extends Building {
-
+class BlackMarket {
 	id = 7
-	image = []
+	image = [require("../../../../res/img/BuildingImages/BlackMarket.png")]
 	name = "Black Market"
 	bpCost = 50
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 2,
 		loyalty: 1,
 		unrest: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		corruption: 2,
 		crime: 2
 	}
@@ -124,19 +120,18 @@ class BlackMarket extends Building {
 	text = "A number of shops with secret and usually illegal wares."
 }
 
-class Brewery extends Building {
-
+class Brewery {
 	id = 8
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Brewery.png")]
 	name = "Brewery"
 	bpCost = 6
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		loyalty: 1,
 		stability: 1
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = []
 	upgradesFrom = null
@@ -146,18 +141,17 @@ class Brewery extends Building {
 	text = "A building for beer brewing, winemaking, or some similar use"
 }
 
-class Bridge extends Building {
-
+class Bridge {
 	id = 9
-	image = []
+	image = [require("../../../../res/img/BuildingImages/BridgeC.png")]
 	name = "Bridge"
 	bpCost = 6
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = []
 	upgradesFrom = null
@@ -167,21 +161,20 @@ class Bridge extends Building {
 	text = "Allows travel across a river or Waterway, easing transportation"
 }
 
-class Brothel extends Building {
-
+class Brothel {
 	id = 10
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Brothel.png")]
 	name = "Brothel"
 	bpCost = 4
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1,
 		loyalty: 2,
 		unrest: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		corruption: 1,
 		crime: 1
 	}
@@ -194,21 +187,24 @@ class Brothel extends Building {
 	text = "An establishment for dancing, drinking, carousing, and holding celebrations."
 }
 
-class Bureau extends Building {
-
+class Bureau {
 	id = 11
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/Bureau.png"),
+		require("../../../../res/img/BuildingImages/Bureau_0.png"),
+		require("../../../../res/img/BuildingImages/Bureau_1.png")
+	]
 	name = "Bureau"
 	bpCost = 10
 	size = 2
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1,
 		loyalty: -1,
 		stability: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		corruption: 1,
 		crime: 1
 	}
@@ -221,19 +217,18 @@ class Bureau extends Building {
 	text = "A large warren of offices for clerks and record-keepers working for a guild or government"
 }
 
-class CastersTower extends Building {
-
+class CastersTower {
 	id = 12
-	image = []
+	image = [require("../../../../res/img/BuildingImages/CastersTower.png")]
 	name = "Casters Tower"
 	bpCost = 30
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1,
 		loyalty: 1
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = [Academy, MagicalAcademy]
 	upgradesFrom = null
@@ -243,15 +238,20 @@ class CastersTower extends Building {
 	text = "The home and laboratory for a spellcaster."
 }
 
-class Castle extends Building {
-
+class Castle {
 	id = 13
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/Castle_0.png"),
+		require("../../../../res/img/BuildingImages/Castle_1.png"),
+		require("../../../../res/img/BuildingImages/Castle_3.png"),
+		require("../../../../res/img/BuildingImages/Castle_2.png"),
+		require("../../../../res/img/BuildingImages/Castle.png")
+	]
 	name = "Castle"
 	bpCost = 54
 	size = 4
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 2,
 		loyalty: 2,
 		stability: 2,
@@ -259,7 +259,7 @@ class Castle extends Building {
 		fame: 1,
 		defense: 8
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = [NobleVilla, TownHall]
 	discountedBy = []
 	upgradesFrom = null
@@ -269,22 +269,27 @@ class Castle extends Building {
 	text = "The home of the settlement’s leader or the heart of its defenses."
 }
 
-class Cathedral extends Building {
-
+class Cathedral {
 	id = 14
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/Cathedral_0.png"),
+		require("../../../../res/img/BuildingImages/Cathedral_1.png"),
+		require("../../../../res/img/BuildingImages/Cathedral_3.png"),
+		require("../../../../res/img/BuildingImages/Cathedral_2.png"),
+		require("../../../../res/img/BuildingImages/Cathedral.png"),
+	]
 	name = "Cathedral"
 	bpCost = 58
 	size = 4
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		loyalty: 4,
 		stability: 4,
 		unrest: -4,
 		fame: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		law: 2
 	}
 	discounts = [Academy, Temple]
@@ -296,15 +301,14 @@ class Cathedral extends Building {
 	text = "The focal point of the settlement’s spiritual leadership."
 }
 
-class Cistern extends Building {
-
+class Cistern {
 	id = 15
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Cistern.png")]
 	name = "Cistern"
 	bpCost = 6
 	size = 1
-	bonus = {...super.bonus}
-	settlementBonus = {...super.settlementBonus}
+	bonus = {...Building.bonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = [SewerSystem, TownHall]
 	upgradesFrom = null
@@ -314,19 +318,18 @@ class Cistern extends Building {
 	text = "Contains a safe supply of fresh water for the settlement"
 }
 
-class CityWall extends Building {
-
+class CityWall {
 	id = 16
 	image = []
 	name = "City Wall"
 	bpCost = 2
 	size = 0
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		unrest: -2,
 		defense: 1
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = [Garrison]
 	upgradesFrom = null
@@ -336,18 +339,17 @@ class CityWall extends Building {
 	text = "A fortification of one side of a district with a sturdy wall"
 }
 
-class Dump extends Building {
-
+class Dump {
 	id = 17
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Dump.png")]
 	name = "Dump"
 	bpCost = 4
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		stability: 1
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = [SewerSystem, TownHall]
 	upgradesFrom = null
@@ -357,15 +359,14 @@ class Dump extends Building {
 	text = "A centralized place to dispose of refuse."
 }
 
-class EverflowingSpring extends Building {
-
+class EverflowingSpring {
 	id = 18
 	image = []
 	name = "Everflowing Spring"
 	bpCost = 5
 	size = 0
-	bonus = {...super.bonus}
-	settlementBonus = {...super.settlementBonus}
+	bonus = {...Building.bonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = []
 	upgradesFrom = null
@@ -375,19 +376,18 @@ class EverflowingSpring extends Building {
 	text = "A fountain built around several decanters of endless water that provides an inexhaustible supply of fresh water"
 }
 
-class ExoticArtisan extends Building {
-
+class ExoticArtisan {
 	id = 19
-	image = []
+	image = [require("../../../../res/img/BuildingImages/ExoticArtisan.png")]
 	name = "Exotic Artisan"
 	bpCost = 10
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1,
 		stability: 1
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = [NobleVilla, Theater]
 	upgradesFrom = null
@@ -397,20 +397,25 @@ class ExoticArtisan extends Building {
 	text = "The shop and home of a jeweler, tinker, glassblower, or the like"
 }
 
-class ForeignQuarter extends Building {
-
+class ForeignQuarter {
 	id = 20
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/ForeignQuarter_0.png"),
+		require("../../../../res/img/BuildingImages/ForeignQuarter_1.png"),
+		require("../../../../res/img/BuildingImages/ForeignQuarter_3.png"),
+		require("../../../../res/img/BuildingImages/ForeignQuarter_2.png"),
+		require("../../../../res/img/BuildingImages/ForeignQuarter.png"),
+	]
 	name = "Foreign Quarter"
 	bpCost = 30
 	size = 4
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 3,
 		stability: -1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		crime: 1,
 		lore: 1,
 		society: 2
@@ -424,21 +429,24 @@ class ForeignQuarter extends Building {
 	text = "An area with many foreigners, as well as shops and services catering to them"
 }
 
-class Foundry extends Building {
-
+class Foundry {
 	id = 21
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/Foundry_0.png"),
+		require("../../../../res/img/BuildingImages/Foundry_1.png"),
+		require("../../../../res/img/BuildingImages/Foundry.png"),
+	]
 	name = "Foundry"
 	bpCost = 16
 	size = 2
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1,
 		stability: 1,
 		unrest: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		productivity: 1
 	}
 	discounts = [Smithy]
@@ -450,20 +458,18 @@ class Foundry extends Building {
 	text = "Processes ore and refines it into finished metal. Perfect for Saturday nights"
 }
 
-
-class Granary extends Building {
-
+class Granary {
 	id = 23
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Granary.png")]
 	name = "Granary"
 	bpCost = 12
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		loyalty: 1,
 		stability: 1
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = [Garrison]
 	upgradesFrom = null
@@ -473,18 +479,17 @@ class Granary extends Building {
 	text = "A place to store grain and food."
 }
 
-class Graveyard extends Building {
-
+class Graveyard {
 	id = 24
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Graveyard.png")]
 	name = "Graveyard"
 	bpCost = 4
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		loyalty: 1
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = [Temple]
 	upgradesFrom = null
@@ -494,19 +499,18 @@ class Graveyard extends Building {
 	text = "A plot of land to honor and bury the dead."
 }
 
-class Herbalist extends Building {
-
+class Herbalist {
 	id = 26
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Herbalist.png")]
 	name = "Herbalist"
 	bpCost = 10
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		loyalty: 1,
 		stability: 1
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = []
 	upgradesFrom = null
@@ -516,20 +520,23 @@ class Herbalist extends Building {
 	text = "The workshop and home of a gardener, healer, or poisoner"
 }
 
-class Hospital extends Building {
-
+class Hospital {
 	id = 27
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/Hospital_0.png"),
+		require("../../../../res/img/BuildingImages/Hospital_1.png"),
+		require("../../../../res/img/BuildingImages/Hospital.png"),
+	]
 	name = "Hospital"
 	bpCost = 30
 	size = 2
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		loyalty: 1,
 		stability: 2
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		lore: 1,
 		productivity: 2
 	}
@@ -542,20 +549,19 @@ class Hospital extends Building {
 	text = "A building devoted to healing the sick"
 }
 
-class Inn extends Building {
-
+class Inn {
 	id = 29
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Inn.png")]
 	name = "Inn"
 	bpCost = 10
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1,
 		loyalty: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		society: 1
 	}
 	discounts = []
@@ -567,21 +573,20 @@ class Inn extends Building {
 	text = "A place for visitors to rest."
 }
 
-class Jail extends Building {
-
+class Jail {
 	id = 30
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Jail.png")]
 	name = "Jail"
 	bpCost = 14
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		loyalty: 2,
 		stability: 2,
 		unrest: -2
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		crime: -1,
 		law: 1
 	}
@@ -594,20 +599,19 @@ class Jail extends Building {
 	text = "A fortified structure for confining criminals or dangerous monsters."
 }
 
-class Library extends Building {
-
+class Library {
 	id = 31
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Library.png")]
 	name = "Library"
 	bpCost = 6
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1,
 		loyalty: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		lore: 1
 	}
 	discounts = []
@@ -619,21 +623,23 @@ class Library extends Building {
 	text = "A large building containing an archive of books."
 }
 
-
-class MagicalAcademy extends Building {
-
+class MagicalAcademy {
 	id = 34
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/MagicalAcademy_0.png"),
+		require("../../../../res/img/BuildingImages/MagicalAcademy_1.png"),
+		require("../../../../res/img/BuildingImages/MagicalAcademy.png"),
+	]
 	name = "Magical Academy"
 	bpCost = 58
 	size = 2
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 2,
 		fame: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		lore: 2,
 		society: 1
 	}
@@ -646,16 +652,15 @@ class MagicalAcademy extends Building {
 	text = "An institution for training students in spellcasting, magic item crafting, and various arcane arts."
 }
 
-class MagicalStreetlamps extends Building {
-
+class MagicalStreetlamps {
 	id = 35
 	image = []
 	name = "Magical Streetlamps"
 	bpCost = 5
 	size = 0
-	bonus = {...super.bonus}
+	bonus = {...Building.bonus}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		crime: -1
 	}
 	discounts = []
@@ -667,19 +672,18 @@ class MagicalStreetlamps extends Building {
 	text = "Continual flame lamps that illuminate the lot."
 }
 
-class Mansion extends Building {
-
+class Mansion {
 	id = 36
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Mansion.png")]
 	name = "Mansion"
 	bpCost = 10
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		stability: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		law: 1,
 		society: 1
 	}
@@ -692,20 +696,24 @@ class Mansion extends Building {
 	text = "A single huge manor housing a rich family and its servants."
 }
 
-
-class Menagerie extends Building {
-
+class Menagerie {
 	id = 38
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/Menagerie_0.png"),
+		require("../../../../res/img/BuildingImages/Menagerie_1.png"),
+		require("../../../../res/img/BuildingImages/Menagerie_3.png"),
+		require("../../../../res/img/BuildingImages/Menagerie_2.png"),
+		require("../../../../res/img/BuildingImages/Menagerie.png"),
+	]
 	name = "Menagerie"
 	bpCost = 16
 	size = 4
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1,
 		fame: 1
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = []
 	upgradesFrom = null
@@ -715,21 +723,24 @@ class Menagerie extends Building {
 	text = "A large park stocked with exotic creatures for public viewing"
 }
 
-class MilitaryAcademy extends Building {
-
+class MilitaryAcademy {
 	id = 39
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/MilitaryAcademy_0.png"),
+		require("../../../../res/img/BuildingImages/MilitaryAcademy_1.png"),
+		require("../../../../res/img/BuildingImages/MilitaryAcademy.png"),
+	]
 	name = "Military Academy"
 	bpCost = 36
 	size = 2
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		loyalty: 2,
 		stability: 1,
 		fame: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		law: 1,
 		lore: 1
 	}
@@ -742,20 +753,19 @@ class MilitaryAcademy extends Building {
 	text = "Armies and commanders recruited at the settlement gain one bonus tactic"
 }
 
-class Mill extends Building {
-
+class Mill {
 	id = 40
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Mill.png")]
 	name = "Mill"
 	bpCost = 6
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1,
 		stability: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		productivity: 1
 	}
 	discounts = []
@@ -767,21 +777,20 @@ class Mill extends Building {
 	text = "A building used to cut lumber or grind grain"
 }
 
-class Mint extends Building {
-
+class Mint {
 	id = 41
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Mint.png")]
 	name = "Mint"
 	bpCost = 30
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 3,
 		loyalty: 3,
 		stability: 1,
 		fame: 1
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = [Palace]
 	upgradesFrom = null
@@ -791,19 +800,18 @@ class Mint extends Building {
 	text = "A secure building where the kingdom’s coinage is minted and standard weights and measures are kept"
 }
 
-class Moat extends Building {
-
+class Moat {
 	id = 42
 	image = []
 	name = "Moat"
 	bpCost = 2
 	size = 0
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		unrest: -1,
 		defense: 1
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = []
 	upgradesFrom = null
@@ -813,19 +821,22 @@ class Moat extends Building {
 	text = "A fortification of one side of a district with an open or water-filled ditch, often backed by a low dike or embankment."
 }
 
-class Monastery extends Building {
-
+class Monastery {
 	id = 43
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/Monastery_0.png"),
+		require("../../../../res/img/BuildingImages/Monastery_1.png"),
+		require("../../../../res/img/BuildingImages/Monastery.png")
+	]
 	name = "Monastery"
 	bpCost = 16
 	size = 2
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		stability: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		law: 1,
 		lore: 1
 	}
@@ -838,19 +849,18 @@ class Monastery extends Building {
 	text = "A cloister for meditation, study, and the pursuit of various other scholarly paths."
 }
 
-class Monument extends Building {
-
+class Monument {
 	id = 44
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Monument.png")]
 	name = "Monument"
 	bpCost = 6
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		loyalty: 1,
 		unrest: -1
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = [Temple]
 	upgradesFrom = null
@@ -860,21 +870,24 @@ class Monument extends Building {
 	text = "A local memorial such as a bell tower, a statue of a settlement founder, a large tomb, or a public display of art."
 }
 
-class Museum extends Building {
-
+class Museum {
 	id = 45
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/Museum_0.png"),
+		require("../../../../res/img/BuildingImages/Museum_1.png"),
+		require("../../../../res/img/BuildingImages/Museum.png"),
+	]
 	name = "Museum"
 	bpCost = 30
 	size = 2
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1,
 		loyalty: 1,
 		fame: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		lore: 2,
 		society: 1
 	}
@@ -887,20 +900,18 @@ class Museum extends Building {
 	text = "A place to display art and artifacts both modern and historical. The GM may allow the kingdom leaders to display a valuable item (such as a magic item or bejeweled statue) in the museum, increasing Fame during this display by 1 for every 10,00 gp of the item’s price (maximum +5 Fame), and by an additional 1 if the item is significant to the kingdom’s history."
 }
 
-
-class Observatory extends Building {
-
+class Observatory {
 	id = 47
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Observatory.png")]
 	name = "Observatory"
 	bpCost = 12
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		stability: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		lore: 2
 	}
 	discounts = []
@@ -912,19 +923,18 @@ class Observatory extends Building {
 	text = "A dome or tower with optical devices for viewing the heavens."
 }
 
-class Orphanage extends Building {
-
+class Orphanage {
 	id = 48
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Orphanage.png")]
 	name = "Orphanage"
 	bpCost = 6
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		stability: 1,
 		unrest: -1
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = []
 	upgradesFrom = null
@@ -934,22 +944,27 @@ class Orphanage extends Building {
 	text = "A place for housing and taking care of large numbers of orphans."
 }
 
-class Palace extends Building {
-
+class Palace {
 	id = 49
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/Palace_0.png"),
+		require("../../../../res/img/BuildingImages/Palace_1.png"),
+		require("../../../../res/img/BuildingImages/Palace_3.png"),
+		require("../../../../res/img/BuildingImages/Palace_2.png"),
+		require("../../../../res/img/BuildingImages/Palace.png"),
+	]
 	name = "Palace"
 	bpCost = 108
 	size = 4
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 2,
 		loyalty: 6,
 		stability: 2,
 		fame: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		law: 2
 	}
 	discounts = [Mansion, Mint, NobleVilla]
@@ -961,19 +976,18 @@ class Palace extends Building {
 	text = "A grand edifice and walled grounds demonstrating one’s wealth, power, and authority to the world."
 }
 
-class Park extends Building {
-
+class Park {
 	id = 50
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Park.png")]
 	name = "Park"
 	bpCost = 4
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		loyalty: 1,
 		unrest: -1
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = [Theater]
 	upgradesFrom = null
@@ -983,20 +997,19 @@ class Park extends Building {
 	text = "A plot of land set aside for its serene beauty."
 }
 
-class PavedStreets extends Building {
-
+class PavedStreets {
 	id = 51
 	image = []
 	name = "Paved Streets"
 	bpCost = 24
 	size = 0
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 2,
 		stability: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		productivity: 2
 	}
 	discounts = []
@@ -1008,20 +1021,19 @@ class PavedStreets extends Building {
 	text = "Brick or stone pavement that speeds transportation."
 }
 
-class Pier extends Building {
-
+class Pier {
 	id = 52
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Pier.png")]
 	name = "Pier"
 	bpCost = 16
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1,
 		stability: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		crime: 1
 	}
 	discounts = []
@@ -1033,20 +1045,19 @@ class Pier extends Building {
 	text = "Warehouses and workshops for docking ships and handling cargo and passengers."
 }
 
-class SewerSystem extends Building {
-
+class SewerSystem {
 	id = 53
 	image = []
 	name = "Sewer System"
 	bpCost = 24
 	size = 0
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		loyalty: 1,
 		stability: 2
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		crime: 1,
 		productivity: 1
 	}
@@ -1059,19 +1070,18 @@ class SewerSystem extends Building {
 	text = "An underground sanitation system that keeps the settlement clean, though it may become home to criminals and monsters."
 }
 
-class Shop extends Building {
-
+class Shop {
 	id = 54
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Shop.png")]
 	name = "Shop"
 	bpCost = 8
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		productivity: 1
 	}
 	discounts = []
@@ -1083,19 +1093,18 @@ class Shop extends Building {
 	text = "A general store"
 }
 
-class Shrine extends Building {
-
+class Shrine {
 	id = 55
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Shrine.png")]
 	name = "Shrine"
 	bpCost = 8
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		loyalty: 1,
 		unrest: -1
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = [Temple]
 	upgradesFrom = null
@@ -1105,19 +1114,18 @@ class Shrine extends Building {
 	text = "A shrine, idol, sacred grove, or similar holy site designed for worship by pious individuals."
 }
 
-class Smithy extends Building {
-
+class Smithy {
 	id = 56
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Smithy.png")]
 	name = "Smithy"
 	bpCost = 6
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1,
 		stability: 1
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = [Foundry]
 	upgradesFrom = null
@@ -1127,19 +1135,18 @@ class Smithy extends Building {
 	text = "The workshop of an armorsmith, blacksmith, weaponsmith, or other craftsman who works with metal."
 }
 
-class Stable extends Building {
-
+class Stable {
 	id = 57
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Stable.png")]
 	name = "Stable"
 	bpCost = 10
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1,
 		loyalty: 1
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = [Arena, Guildhall, Stockyard]
 	upgradesFrom = null
@@ -1149,20 +1156,25 @@ class Stable extends Building {
 	text = "A structure for housing or selling horses and other mounts."
 }
 
-class Stockyard extends Building {
-
+class Stockyard {
 	id = 58
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/Stockyard_0.png"),
+		require("../../../../res/img/BuildingImages/Stockyard_1.png"),
+		require("../../../../res/img/BuildingImages/Stockyard_3.png"),
+		require("../../../../res/img/BuildingImages/Stockyard_2.png"),
+		require("../../../../res/img/BuildingImages/Stockyard.png"),
+	]
 	name = "Stockyard"
 	bpCost = 20
 	size = 4
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1,
 		stability: -1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		productivity: 1
 	}
 	discounts = [Stable, Tannery]
@@ -1174,20 +1186,19 @@ class Stockyard extends Building {
 	text = "Barns and pens that store herd animals and prepare them for nearby slaughterhouses."
 }
 
-class Tannery extends Building {
-
+class Tannery {
 	id = 59
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Tannery.png")]
 	name = "Tannery"
 	bpCost = 6
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1,
 		stability: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		society: -1
 	}
 	discounts = []
@@ -1199,20 +1210,19 @@ class Tannery extends Building {
 	text = "A structure that prepares hides and leather."
 }
 
-class Tavern extends Building {
-
+class Tavern {
 	id = 60
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Tavern.png")]
 	name = "Tavern"
 	bpCost = 12
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1,
 		loyalty: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		corruption: 1
 	}
 	discounts = []
@@ -1224,19 +1234,17 @@ class Tavern extends Building {
 	text = "An eating or drinking establishment."
 }
 
-
-class Tenement extends Building {
-
+class Tenement {
 	id = 62
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Tenement.png")]
 	name = "Tenement"
 	bpCost = 1
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		unrest: 2
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = []
 	upgradesFrom = null
@@ -1246,19 +1254,22 @@ class Tenement extends Building {
 	text = "A staggering number of low-rent housing units."
 }
 
-class Theater extends Building {
-
+class Theater {
 	id = 63
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/Theater_0.png"),
+		require("../../../../res/img/BuildingImages/Theater_1.png"),
+		require("../../../../res/img/BuildingImages/Theater.png"),
+	]
 	name = "Theater"
 	bpCost = 24
 	size = 2
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 2,
 		stability: 2
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = [Brothel, ExoticArtisan, Inn, Park, Tavern]
 	discountedBy = [Arena, BardicCollege]
 	upgradesFrom = null
@@ -1268,21 +1279,24 @@ class Theater extends Building {
 	text = "A venue for entertainments such as plays, operas, and concerts."
 }
 
-class TownHall extends Building {
-
+class TownHall {
 	id = 64
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/TownHall_0.png"),
+		require("../../../../res/img/BuildingImages/TownHall_1.png"),
+		require("../../../../res/img/BuildingImages/TownHall.png"),
+	]
 	name = "Town Hall"
 	bpCost = 22
 	size = 2
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1,
 		loyalty: 1,
 		stability: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		law: 1
 	}
 	discounts = [Barracks, Cistern, Dump, Jail, Watchtower]
@@ -1294,20 +1308,19 @@ class TownHall extends Building {
 	text = "A public venue for town meetings, repository for town records, and offices for minor bureaucrats."
 }
 
-class TradeShop extends Building {
-
+class TradeShop {
 	id = 65
-	image = []
+	image = [require("../../../../res/img/BuildingImages/TradeShop.png")]
 	name = "Trade Shop"
 	bpCost = 10
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1,
 		stability: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		productivity: 1
 	}
 	discounts = []
@@ -1319,21 +1332,19 @@ class TradeShop extends Building {
 	text = "A shop front for a tradesperson, such as a baker, butcher, candle maker, cobbler, rope maker, or wainwright."
 }
 
-
-class Watchtower extends Building {
-
+class Watchtower {
 	id = 67
-	image = []
+	image = [require("../../../../res/img/BuildingImages/Watchtower.png")]
 	name = "Watchtower"
 	bpCost = 12
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		stability: 1,
 		unrest: -1,
 		defense: 2
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = [TownHall]
 	upgradesFrom = null
@@ -1343,15 +1354,14 @@ class Watchtower extends Building {
 	text = "A tall structure that serves as a guard post."
 }
 
-class Watergate extends Building {
-
+class Watergate {
 	id = 69
 	image = []
 	name = "Watergate"
 	bpCost = 2
 	size = 0
-	bonus = {...super.bonus}
-	settlementBonus = {...super.settlementBonus}
+	bonus = {...Building.bonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = []
 	upgradesFrom = null
@@ -1361,15 +1371,14 @@ class Watergate extends Building {
 	text = "A gate in a City Wall that allows water (such as a river, Aqueduct, or Waterway) to enter the settlement. Blocks unwanted access."
 }
 
-class Waterway extends Building {
-
+class Waterway {
 	id = 70
-	image = []
+	image = [require("../../../../res/img/BuildingImages/WaterwayUD.png")]
 	name = "Waterway"
 	bpCost = 3
 	size = 1
-	bonus = {...super.bonus}
-	settlementBonus = {...super.settlementBonus}
+	bonus = {...Building.bonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = []
 	upgradesFrom = null
@@ -1379,20 +1388,23 @@ class Waterway extends Building {
 	text = "A river or canal occupying part of the District Grid. At the GM’s option, a natural Waterway may already exist on the grid"
 }
 
-class Academy extends Building {
-
+class Academy {
 	id = 1
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/Academy_0.png"),
+		require("../../../../res/img/BuildingImages/Academy_1.png"),
+		require("../../../../res/img/BuildingImages/Academy.png")
+	]
 	name = "Academy"
 	bpCost = 52
 	size = 2
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 2,
 		loyalty: 2
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		lore: 2,
 		productivity: 1,
 		society: 2
@@ -1406,20 +1418,25 @@ class Academy extends Building {
 	text = "An institution of higher learning."
 }
 
-class Arena extends Building {
-
+class Arena {
 	id = 3
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/Arena_0.png"),
+		require("../../../../res/img/BuildingImages/Arena_1.png"),
+		require("../../../../res/img/BuildingImages/Arena_3.png"),
+		require("../../../../res/img/BuildingImages/Arena_2.png"),
+		require("../../../../res/img/BuildingImages/Arena.png")
+	]
 	name = "Arena"
 	bpCost = 40
 	size = 4
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		stability: 4,
 		fame: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		crime: 1
 	}
 	discounts = [Brothel, Garrison, Inn, Stable, Theater]
@@ -1431,20 +1448,23 @@ class Arena extends Building {
 	text = "A large public structure for competitions and team sports"
 }
 
-class Garrison extends Building {
-
+class Garrison {
 	id = 22
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/Garrison_0.png"),
+		require("../../../../res/img/BuildingImages/Garrison_1.png"),
+		require("../../../../res/img/BuildingImages/Garrison.png"),
+	]
 	name = "Garrison"
 	bpCost = 28
 	size = 2
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		loyalty: 2,
 		stability: 2,
 		unrest: -2
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = [CityWall, Granary, Jail]
 	discountedBy = [Arena]
 	upgradesFrom = Barracks
@@ -1454,20 +1474,23 @@ class Garrison extends Building {
 	text = "A large building to house armies, train guards, and recruit militia"
 }
 
-class Guildhall extends Building {
-
+class Guildhall {
 	id = 25
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/Guildhall_0.png"),
+		require("../../../../res/img/BuildingImages/Guildhall_1.png"),
+		require("../../../../res/img/BuildingImages/Guildhall.png"),
+	]
 	name = "Guildhall"
 	bpCost = 34
 	size = 2
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 2,
 		loyalty: 2
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		law: 1,
 		productivity: 2
 	}
@@ -1481,18 +1504,17 @@ class Guildhall extends Building {
 	text = "The headquarters for a guild or similar organization."
 }
 
-class House extends Building {
-
+class House {
 	id = 28
-	image = []
+	image = [require("../../../../res/img/BuildingImages/House.png")]
 	name = "House"
 	bpCost = 3
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		unrest: -1
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = []
 	upgradesFrom = Tenement
@@ -1502,18 +1524,17 @@ class House extends Building {
 	text = "A number of mid-sized houses for citizens."
 }
 
-class LuxuryStore extends Building {
-
+class LuxuryStore {
 	id = 32
-	image = []
+	image = [require("../../../../res/img/BuildingImages/LuxuryStore.png")]
 	name = "Luxury Store"
 	bpCost = 28
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = [NobleVilla]
 	upgradesFrom = Shop
@@ -1523,18 +1544,17 @@ class LuxuryStore extends Building {
 	text = "A shop that specializes in expensive comforts for the wealthy."
 }
 
-class MagicShop extends Building {
-
+class MagicShop {
 	id = 33
-	image = []
+	image = [require("../../../../res/img/BuildingImages/MagicShop.png")]
 	name = "Magic Shop"
 	bpCost = 68
 	size = 1
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = []
 	discountedBy = [Academy, MagicalAcademy]
 	upgradesFrom = LuxuryStore
@@ -1544,19 +1564,22 @@ class MagicShop extends Building {
 	text = "A shop that specializes in magic items and spells"
 }
 
-class Market extends Building {
-
+class Market {
 	id = 37
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/Market_0.png"),
+		require("../../../../res/img/BuildingImages/Market_1.png"),
+		require("../../../../res/img/BuildingImages/Market.png"),
+	]
 	name = "Market"
 	bpCost = 48
 	size = 2
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 2,
 		stability: 2
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = [BlackMarket, Inn, Shop]
 	discountedBy = [Waterfront]
 	upgradesFrom = Shop
@@ -1566,22 +1589,25 @@ class Market extends Building {
 	text = "An open area for traveling merchants and bargain hunters."
 }
 
-class NobleVilla extends Building {
-
+class NobleVilla {
 	id = 46
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/NobleVilla_0.png"),
+		require("../../../../res/img/BuildingImages/NobleVilla_1.png"),
+		require("../../../../res/img/BuildingImages/NobleVilla.png"),
+	]
 	name = "Noble Villa"
 	bpCost = 24
 	size = 2
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 1,
 		loyalty: 1,
 		stability: 1,
 		fame: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		society: 1
 	}
 	discounts = [ExoticArtisan, LuxuryStore, Mansion]
@@ -1593,20 +1619,23 @@ class NobleVilla extends Building {
 	text = "A sprawling manor with luxurious grounds that houses a noble’s family and staff."
 }
 
-class Temple extends Building {
-
+class Temple {
 	id = 61
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/Temple_0.png"),
+		require("../../../../res/img/BuildingImages/Temple_1.png"),
+		require("../../../../res/img/BuildingImages/Temple.png"),
+	]
 	name = "Temple"
 	bpCost = 32
 	size = 2
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		loyalty: 2,
 		stability: 2,
 		unrest: -2
 	}
-	settlementBonus = {...super.settlementBonus}
+	settlementBonus = {...Building.settlementBonus}
 	discounts = [Graveyard, Monument, Shrine]
 	discountedBy = [Cathedral]
 	upgradesFrom = Shrine
@@ -1616,21 +1645,26 @@ class Temple extends Building {
 	text = "A large place of worship dedicated to a deity."
 }
 
-class University extends Building {
-
+class University {
 	id = 66
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/University_0.png"),
+		require("../../../../res/img/BuildingImages/University_1.png"),
+		require("../../../../res/img/BuildingImages/University_3.png"),
+		require("../../../../res/img/BuildingImages/University_2.png"),
+		require("../../../../res/img/BuildingImages/University.png"),
+	]
 	name = "University"
 	bpCost = 78
 	size = 4
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 3,
 		loyalty: 3,
 		fame: 1
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		lore: 4,
 		society: 3
 	}
@@ -1643,19 +1677,24 @@ class University extends Building {
 	text = "An institution of higher learning, focusing mainly on mundane subjects but dabbling in magical theory."
 }
 
-class Waterfront extends Building {
-
+class Waterfront {
 	id = 68
-	image = []
+	image = [
+		require("../../../../res/img/BuildingImages/WaterfrontS_0.png"),
+		require("../../../../res/img/BuildingImages/WaterfrontS_1.png"),
+		require("../../../../res/img/BuildingImages/WaterfrontS_3.png"),
+		require("../../../../res/img/BuildingImages/WaterfrontS_2.png"),
+		require("../../../../res/img/BuildingImages/WaterfrontS.png"),
+	]
 	name = "Waterfront"
 	bpCost = 90
 	size = 4
 	bonus = {
-		...super.bonus,
+		...Building.bonus,
 		economy: 4
 	}
 	settlementBonus = {
-		...super.settlementBonus,
+		...Building.settlementBonus,
 		productivity: 2
 	}
 	discounts = [BlackMarket, Guildhall, Market, Pier]
@@ -1756,7 +1795,13 @@ class BuildingList {
 		return null
 	}
 	//leaving just in case I ever have to actually sort
-	// all the functions and then initiate classes
+	all
+	the
+	functions
+	and
+	then
+	initiate
+	classes
 	/*static init = () => {
 		this.buildings = {
 			Academy: new Academy(),

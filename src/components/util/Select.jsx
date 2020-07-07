@@ -8,7 +8,7 @@ class SelectGroup extends Component{
 	}
 
 	onChangeCallback = ()=>{
-
+		//TODO?
 	}
 	render(){
 		const groupedChildren = Children.map(children, (child)=>{
@@ -26,7 +26,9 @@ class SelectGroup extends Component{
 class Select extends Component{
 	render(){
 		return (
-			<input type={this.props.multiple?"Checkbox":"Radio"} onChange={this.props.onChange}/>
+			<input
+				type={this.props.multiple?"Checkbox":"Radio"}
+				onChange={this.props.onChange}/>
 		)
 	}
 }

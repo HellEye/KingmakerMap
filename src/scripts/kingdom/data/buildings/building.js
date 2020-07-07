@@ -1,9 +1,5 @@
 class Building {
-	image = []
-	name = ""
-	bpCost = 0
-	size = 0
-	bonus = {
+	static bonus = {
 		economy: 0,
 		stability: 0,
 		loyalty: 0,
@@ -12,14 +8,13 @@ class Building {
 		fame: 0
 
 	}
-	settlementBonus = ""
-	discounts = []
-	discountedBy = []
-	upgradesFrom = null
-	limit = ""
-	special = ""
-	magicItems = ""
-	text = "Generic building, if you're seeing this I fucked up"
+	static settlementBonus = {
+		law:0,
+		productivity:0,
+		crime:0,
+		lore:0,
+		society:0,
+	}
 }
 
 export default Building

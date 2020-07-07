@@ -67,7 +67,22 @@ class KingdomStats extends Component {
 
 	resetTreasuryInput = (event) => {
 		this.bpFieldRef.current.setValue(0)
+		this.setState({
+			...this.state,
+			treasuryChange:0
+		})
 
+	}
+	getModifierDisplay = (fieldName, extraValue, key)=>{
+		return <div style={{gridArea: fieldName}} key={key}>
+			<h5>{fieldName.charAt(0)+fieldName.slice(1)}</h5>
+			<h4>
+				{parseInt(this.state.kingdom.kingdomData[fieldName])
+				+ parseInt(this.state.kingdom.kingdomData.data[fieldName] || 0)
+				+ parseInt(this.state.modifiers[fieldName] || 0)
+				+extraValue[fieldName]}
+			</h4>
+		</div>
 	}
 
 	saveKingdomData = () => {
@@ -95,24 +110,23 @@ class KingdomStats extends Component {
 				</div>
 			)
 
+		const settlementBonuses=
+			hexDataGrid.getModifiersByKingdomId(this.state.kingdom.id)
 		return (
 			//TODO refactor this mess somehow
 			<div className={"kingdomStats"}>
 				<div style={{gridArea: "select"}}>
 					<h3>{this.state.kingdom.name}</h3>
 				</div>
-				<div style={{gridArea: "stability"}}>
-					<h5>Stability</h5>
-					<h4>{parseInt(this.state.kingdom.kingdomData.getStabilityMod()) + parseInt(this.state.kingdom.kingdomData.data.stability || 0) + parseInt(this.state.modifiers.stability || 0)}</h4>
-				</div>
-				<div style={{gridArea: "loyalty"}}>
+				{["stability", "loyalty", "economy"].map((value, index)=>this.getModifierDisplay(value, settlementBonuses, index))}
+				{/*<div style={{gridArea: "loyalty"}}>
 					<h5>Loyalty</h5>
-					<h4>{parseInt(this.state.kingdom.kingdomData.getLoyaltyMod()) + parseInt(this.state.kingdom.kingdomData.data.loyalty || 0) + parseInt(this.state.modifiers.loyalty || 0)}</h4>
+					<h4>{parseInt(this.state.kingdom.kingdomData.loyalty) + parseInt(this.state.kingdom.kingdomData.data.loyalty || 0) + parseInt(this.state.modifiers.loyalty || 0)}</h4>
 				</div>
 				<div style={{gridArea: "economy"}}>
 					<h5>Economy</h5>
-					<h4>{parseInt(this.state.kingdom.kingdomData.getEconomyMod()) + parseInt(this.state.kingdom.kingdomData.data.economy || 0) + parseInt(this.state.modifiers.economy || 0)}</h4>
-				</div>
+					<h4>{parseInt(this.state.kingdom.kingdomData.economy) + parseInt(this.state.kingdom.kingdomData.data.economy || 0) + parseInt(this.state.modifiers.economy || 0)}</h4>
+				</div>*/}
 				<div style={{gridArea: "treasury"}}>
 					<h3>{this.state.kingdom.kingdomData.data.treasury} BP</h3>
 				</div>
@@ -126,7 +140,8 @@ class KingdomStats extends Component {
 						<h3 className={"tempText"}>Unrest [doesn't render if 0]</h3>}
 				</div>
 				<div style={{gridArea: "consumption"}}>
-					<h3>Consumption: {this.state.kingdom.kingdomData.data.consumption}</h3>
+					<h4>Consumption:</h4>
+					<h3>{this.state.kingdom.kingdomData.data.consumption}</h3>
 				</div>
 				<div style={{gridArea: "bp"}}>
 					<NumberInput
@@ -155,7 +170,8 @@ class KingdomStats extends Component {
 					</div>
 				</div>
 				<div style={{gridArea:"empty"}}>
-
+					<h3>Control DC:</h3>
+					<h2>{this.state.kingdom.kingdomData.getControlDC()}</h2>
 				</div>
 				{this.props.children}
 

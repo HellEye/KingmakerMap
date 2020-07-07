@@ -4,12 +4,7 @@ import "../../../../res/css/UI/numberInput.css"
 import NumberInput from "../../../util/NumberInput"
 
 class KingdomSheetField extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			hexDataLoaded: false
-		}
-	}
+
 
 
 	/*componentDidMount() {
@@ -34,7 +29,7 @@ class KingdomSheetField extends Component {
 			<div className={"kingdomSheetField"}>
 				<h3>{this.props.name}:</h3>
 				<h4>{this.props.settlementBonuses[this.props.value]}</h4>
-				<h4>{this.props.kingdom.kingdomData.getters[this.props.value]()}</h4>
+				<h4>{this.props.kingdom.kingdomData[this.props.value]}</h4>
 				<NumberInput
 					name={this.props.value}
 					value={this.props.kingdom.kingdomData.data[this.props.value]}

@@ -28,8 +28,8 @@
     }
 }
 
-.kingdomStats h3, .kingdomStats h4, .kingdomStats h5, .kingdomStats h6{
-    margin: 0;
+.kingdomStats h2, .kingdomStats h3, .kingdomStats h4, .kingdomStats h5, .kingdomStats h6{
+    margin: 3px 0;
     padding:0;
     width: 100%;
     text-align: center;

@@ -16,7 +16,7 @@ const emptyKingdomData = observable({
 		rulerSelectedAttributes: {
 			stability: false,
 			loyalty: false,
-			economy: false
+			economy: false,
 		},
 		consort: 0,
 		councilor: 0,
@@ -31,13 +31,13 @@ const emptyKingdomData = observable({
 		spymasterSelectedAttribute: {
 			stability: true,
 			loyalty: false,
-			economy: false
+			economy: false,
 		},
 		treasurer: 0,
 		viceroy: 0,
-		warden: 0
+		warden: 0,
 	},
-	kingdomId: 0
+	kingdomId: 0,
 })
 
 class KingdomData {
@@ -61,7 +61,7 @@ class KingdomData {
 			rulerSelectedAttributes: {
 				stability: false,
 				loyalty: false,
-				economy: false
+				economy: false,
 			},
 			consort: 0,
 			councilor: 0,
@@ -76,30 +76,41 @@ class KingdomData {
 			spymasterSelectedAttribute: {
 				stability: false,
 				loyalty: false,
-				economy: false
+				economy: false,
 			},
 			treasurer: 0,
 			viceroy: 0,
-			warden: 0
+			warden: 0,
 		},
-		kingdomId: 0
+		kingdomId: 0,
+		controlDCMod: 0,
 	}
 	setData = (newData) => {
 		this.data = newData
 	}
-	getters = {
+
+	/*getters = {
 		economy: this.getEconomyMod,
 		stability: this.getStabilityMod,
 		loyalty: this.getLoyaltyMod,
 		consumptionModifier: this.getConsumptionMod,
-		unrest: () => ""
+		unrest: () => "",
+		controlDCMod:()=>this.data.controlDCMod
+	}
+*/
+	get unrest() {
+		return ""
 	}
 
-	getEconomyMod() {
+	get controlDCMod() {
+		return 0
+	}
+
+	get economy() {
 		if (this.data == null) return 0
 		return (
 			(this.data.positions.rulerSelectedAttributes.economy * ((this.data.positions.ruler) || 0)) +
-			((this.data.positions.spymaster) || 0) * this.data.positions.spymasterSelectedAttribute.economy +
+			Math.floor((this.data.positions.spymaster) || 0) * this.data.positions.spymasterSelectedAttribute.economy +
 			((this.data.positions.magister) || 0) +
 			((this.data.positions.marshal) || 0) +
 			((this.data.positions.treasurer) || 0) +
@@ -109,28 +120,29 @@ class KingdomData {
 		)
 	}
 
-	getStabilityMod() {
+	get stability() {
 		if (this.data == null) return 0
-		return (
+		const out = (
 			(this.data.positions.rulerSelectedAttributes.stability * ((this.data.positions.ruler) || 0)) +
-			((this.data.positions.spymaster) || 0) * this.data.positions.spymasterSelectedAttribute.stability +
+			Math.floor((this.data.positions.spymaster) || 0) * this.data.positions.spymasterSelectedAttribute.stability +
 			((this.data.positions.general) || 0) +
 			((this.data.positions.grandDiplomat) || 0) +
 			((this.data.positions.highPriest) || 0) +
 			((this.data.alignment % 3 === 1) ? 2 : 0) +
 			((Math.floor(this.data.alignment / 3) === 1) ? 2 : 0)
 		)
+		return out
 
 	}
 
-	getLoyaltyMod() {
+	get loyalty() {
 		if (this.data == null) return 0
 		return (
 			(this.data.positions.rulerSelectedAttributes.loyalty * ((this.data.positions.ruler) || 0)) +
-			((this.data.positions.spymaster) || 0) * this.data.positions.spymasterSelectedAttribute.loyalty +
-			((this.data.positions.consort / 2) || 0) +
+			Math.floor((this.data.positions.spymaster) || 0) * this.data.positions.spymasterSelectedAttribute.loyalty +
+			Math.floor((this.data.positions.consort / 2) || 0) +
 			((this.data.positions.councilor) || 0) +
-			((this.data.positions.heir / 2) || 0) +
+			Math.floor((this.data.positions.heir / 2) || 0) +
 			((this.data.positions.royalEnforcer) || 0) +
 			((this.data.positions.warden) || 0) +
 			((this.data.alignment % 3 === 0) ? 2 : 0) +
@@ -145,9 +157,18 @@ class KingdomData {
 		return 0
 	}
 
-	getConsumptionMod() {
+	get districtNumber() {
+		if (this.data != null) {
+			return hexDataGrid.getByKingdom(this.data.kingdomId).reduce(value => {
+				return value.settlement == null ? 0 : value.settlement.districts.length
+			}, 0)
+		}
+		return 0
+	}
+
+	get consumptionModifier() {
 		if (this.data == null) return 0
-		return this.data.consumptionModifier > this.data.consumption + this.data.size ? 0 : this.data.consumption + this.data.size - this.data.consumptionModifier
+		return this.data.consumptionModifier > this.data.consumption + (this.data.size ? 0 : this.data.consumption + this.data.size)
 	}
 
 
@@ -192,11 +213,16 @@ class KingdomData {
 		}
 		return formData
 	}
+
+	getControlDC = () => {
+		if (this.data == null) return 0
+		return this.size + this.districtNumber + this.data.controlDCMod
+	}
 }
 
 decorate(KingdomData, {
 	data: observable,
-	size: computed
+	size: computed,
 })
 export default KingdomData
 export {emptyKingdomData}

@@ -1,34 +1,35 @@
 import React, {Component} from "react"
 import {BuildingList} from "../../../scripts/kingdom/data/buildings/buildings"
-import MouseTooltip from "react-sticky-mouse-tooltip"
+import HoverTooltip from "../../util/HoverTooltip"
 
 class BuildingFilterDisplay extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state={
-			mouseHover:false,
-			mousePosX:0,
-			mousePosY:0,
+		this.state = {
+			mouseHover: false,
+			mousePosX: 0,
+			mousePosY: 0,
 		}
+		this.divRef = React.createRef()
 	}
 
-	onMouseEnter=(event)=>{
+	onMouseEnter = (event) => {
 		this.setState({
 			...this.state,
-			mouseHover:true,
-			mousePosX:event.clientX,
-			mousePosY:event.clientY,
+			mouseHover: true,
+			mousePosX: event.clientX,
+			mousePosY: event.clientY,
 		})
 	}
-	onMouseLeave=(event)=>{
+	onMouseLeave = (event) => {
 		this.setState({
 			...this.state,
-			mouseHover:false
+			mouseHover: false,
 		})
 	}
 
-	selectBuilding=()=>{
+	selectBuilding = () => {
 		this.props.onSelect(this.props.building)
 	}
 
@@ -37,18 +38,20 @@ class BuildingFilterDisplay extends Component {
 		const {name, bpCost} = this.props.building
 		const {stability, loyalty, economy} = this.props.building.bonus
 		return (
-			<div className={"buildingGridFilterBuilding"}>
-				<h3
-					onClick={this.selectBuilding}
-					onMouseEnter={this.onMouseEnter}
-					onMouseLeave={this.onMouseLeave}>
-					{name}
-				</h3>
-				<h3>{economy || 0}</h3>
-				<h3>{loyalty || 0}</h3>
-				<h3>{stability || 0}</h3>
-				<h3>{bpCost || 0}</h3>
-				<MouseTooltip
+			<>
+				<div ref={this.divRef} className={"buildingGridFilterBuilding"}>
+					<h3
+						onClick={this.selectBuilding}
+						onMouseEnter={this.onMouseEnter}
+						onMouseLeave={this.onMouseLeave}>
+						{name}
+					</h3>
+					<h3>{economy || 0}</h3>
+					<h3>{loyalty || 0}</h3>
+					<h3>{stability || 0}</h3>
+					<h3>{bpCost || 0}</h3>
+
+					{/*<MouseTooltip
 					visible={this.state.mouseHover}
 					offsetX={-600}
 					offsetY={this.state.mousePosY+420>window.innerHeight?-410:20}
@@ -57,10 +60,20 @@ class BuildingFilterDisplay extends Component {
 					}}
 				>
 					<div className={"buildingGridFilterTooltip"}>
-						<h1>{name}</h1>
+
 					</div>
-				</MouseTooltip>
-			</div>
+				</MouseTooltip>*/}
+				</div>
+				<HoverTooltip
+					height={400}
+					width={600}
+					className={"buildingGridFilterTooltip"}
+					hoverObject={this.divRef}
+				>
+					<h1>{name}</h1>
+					<img src={this.props.building.image[this.props.building.image.length - 1]} alt={""}/>
+				</HoverTooltip>
+			</>
 		)
 	}
 }
@@ -72,10 +85,9 @@ class BuildingFilter extends Component {
 			sortName: "",
 			filterBy: {
 				value: "",
-				ascending: false
-			}
+				ascending: false,
+			},
 		}
-		console.log(this.buildingList)
 	}
 
 	buildingList = [...BuildingList.buildings]
@@ -91,17 +103,17 @@ class BuildingFilter extends Component {
 		const newFilter = e.target.value
 		this.setState({
 			...this.state,
-			sortName: newFilter
+			sortName: newFilter,
 		})
 	}
-	onBuildingSelect=(building)=>{
+	onBuildingSelect = (building) => {
 		this.props.onSelect(building)
 	}
 
 	getFilteredBuildingList = () => {
 		return this.buildingList
 			.filter((building) => {
-				return building.name.toLowerCase().includes(this.state.sortName)
+				return building.name.toLowerCase().includes(this.state.sortName) && building.size > 0
 			})
 			.map((building) => {
 				return <BuildingFilterDisplay
@@ -128,16 +140,16 @@ class BuildingFilter extends Component {
 				...this.state,
 				filterBy: {
 					value: field,
-					ascending: !this.state.filterBy.ascending
-				}
+					ascending: !this.state.filterBy.ascending,
+				},
 			})
 		} else {
 			this.setState({
 				...this.state,
 				filterBy: {
 					value: field,
-					ascending: false
-				}
+					ascending: false,
+				},
 			})
 		}
 		this.buildingList = this.buildingList.sort(this.buildingComparator(field, newAscending))
