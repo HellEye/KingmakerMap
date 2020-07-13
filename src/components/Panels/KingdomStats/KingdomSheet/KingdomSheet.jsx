@@ -14,9 +14,10 @@ const statsToDisplay = [
 	{name: "Stability", value: "stability"},
 	{name: "Loyalty", value: "loyalty"},
 	{name: "Economy", value: "economy"},
-	{name: "Consumption modifier", value: "consumptionModifier"},
+	{name: "Consumption modifier", value: "consumption"},
 	{name: "Unrest", value: "unrest"},
-	{name: "Control DC Modifier", value:"controlDCMod"}
+	{name: "Control DC Modifier", value:"controlDCMod"},
+	{name: "Extra BP/turn", value:"extraBP"}
 ]
 const leaders = [
 	{name: "Ruler", value: "ruler", extra: "rulerSelectedAttributes", extraMultiple: true},

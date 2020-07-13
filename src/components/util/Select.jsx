@@ -7,8 +7,8 @@ class SelectGroup extends Component{
 		}
 	}
 
-	onChangeCallback = ()=>{
-		//TODO?
+	onChangeCallback = (number) => (e)=>{
+		this.props.onChange(number)
 	}
 	render(){
 		const groupedChildren = Children.map(children, (child)=>{
@@ -27,8 +27,10 @@ class Select extends Component{
 	render(){
 		return (
 			<input
-				type={this.props.multiple?"Checkbox":"Radio"}
-				onChange={this.props.onChange}/>
+				type={"button"}
+				className={"select "+this.props.multiple?"selectCheckbox ":"selectRadio"+this.props.className}
+				onClick={this.props.onClick}
+			/>
 		)
 	}
 }

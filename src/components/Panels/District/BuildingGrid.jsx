@@ -25,6 +25,11 @@ class BuildingGrid extends Component {
 			selectedBuilding:building
 		})
 	}
+	deselectBuilding=()=>{
+		this.setState({
+			selectedBuilding:null,
+		})
+	}
 
 	render() {
 		// if(this.state.selectedBuilding!=null)
@@ -41,6 +46,8 @@ class BuildingGrid extends Component {
 				<BuildingGridBuildings
 					district={this.props.selectedDistrict}
 					selectedBuilding={this.state.selectedBuilding}
+					deselectBuilding={this.deselectBuilding}
+					onUpgrade={this.onBuildingSelect}
 				/>
 				{/*<div className={"buildingGridImprovements"}>
 

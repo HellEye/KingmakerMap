@@ -16,7 +16,7 @@ class KingdomStats extends Component {
 		this.state = {
 			kingdom: null,
 			modifiers: new Accumulator(),
-			treasuryChange: 0
+			treasuryChange: 0,
 		}
 		this.bpFieldRef = React.createRef()
 	}
@@ -45,14 +45,14 @@ class KingdomStats extends Component {
 		this.setState({
 			modifiers: this.hexes.reduce((acc, value) => {
 				return value.getSettlementModifiers(acc)
-			}, new Accumulator())
+			}, new Accumulator()),
 		})
 	}
 
 	updateTreasuryChange = ({value}) => {
 		this.setState({
 			...this.state,
-			treasuryChange: value
+			treasuryChange: value,
 		})
 	}
 
@@ -69,18 +69,18 @@ class KingdomStats extends Component {
 		this.bpFieldRef.current.setValue(0)
 		this.setState({
 			...this.state,
-			treasuryChange:0
+			treasuryChange: 0,
 		})
 
 	}
-	getModifierDisplay = (fieldName, extraValue, key)=>{
+	getModifierDisplay = (fieldName, extraValue, key) => {
 		return <div style={{gridArea: fieldName}} key={key}>
-			<h5>{fieldName.charAt(0)+fieldName.slice(1)}</h5>
+			<h5>{fieldName.charAt(0) + fieldName.slice(1)}</h5>
 			<h4>
 				{parseInt(this.state.kingdom.kingdomData[fieldName])
 				+ parseInt(this.state.kingdom.kingdomData.data[fieldName] || 0)
 				+ parseInt(this.state.modifiers[fieldName] || 0)
-				+extraValue[fieldName]}
+				+ extraValue[fieldName]}
 			</h4>
 		</div>
 	}
@@ -110,7 +110,7 @@ class KingdomStats extends Component {
 				</div>
 			)
 
-		const settlementBonuses=
+		const settlementBonuses =
 			hexDataGrid.getModifiersByKingdomId(this.state.kingdom.id)
 		return (
 			//TODO refactor this mess somehow
@@ -118,7 +118,7 @@ class KingdomStats extends Component {
 				<div style={{gridArea: "select"}}>
 					<h3>{this.state.kingdom.name}</h3>
 				</div>
-				{["stability", "loyalty", "economy"].map((value, index)=>this.getModifierDisplay(value, settlementBonuses, index))}
+				{["stability", "loyalty", "economy"].map((value, index) => this.getModifierDisplay(value, settlementBonuses, index))}
 				{/*<div style={{gridArea: "loyalty"}}>
 					<h5>Loyalty</h5>
 					<h4>{parseInt(this.state.kingdom.kingdomData.loyalty) + parseInt(this.state.kingdom.kingdomData.data.loyalty || 0) + parseInt(this.state.modifiers.loyalty || 0)}</h4>
@@ -135,13 +135,24 @@ class KingdomStats extends Component {
 					<h4> {this.state.kingdom.kingdomData.size}</h4>
 				</div>
 				<div style={{gridArea: "unrest"}}>
-					{this.state.kingdom.kingdomData.data.unrest > 0 ? (
-							<h3>this.state.kingdom.kingdomData.getStabilityMod() + " unrest"</h3>) :
+					{this.state.kingdom.kingdomData.data.unrest + settlementBonuses.unrest > 0 ? (<>
+							<h4>Unrest:</h4>
+							<h3> {this.state.kingdom.kingdomData.data.unrest + settlementBonuses.unrest}</h3>
+						</>)
+						:
 						<h3 className={"tempText"}>Unrest [doesn't render if 0]</h3>}
 				</div>
 				<div style={{gridArea: "consumption"}}>
 					<h4>Consumption:</h4>
-					<h3>{this.state.kingdom.kingdomData.data.consumption}</h3>
+					<h3>
+						{
+							Math.max(0,
+								this.state.kingdom.kingdomData.consumption
+								+ settlementBonuses.consumption
+								+ this.state.kingdom.kingdomData.data.consumption,
+							)
+						}
+					</h3>
 				</div>
 				<div style={{gridArea: "bp"}}>
 					<NumberInput
@@ -169,7 +180,7 @@ class KingdomStats extends Component {
 						/>
 					</div>
 				</div>
-				<div style={{gridArea:"empty"}}>
+				<div style={{gridArea: "empty"}}>
 					<h3>Control DC:</h3>
 					<h2>{this.state.kingdom.kingdomData.getControlDC()}</h2>
 				</div>

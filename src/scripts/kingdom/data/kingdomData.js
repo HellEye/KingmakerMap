@@ -1,6 +1,6 @@
 import {computed, decorate, observable} from "mobx"
 import dbLoader from "../../utils/dbLoader"
-import {hexDataGrid} from "./hexData"
+import {HexData, hexDataGrid} from "./hexData"
 
 const emptyKingdomData = observable({
 	alignment: 0,
@@ -84,6 +84,7 @@ class KingdomData {
 		},
 		kingdomId: 0,
 		controlDCMod: 0,
+		extraBP:0,
 	}
 	setData = (newData) => {
 		this.data = newData
@@ -160,17 +161,16 @@ class KingdomData {
 	get districtNumber() {
 		if (this.data != null) {
 			return hexDataGrid.getByKingdom(this.data.kingdomId).reduce(value => {
-				return value.settlement == null ? 0 : value.settlement.districts.length
+				return value.settlement == null || value.settlement.districts==null ? 0 : value.settlement.districts.length
 			}, 0)
 		}
 		return 0
 	}
 
-	get consumptionModifier() {
+	get consumption() {
 		if (this.data == null) return 0
-		return this.data.consumptionModifier > this.data.consumption + (this.data.size ? 0 : this.data.consumption + this.data.size)
+		return Math.max(this.size +this.districtNumber, 0)
 	}
-
 
 	saveToDb = () => {
 		dbLoader(`kingdomStats/${this.data.kingdomId}`, "POST", this.toFormData())
@@ -215,8 +215,8 @@ class KingdomData {
 	}
 
 	getControlDC = () => {
-		if (this.data == null) return 0
-		return this.size + this.districtNumber + this.data.controlDCMod
+		if (this.data == null) return 20
+		return 20 + this.size + this.districtNumber + this.data.controlDCMod
 	}
 }
 

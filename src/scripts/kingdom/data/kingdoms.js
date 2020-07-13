@@ -2,6 +2,7 @@ import {decorate, observable, observe} from "mobx"
 import dbLoader from "../../utils/dbLoader"
 import KingdomData, {emptyKingdomData} from "./kingdomData"
 import {getCookie} from "../../utils/cookies"
+import {computedFn} from "mobx-utils"
 
 const kingdomUrl = 'kingdoms'
 const kingdomDataUrl = 'kingdomStats'
@@ -17,7 +18,7 @@ class Kingdom {
 
 	toFormData = () => {
 		const data = new FormData()
-		data.append("name", `'${this.name}'`)
+		data.append("name", `'${this.name.replace("'", "''")}'`)
 		data.append("color", `'${this.color}'`)
 		return data
 	}
@@ -57,7 +58,7 @@ class Kingdoms {
 		}
 		return -1;
 	}
-	getById = (id) => {
+	getById = computedFn((id) => {
 		if(id<=0) return null
 		for (let i = 0; i < this.kingdoms.length; i++) {
 			if (this.kingdoms[i].id === id) {
@@ -65,7 +66,7 @@ class Kingdoms {
 			}
 		}
 		return null;
-	}
+	})
 	getByName = (name) => {
 		for (let i = 0; i < this.kingdoms.length; i++) {
 			if (this.kingdoms[i].name === name) {

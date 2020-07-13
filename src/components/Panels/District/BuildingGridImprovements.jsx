@@ -3,6 +3,7 @@ import {BuildingList} from "../../../scripts/kingdom/data/buildings/buildings"
 import Checkbox from "@material-ui/core/Checkbox"
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel"
 import HoverTooltip from "../../util/HoverTooltip"
+import BuildingHoverTooltip from "./BuildingHoverTooltip"
 
 class BuildingGridImprovement extends Component {
 	constructor(props) {
@@ -46,6 +47,11 @@ class BuildingGridImprovement extends Component {
 							}/>
 					</div>
 				</div>
+				<BuildingHoverTooltip
+					building={this.props.building}
+					hoverObject={this.divRef}
+					noImage={true}
+				/>{/*
 				<HoverTooltip
 					height={400}
 					width={600}
@@ -60,7 +66,7 @@ class BuildingGridImprovement extends Component {
 							<h3>{this.props.building.bonus[key]}</h3>
 						</div>)
 					})}
-				</HoverTooltip>
+				</HoverTooltip>*/}
 			</>
 		)
 	}

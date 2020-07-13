@@ -37,3 +37,12 @@
 .sidebarSettlementDistrictPanel h4 {
     margin:0;
 }
+.sidebarSettlementNameInput {
+    background-color: #04325e;
+    color: #a8acb2;
+    border-radius: 5px;
+    border: 3px #24225e solid;
+    width: 80%;
+    margin-bottom: 5px;
+    padding:5px;
+}

@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import {BuildingList} from "../../../scripts/kingdom/data/buildings/buildings"
 import HoverTooltip from "../../util/HoverTooltip"
+import BuildingHoverTooltip from "./BuildingHoverTooltip"
 
 class BuildingFilterDisplay extends Component {
 
@@ -29,6 +30,7 @@ class BuildingFilterDisplay extends Component {
 		})
 	}
 
+
 	selectBuilding = () => {
 		this.props.onSelect(this.props.building)
 	}
@@ -43,7 +45,8 @@ class BuildingFilterDisplay extends Component {
 					<h3
 						onClick={this.selectBuilding}
 						onMouseEnter={this.onMouseEnter}
-						onMouseLeave={this.onMouseLeave}>
+						onMouseLeave={this.onMouseLeave}
+						onMouseMove={this.onMouseMove}>
 						{name}
 					</h3>
 					<h3>{economy || 0}</h3>
@@ -64,15 +67,10 @@ class BuildingFilterDisplay extends Component {
 					</div>
 				</MouseTooltip>*/}
 				</div>
-				<HoverTooltip
-					height={400}
-					width={600}
-					className={"buildingGridFilterTooltip"}
+				<BuildingHoverTooltip
+					building={this.props.building}
 					hoverObject={this.divRef}
-				>
-					<h1>{name}</h1>
-					<img src={this.props.building.image[this.props.building.image.length - 1]} alt={""}/>
-				</HoverTooltip>
+				/>
 			</>
 		)
 	}

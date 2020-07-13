@@ -11,6 +11,7 @@ class HoverTooltip extends Component {
 		}
 	}
 
+
 	onMouseEnter = (event) => {
 		this.setState({
 			...this.state,
@@ -51,7 +52,13 @@ class HoverTooltip extends Component {
 					zIndex: 15,
 				}}
 			>
-				<div className={"mouseTooltip " + this.props.className ? this.props.className : ""}>
+				<div
+					className={"mouseTooltip " + this.props.className ? this.props.className : ""}
+					style={{
+						height:this.props.height,
+						width:this.props.width
+					}}
+				>
 					{this.props.children}
 				</div>
 			</MouseTooltip>

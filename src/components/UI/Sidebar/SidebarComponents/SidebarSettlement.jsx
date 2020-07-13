@@ -4,7 +4,8 @@ import {selectedHex} from "../../../board/HexGrid"
 import {selectedKingdom} from "../../../../scripts/kingdom/data/kingdoms"
 import "../../../../res/css/Panels/Sidebar/SidebarSettlement.css"
 import ConfirmButton from "../../../util/ConfirmButton"
-
+import {observable} from "mobx"
+const selectedDistrict=observable.box(null)
 class DistrictElement extends Component {
 	constructor(props) {
 		super(props);
@@ -26,6 +27,7 @@ class DistrictElement extends Component {
 		return (
 			<div className={"sidebarSettlementDistrictPanel"}>
 				<h4>{this.state.district.id}</h4>
+
 				<input
 					type={"button"}
 					className={"button"}
@@ -107,6 +109,7 @@ class SidebarSettlement extends Component {
 
 	selectDistrict = (district) => {
 		this.props.onDistrictSelect(district)
+		selectedDistrict.set(district)
 	}
 
 	getDistrictElementList = ()=>{
@@ -120,7 +123,13 @@ class SidebarSettlement extends Component {
 			/>
 		)
 	}
-
+	onSettlementNameChange=(event)=>{
+		this.state.selectedHex.settlement.name=event.target.value;
+		this.forceUpdate()
+	}
+	onSettlementNameBlur=()=>{
+		this.state.selectedHex.settlement.saveSettlement()
+	}
 	render() {
 		if (this.state.selectedKingdom == null) {
 			return (
@@ -149,7 +158,12 @@ class SidebarSettlement extends Component {
 		}
 		return (
 			<div className={"sidebarSettlement"}>
-				<h3>{this.state.selectedHex.settlement.name === "" ? "Unnamed settlement" : this.state.selectedHex.settlement.name}</h3>
+				<input type={"text"}
+				       className={"sidebarSettlementNameInput"}
+				       value={this.state.selectedHex.settlement.name}
+				       onChange={this.onSettlementNameChange}
+				       onBlur={this.onSettlementNameBlur}
+				       />
 				<div className={"sidebarSettlementDistrictList"}>
 					{this.getDistrictElementList()}
 				</div>
@@ -165,3 +179,4 @@ class SidebarSettlement extends Component {
 }
 
 export default SidebarSettlement
+export {selectedDistrict}

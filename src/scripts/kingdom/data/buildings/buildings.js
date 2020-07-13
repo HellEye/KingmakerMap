@@ -11,7 +11,7 @@ class Alchemist {
 	size = 1
 	bonus = {
 		...Building.bonus,
-		economy: 1
+		economy: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -31,7 +31,7 @@ class Bank {
 	size = 1
 	bonus = {
 		...Building.bonus,
-		economy: 4
+		economy: 4,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -48,7 +48,7 @@ class BardicCollege {
 	image = [
 		require("../../../../res/img/BuildingImages/BardicCollege_0.png"),
 		require("../../../../res/img/BuildingImages/BardicCollege_1.png"),
-		require("../../../../res/img/BuildingImages/BardicCollege.png")
+		require("../../../../res/img/BuildingImages/BardicCollege.png"),
 	]
 	name = "Bardic College"
 	bpCost = 40
@@ -58,7 +58,7 @@ class BardicCollege {
 		economy: 1,
 		loyalty: 3,
 		stability: 1,
-		fame: 1
+		fame: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = [Library, Museum, Theater]
@@ -79,11 +79,11 @@ class Barracks {
 	bonus = {
 		...Building.bonus,
 		unrest: -1,
-		defense: 2
+		defense: 2,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		law: 1
+		law: 1,
 	}
 	discounts = []
 	discountedBy = [MilitaryAcademy, TownHall]
@@ -104,12 +104,12 @@ class BlackMarket {
 		...Building.bonus,
 		economy: 2,
 		loyalty: 1,
-		unrest: 1
+		unrest: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		corruption: 2,
-		crime: 2
+		crime: 2,
 	}
 	discounts = [Brothel]
 	discountedBy = [Waterfront, Market]
@@ -129,7 +129,7 @@ class Brewery {
 	bonus = {
 		...Building.bonus,
 		loyalty: 1,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -149,7 +149,7 @@ class Bridge {
 	size = 1
 	bonus = {
 		...Building.bonus,
-		economy: 1
+		economy: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -171,12 +171,12 @@ class Brothel {
 		...Building.bonus,
 		economy: 1,
 		loyalty: 2,
-		unrest: 1
+		unrest: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		corruption: 1,
-		crime: 1
+		crime: 1,
 	}
 	discounts = []
 	discountedBy = [BlackMarket, Theater, Arena]
@@ -192,7 +192,7 @@ class Bureau {
 	image = [
 		require("../../../../res/img/BuildingImages/Bureau.png"),
 		require("../../../../res/img/BuildingImages/Bureau_0.png"),
-		require("../../../../res/img/BuildingImages/Bureau_1.png")
+		require("../../../../res/img/BuildingImages/Bureau_1.png"),
 	]
 	name = "Bureau"
 	bpCost = 10
@@ -201,12 +201,12 @@ class Bureau {
 		...Building.bonus,
 		economy: 1,
 		loyalty: -1,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		corruption: 1,
-		crime: 1
+		crime: 1,
 	}
 	discounts = []
 	discountedBy = []
@@ -226,7 +226,7 @@ class CastersTower {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		loyalty: 1
+		loyalty: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -245,7 +245,7 @@ class Castle {
 		require("../../../../res/img/BuildingImages/Castle_1.png"),
 		require("../../../../res/img/BuildingImages/Castle_3.png"),
 		require("../../../../res/img/BuildingImages/Castle_2.png"),
-		require("../../../../res/img/BuildingImages/Castle.png")
+		require("../../../../res/img/BuildingImages/Castle.png"),
 	]
 	name = "Castle"
 	bpCost = 54
@@ -257,7 +257,7 @@ class Castle {
 		stability: 2,
 		unrest: -4,
 		fame: 1,
-		defense: 8
+		defense: 8,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = [NobleVilla, TownHall]
@@ -286,11 +286,11 @@ class Cathedral {
 		loyalty: 4,
 		stability: 4,
 		unrest: -4,
-		fame: 1
+		fame: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		law: 2
+		law: 2,
 	}
 	discounts = [Academy, Temple]
 	discountedBy = []
@@ -327,7 +327,7 @@ class CityWall {
 	bonus = {
 		...Building.bonus,
 		unrest: -2,
-		defense: 1
+		defense: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -347,7 +347,7 @@ class Dump {
 	size = 1
 	bonus = {
 		...Building.bonus,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -385,7 +385,7 @@ class ExoticArtisan {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -412,13 +412,13 @@ class ForeignQuarter {
 	bonus = {
 		...Building.bonus,
 		economy: 3,
-		stability: -1
+		stability: -1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		crime: 1,
 		lore: 1,
-		society: 2
+		society: 2,
 	}
 	discounts = []
 	discountedBy = []
@@ -443,11 +443,11 @@ class Foundry {
 		...Building.bonus,
 		economy: 1,
 		stability: 1,
-		unrest: 1
+		unrest: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		productivity: 1
+		productivity: 1,
 	}
 	discounts = [Smithy]
 	discountedBy = []
@@ -467,7 +467,7 @@ class Granary {
 	bonus = {
 		...Building.bonus,
 		loyalty: 1,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -487,7 +487,7 @@ class Graveyard {
 	size = 1
 	bonus = {
 		...Building.bonus,
-		loyalty: 1
+		loyalty: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -508,7 +508,7 @@ class Herbalist {
 	bonus = {
 		...Building.bonus,
 		loyalty: 1,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -533,12 +533,12 @@ class Hospital {
 	bonus = {
 		...Building.bonus,
 		loyalty: 1,
-		stability: 2
+		stability: 2,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		lore: 1,
-		productivity: 2
+		productivity: 2,
 	}
 	discounts = []
 	discountedBy = []
@@ -558,11 +558,11 @@ class Inn {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		loyalty: 1
+		loyalty: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		society: 1
+		society: 1,
 	}
 	discounts = []
 	discountedBy = [Market, Theater, Arena]
@@ -583,12 +583,12 @@ class Jail {
 		...Building.bonus,
 		loyalty: 2,
 		stability: 2,
-		unrest: -2
+		unrest: -2,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		crime: -1,
-		law: 1
+		law: 1,
 	}
 	discounts = []
 	discountedBy = [Garrison, TownHall]
@@ -608,11 +608,11 @@ class Library {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		loyalty: 1
+		loyalty: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		lore: 1
+		lore: 1,
 	}
 	discounts = []
 	discountedBy = [Academy, BardicCollege, MagicalAcademy, University]
@@ -636,12 +636,12 @@ class MagicalAcademy {
 	bonus = {
 		...Building.bonus,
 		economy: 2,
-		fame: 1
+		fame: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		lore: 2,
-		society: 1
+		society: 1,
 	}
 	discounts = [CastersTower, Library, MagicShop]
 	discountedBy = [University]
@@ -661,7 +661,7 @@ class MagicalStreetlamps {
 	bonus = {...Building.bonus}
 	settlementBonus = {
 		...Building.settlementBonus,
-		crime: -1
+		crime: -1,
 	}
 	discounts = []
 	discountedBy = []
@@ -680,12 +680,12 @@ class Mansion {
 	size = 1
 	bonus = {
 		...Building.bonus,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		law: 1,
-		society: 1
+		society: 1,
 	}
 	discounts = []
 	discountedBy = [NobleVilla, Palace]
@@ -711,7 +711,7 @@ class Menagerie {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		fame: 1
+		fame: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -737,12 +737,12 @@ class MilitaryAcademy {
 		...Building.bonus,
 		loyalty: 2,
 		stability: 1,
-		fame: 1
+		fame: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		law: 1,
-		lore: 1
+		lore: 1,
 	}
 	discounts = [Barracks]
 	discountedBy = [University]
@@ -762,11 +762,11 @@ class Mill {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		productivity: 1
+		productivity: 1,
 	}
 	discounts = []
 	discountedBy = []
@@ -788,7 +788,7 @@ class Mint {
 		economy: 3,
 		loyalty: 3,
 		stability: 1,
-		fame: 1
+		fame: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -809,7 +809,7 @@ class Moat {
 	bonus = {
 		...Building.bonus,
 		unrest: -1,
-		defense: 1
+		defense: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -826,19 +826,19 @@ class Monastery {
 	image = [
 		require("../../../../res/img/BuildingImages/Monastery_0.png"),
 		require("../../../../res/img/BuildingImages/Monastery_1.png"),
-		require("../../../../res/img/BuildingImages/Monastery.png")
+		require("../../../../res/img/BuildingImages/Monastery.png"),
 	]
 	name = "Monastery"
 	bpCost = 16
 	size = 2
 	bonus = {
 		...Building.bonus,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		law: 1,
-		lore: 1
+		lore: 1,
 	}
 	discounts = []
 	discountedBy = []
@@ -858,7 +858,7 @@ class Monument {
 	bonus = {
 		...Building.bonus,
 		loyalty: 1,
-		unrest: -1
+		unrest: -1,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -884,12 +884,12 @@ class Museum {
 		...Building.bonus,
 		economy: 1,
 		loyalty: 1,
-		fame: 1
+		fame: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		lore: 2,
-		society: 1
+		society: 1,
 	}
 	discounts = []
 	discountedBy = [BardicCollege]
@@ -908,11 +908,11 @@ class Observatory {
 	size = 1
 	bonus = {
 		...Building.bonus,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		lore: 2
+		lore: 2,
 	}
 	discounts = []
 	discountedBy = []
@@ -932,7 +932,7 @@ class Orphanage {
 	bonus = {
 		...Building.bonus,
 		stability: 1,
-		unrest: -1
+		unrest: -1,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -961,11 +961,11 @@ class Palace {
 		economy: 2,
 		loyalty: 6,
 		stability: 2,
-		fame: 1
+		fame: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		law: 2
+		law: 2,
 	}
 	discounts = [Mansion, Mint, NobleVilla]
 	discountedBy = []
@@ -985,7 +985,7 @@ class Park {
 	bonus = {
 		...Building.bonus,
 		loyalty: 1,
-		unrest: -1
+		unrest: -1,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -1006,11 +1006,11 @@ class PavedStreets {
 	bonus = {
 		...Building.bonus,
 		economy: 2,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		productivity: 2
+		productivity: 2,
 	}
 	discounts = []
 	discountedBy = []
@@ -1030,11 +1030,11 @@ class Pier {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		crime: 1
+		crime: 1,
 	}
 	discounts = []
 	discountedBy = [Guildhall, Waterfront]
@@ -1054,12 +1054,12 @@ class SewerSystem {
 	bonus = {
 		...Building.bonus,
 		loyalty: 1,
-		stability: 2
+		stability: 2,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		crime: 1,
-		productivity: 1
+		productivity: 1,
 	}
 	discounts = [Cistern, Dump]
 	discountedBy = []
@@ -1078,11 +1078,11 @@ class Shop {
 	size = 1
 	bonus = {
 		...Building.bonus,
-		economy: 1
+		economy: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		productivity: 1
+		productivity: 1,
 	}
 	discounts = []
 	discountedBy = [Market]
@@ -1102,7 +1102,7 @@ class Shrine {
 	bonus = {
 		...Building.bonus,
 		loyalty: 1,
-		unrest: -1
+		unrest: -1,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -1123,7 +1123,7 @@ class Smithy {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -1144,7 +1144,7 @@ class Stable {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		loyalty: 1
+		loyalty: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -1171,11 +1171,11 @@ class Stockyard {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		stability: -1
+		stability: -1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		productivity: 1
+		productivity: 1,
 	}
 	discounts = [Stable, Tannery]
 	discountedBy = []
@@ -1195,11 +1195,11 @@ class Tannery {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		society: -1
+		society: -1,
 	}
 	discounts = []
 	discountedBy = [Stockyard]
@@ -1219,11 +1219,11 @@ class Tavern {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		loyalty: 1
+		loyalty: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		corruption: 1
+		corruption: 1,
 	}
 	discounts = []
 	discountedBy = [Theater]
@@ -1242,7 +1242,7 @@ class Tenement {
 	size = 1
 	bonus = {
 		...Building.bonus,
-		unrest: 2
+		unrest: 2,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -1267,7 +1267,7 @@ class Theater {
 	bonus = {
 		...Building.bonus,
 		economy: 2,
-		stability: 2
+		stability: 2,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = [Brothel, ExoticArtisan, Inn, Park, Tavern]
@@ -1293,11 +1293,11 @@ class TownHall {
 		...Building.bonus,
 		economy: 1,
 		loyalty: 1,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		law: 1
+		law: 1,
 	}
 	discounts = [Barracks, Cistern, Dump, Jail, Watchtower]
 	discountedBy = [Castle]
@@ -1317,11 +1317,11 @@ class TradeShop {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		productivity: 1
+		productivity: 1,
 	}
 	discounts = []
 	discountedBy = [Guildhall]
@@ -1342,7 +1342,7 @@ class Watchtower {
 		...Building.bonus,
 		stability: 1,
 		unrest: -1,
-		defense: 2
+		defense: 2,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -1393,7 +1393,7 @@ class Academy {
 	image = [
 		require("../../../../res/img/BuildingImages/Academy_0.png"),
 		require("../../../../res/img/BuildingImages/Academy_1.png"),
-		require("../../../../res/img/BuildingImages/Academy.png")
+		require("../../../../res/img/BuildingImages/Academy.png"),
 	]
 	name = "Academy"
 	bpCost = 52
@@ -1401,13 +1401,13 @@ class Academy {
 	bonus = {
 		...Building.bonus,
 		economy: 2,
-		loyalty: 2
+		loyalty: 2,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		lore: 2,
 		productivity: 1,
-		society: 2
+		society: 2,
 	}
 	discounts = [CastersTower, Library, MagicShop]
 	discountedBy = [Cathedral, University]
@@ -1425,7 +1425,7 @@ class Arena {
 		require("../../../../res/img/BuildingImages/Arena_1.png"),
 		require("../../../../res/img/BuildingImages/Arena_3.png"),
 		require("../../../../res/img/BuildingImages/Arena_2.png"),
-		require("../../../../res/img/BuildingImages/Arena.png")
+		require("../../../../res/img/BuildingImages/Arena.png"),
 	]
 	name = "Arena"
 	bpCost = 40
@@ -1433,11 +1433,11 @@ class Arena {
 	bonus = {
 		...Building.bonus,
 		stability: 4,
-		fame: 1
+		fame: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		crime: 1
+		crime: 1,
 	}
 	discounts = [Brothel, Garrison, Inn, Stable, Theater]
 	discountedBy = []
@@ -1462,7 +1462,7 @@ class Garrison {
 		...Building.bonus,
 		loyalty: 2,
 		stability: 2,
-		unrest: -2
+		unrest: -2,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = [CityWall, Granary, Jail]
@@ -1487,12 +1487,12 @@ class Guildhall {
 	bonus = {
 		...Building.bonus,
 		economy: 2,
-		loyalty: 2
+		loyalty: 2,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		law: 1,
-		productivity: 2
+		productivity: 2,
 	}
 	discounts = [Pier, Stable, TradeShop]
 	discountedBy = [Waterfront]
@@ -1512,7 +1512,7 @@ class House {
 	size = 1
 	bonus = {
 		...Building.bonus,
-		unrest: -1
+		unrest: -1,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -1532,7 +1532,7 @@ class LuxuryStore {
 	size = 1
 	bonus = {
 		...Building.bonus,
-		economy: 1
+		economy: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -1552,7 +1552,7 @@ class MagicShop {
 	size = 1
 	bonus = {
 		...Building.bonus,
-		economy: 1
+		economy: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = []
@@ -1577,7 +1577,7 @@ class Market {
 	bonus = {
 		...Building.bonus,
 		economy: 2,
-		stability: 2
+		stability: 2,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = [BlackMarket, Inn, Shop]
@@ -1604,11 +1604,11 @@ class NobleVilla {
 		economy: 1,
 		loyalty: 1,
 		stability: 1,
-		fame: 1
+		fame: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		society: 1
+		society: 1,
 	}
 	discounts = [ExoticArtisan, LuxuryStore, Mansion]
 	discountedBy = [Castle, Palace]
@@ -1633,7 +1633,7 @@ class Temple {
 		...Building.bonus,
 		loyalty: 2,
 		stability: 2,
-		unrest: -2
+		unrest: -2,
 	}
 	settlementBonus = {...Building.settlementBonus}
 	discounts = [Graveyard, Monument, Shrine]
@@ -1661,12 +1661,12 @@ class University {
 		...Building.bonus,
 		economy: 3,
 		loyalty: 3,
-		fame: 1
+		fame: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		lore: 4,
-		society: 3
+		society: 3,
 	}
 	discounts = [Academy, BardicCollege, Library, MagicalAcademy, MilitaryAcademy, Museum]
 	discountedBy = []
@@ -1691,11 +1691,11 @@ class Waterfront {
 	size = 4
 	bonus = {
 		...Building.bonus,
-		economy: 4
+		economy: 4,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		productivity: 2
+		productivity: 2,
 	}
 	discounts = [BlackMarket, Guildhall, Market, Pier]
 	discountedBy = [University]
@@ -1777,24 +1777,45 @@ class BuildingList {
 		new Watchtower(),
 		new Waterfront(),
 		new Watergate(),
-		new Waterway()
+		new Waterway(),
 	]
+	static _init = () => {
+		BuildingList.buildings.forEach(building => {
+			if(building.upgradesFrom!==null)
+				building.upgradesFrom = BuildingList.getByType(building.upgradesFrom)
+		})
+	}
 	static getById = (id) => {
-		for (let key in BuildingList.buildings) {
-			if (BuildingList.buildings[key].id === id)
-				return BuildingList.buildings[key]
+		for (let i = 0; i < BuildingList.buildings.length; i++) {
+			if (BuildingList.buildings[i].id === id)
+				return BuildingList.buildings[i]
 		}
 		return null
 	}
+	static getByType = (other) => {
+		for (let i = 0; i < BuildingList.buildings.length; i++) {
+			if (BuildingList.buildings[i] instanceof other)
+				return BuildingList.buildings[i]
+		}
+	}
 	static getByName = (name) => {
-		for (let key in BuildingList.buildings) {
-			if (BuildingList.buildings[key].name === name) {
-				return BuildingList.buildings[key]
+		for (let i = 0; i < BuildingList.buildings.length; i++) {
+			if (BuildingList.buildings[i].name === name) {
+				return BuildingList.buildings[i]
 			}
 		}
 		return null
 	}
-	//leaving just in case I ever have to actually sort
+	static getUpgradeFor = (building) => {
+		for (let i = 0; i < BuildingList.buildings.length; i++) {
+			// console.log(BuildingList.buildings[i].upgradesFrom && BuildingList.buildings[i].upgradesFrom.constructor === building.constructor )
+			if(BuildingList.buildings[i].upgradesFrom && BuildingList.buildings[i].upgradesFrom.constructor === building.constructor ){
+				return BuildingList.buildings[i]
+			}
+		}
+		return null;
+	}
+	/*leaving just in case I ever have to actually sort
 	all
 	the
 	functions
@@ -1802,6 +1823,7 @@ class BuildingList {
 	then
 	initiate
 	classes
+	*/
 	/*static init = () => {
 		this.buildings = {
 			Academy: new Academy(),
@@ -1878,4 +1900,5 @@ class BuildingList {
 	}*/
 }
 
+BuildingList._init()
 export {BuildingList}
