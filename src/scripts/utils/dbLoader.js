@@ -1,11 +1,12 @@
 import Settings from "../settings/Settings"
+import Toast from "../../components/util/Toast"
 
 const addr = `http://${Settings.address}:${Settings.dbPort}/api/`
 
 function makeRequest(url, method, data = null) {
 	return fetch(addr + url, {
 		method: method,
-		body: data
+		body: data,
 	})
 		.then(response => {
 			if (!response.ok)
@@ -23,15 +24,17 @@ function makeRequest(url, method, data = null) {
 			return response.json()
 		})
 		.catch(err => {
-			if(err instanceof SyntaxError){
+			if (err instanceof SyntaxError) {
 				console.error(`Json parse error from ${method} at ${addr + url}`)
 				console.error(err)
-				return {}
+				Toast.push("Json parse error, this really shouldn't happen", 10, "warn")
+				return []
+			} else {
+				console.log(err)
+				console.log(err.data)
+				Toast.push("Error with loading data: " + err.data?.status, 10, "warn")
+				return []
 			}
-			else{
-			console.log(err)
-			console.log(err.data)
-			return {}}
 		})
 }
 

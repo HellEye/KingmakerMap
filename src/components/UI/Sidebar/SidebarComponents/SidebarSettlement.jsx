@@ -124,8 +124,12 @@ class SidebarSettlement extends Component {
 		)
 	}
 	onSettlementNameChange=(event)=>{
-		this.state.selectedHex.settlement.name=event.target.value;
-		this.forceUpdate()
+		const hex=this.state.selectedHex
+
+		hex.settlement.name=event.target.value;
+		this.setState({
+			selectedHex:hex
+		})
 	}
 	onSettlementNameBlur=()=>{
 		this.state.selectedHex.settlement.saveSettlement()

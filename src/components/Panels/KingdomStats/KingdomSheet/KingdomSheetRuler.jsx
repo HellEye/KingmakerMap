@@ -3,6 +3,7 @@ import Checkbox from "@material-ui/core/Checkbox"
 import Radio from "@material-ui/core/Radio"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import NumberInput from "../../../util/NumberInput"
+import {observer} from "mobx-react"
 
 class KingdomSheetRuler extends Component {
 
@@ -41,6 +42,7 @@ class KingdomSheetRuler extends Component {
 			<div className={"kingdomSheetField"}>
 				<h3>{this.props.name}:</h3>
 				<NumberInput
+					key={this.props.kingdom.kingdomData.data.positions[this.props.value]}
 					name={this.props.value}
 					value={this.props.kingdom.kingdomData.data.positions[this.props.value]}
 					changeCallback={this.props.changeCallback}
@@ -112,10 +114,13 @@ class KingdomSheetRuler extends Component {
 										label={"Economy"}
 									/>}/>
 						</div>)
-					: <div className={"kingdomSheetRulerCheck"}/>}
+					:
+					<div className={"kingdomSheetRulerCheck"}>
+						<h4>{this.props.attribute?this.props.attribute:""}</h4>
+					</div>}
 			</div>
 		)
 	}
 }
 
-export default KingdomSheetRuler
+export default observer(KingdomSheetRuler)

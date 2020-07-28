@@ -1,7 +1,7 @@
 import React, {Component} from "react"
 import HoverTooltip from "../../../util/HoverTooltip"
-import {BuildingList} from "../../../../scripts/kingdom/data/buildings/buildings"
 import "../../../../res/css/Panels/Sidebar/SidebarHex.css"
+
 class SidebarHexImprovementTooltip extends Component {
 	constructor(props) {
 		super(props)
@@ -16,7 +16,7 @@ class SidebarHexImprovementTooltip extends Component {
 	}
 
 	render() {
-		const building=this.props.improvement
+		const building = this.props.improvement
 		return (
 			<HoverTooltip
 				height={400}

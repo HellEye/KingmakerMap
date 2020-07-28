@@ -5,30 +5,28 @@ import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabe
 import "../../../../res/css/Panels/Sidebar/SidebarHex.css"
 import {TerrainList} from "../../../../scripts/kingdom/data/hexImprovements/TerrainMilo"
 import SidebarHexImprovementTooltip from "./SidebarHexImprovementTooltip"
+import {observer} from "mobx-react"
 
-class SidebarHexImprovement extends Component {
+const SidebarHexImprovement = observer(class SidebarHexImprovement extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			built: props.hexData.hasImprovement(props.improvement),
-			hovering: false,
-		}
 		this.ref = React.createRef()
+	}
 
+	componentDidMount() {
+		this._isMounted = true;
+	}
+
+	componentWillUnmount() {
+		this._isMounted = false
 	}
 
 	buildImprovement = (event) => {
 		if (event.target.checked) {
 			const built = this.props.hexData
 				.addImprovement(this.props.improvement, this.props.cost)
-			this.setState({
-				built: built,
-			})
 		} else {
 			this.props.hexData.removeImprovement(this.props.improvement)
-			this.setState({
-				built: false,
-			})
 		}
 	}
 
@@ -43,7 +41,7 @@ class SidebarHexImprovement extends Component {
 						labelPlacement={"start"}
 						control={
 							<Checkbox
-								checked={this.state.built || false}
+								checked={this.props.built || false}
 								onChange={this.buildImprovement}
 							/>
 
@@ -58,7 +56,7 @@ class SidebarHexImprovement extends Component {
 			</>
 		)
 	}
-}
+})
 
 class SidebarHexImprovements extends Component {
 	constructor(props) {
@@ -83,6 +81,7 @@ class SidebarHexImprovements extends Component {
 							key={improvement.id}
 							improvement={improvement}
 							cost={value.cost}
+							built={this.props.hexData.hasImprovement(improvement)}
 							hexData={this.props.hexData}
 							terrain={this.props.terrain}
 						/>
@@ -93,4 +92,4 @@ class SidebarHexImprovements extends Component {
 	}
 }
 
-export default SidebarHexImprovements
+export default observer(SidebarHexImprovements)

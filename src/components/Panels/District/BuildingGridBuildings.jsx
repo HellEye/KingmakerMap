@@ -46,6 +46,13 @@ const BuildingGridSquare = observer(class BuildingGridSquare extends Component {
 				})
 				this.changeBuildingListObserver(change.newValue)
 			})
+		this.buildingsChangedListener=observe(this.props.district.buildingGrid.buildings, change=>{
+			if(this._isMounted) {
+				this.setState({
+						buildingData:this.props.district.buildingGrid.getBuilding(this.props.x, this.props.y)
+					})
+			}
+		})
 		this.changeBuildingListObserver(this.props.district)
 	}
 	changeBuildingListObserver = (district) => {
@@ -88,6 +95,7 @@ const BuildingGridSquare = observer(class BuildingGridSquare extends Component {
 		if (this.observeBuildingList)
 			this.observeBuildingList()
 		this.observeDistrict()
+		this.buildingsChangedListener()
 	}
 
 
@@ -264,9 +272,16 @@ class BuildingGridBuildings extends Component {
 
 	componentDidMount = () => {
 		this._isMounted = true
+		this.buildingsChangedListener=observe(this.props.district.buildingGrid.buildings, change=>{
+			console.log("Buildings changed")
+			if(this._isMounted) {
+				this.forceUpdate()
+			}
+		})
 	}
 	componentWillUnmount = () => {
 		this._isMounted = false
+		this.buildingsChangedListener()
 	}
 
 	changeRotation = (event) => {

@@ -12,6 +12,7 @@ import 'mobx-react-lite/batchingForReactDom'
 import "../res/css/Panels/KingdomStats.css"
 import {getCookie, setCookie} from "../scripts/utils/cookies"
 import BuildingGrid from "./Panels/District/BuildingGrid"
+import {ToastController} from "./util/Toast"
 
 const image = require("../res/img/stolenLandsMap.jpg")
 
@@ -29,6 +30,7 @@ function App() {
 
 	//Very dirty reference passing through multiple layers
 	// but it works
+	// should have been context, didn't know it back then
 	const onDistrictSelect=(district)=>{
 		setState({...state, selectedTab:4, selectedDistrict: district})
 	}
@@ -99,6 +101,7 @@ function App() {
 			</TabPanel>
 
 			<CookiePopup/>
+			<ToastController/>
 
 		</Tabs>
 

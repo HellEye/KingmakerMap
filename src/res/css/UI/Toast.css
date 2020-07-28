@@ -1,0 +1,54 @@
+.toast {
+    position: absolute;
+    top: 20%;
+    left: 44%;
+    width: 12%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    background: transparent;
+    transition: height linear .3s;
+}
+
+.toastWindowClose:hover {
+    color: #a8acb2;
+    background-color: #055a6e30;
+}
+
+.toastWindow {
+    flex-grow: 1;
+    background: #35487e;
+    border-radius: 10px;
+    margin-top: 10px;
+    position:relative;
+    top:0;
+    height:0;
+    transform-origin: top;
+    box-sizing: content-box;
+    border: #052a52 2px solid;
+    display:flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    transition: all linear .3s;
+}
+.toastWindow>h3 {
+    transition: font-size linear .3s;
+    font-size: 1em;
+}
+.toastWindow.toastWindowRemoved {
+    flex-grow: 0.000000001;
+    margin:0;
+    border:0;
+}
+.toastWindow.toastWindowRemoved>h3{
+    display:none;
+    font-size: 0.001em;
+}
+.toastWindow.toastWindowWarn{
+    background-color: #a0a033;
+}
+.toastWindow.toastWindowError{
+    background-color: #aa3333;
+}

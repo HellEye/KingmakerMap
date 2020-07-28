@@ -28,7 +28,7 @@ input[type=number]:before{
     margin:0;
     border: #282c34 3px solid;
     border-radius: 5px;
-    height: fit-content;
+    height: 1.5em;
     box-sizing: content-box;
     padding: 8px 15px;
     font-size: 1em;

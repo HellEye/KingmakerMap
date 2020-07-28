@@ -5,6 +5,7 @@ import {Accumulator, hexDataGrid} from "../../../scripts/kingdom/data/hexData"
 import {selectedKingdom} from "../../../scripts/kingdom/data/kingdoms"
 import {observe} from "mobx"
 import NumberInput from "../../util/NumberInput"
+import {edicts} from "../../../scripts/kingdom/data/kingdomData"
 // const navArea = (
 //
 // )
@@ -73,14 +74,29 @@ class KingdomStats extends Component {
 		})
 
 	}
+	getExtraBpPerTurn = (buildingBonuses) => {
+		const kingdomData = this.state.kingdom.kingdomData
+		const divideBy = edicts.taxationEdict[kingdomData.data.taxationEdict].divideBy
+		const bonus =
+			Math.floor(
+				(parseInt(this.state.kingdom.kingdomData.economy)
+					+ parseInt(this.state.kingdom.kingdomData.data.economy || 0)
+					+ parseInt(this.state.modifiers.economy || 0))
+				/ divideBy)
+				+ kingdomData.data.extraBP
+
+		return `d20+${bonus} (${bonus + 1}-${bonus + 20})`
+	}
+
+
 	getModifierDisplay = (fieldName, extraValue, key) => {
 		return <div style={{gridArea: fieldName}} key={key}>
 			<h5>{fieldName.charAt(0) + fieldName.slice(1)}</h5>
 			<h4>
-				{parseInt(this.state.kingdom.kingdomData[fieldName])
-				+ parseInt(this.state.kingdom.kingdomData.data[fieldName] || 0)
-				+ parseInt(this.state.modifiers[fieldName] || 0)
-				+ extraValue[fieldName]}
+				{Math.floor(parseInt(this.state.kingdom.kingdomData[fieldName])
+					+ parseInt(this.state.kingdom.kingdomData.data[fieldName] || 0)
+					+ parseInt(this.state.modifiers[fieldName] || 0)
+					+ extraValue[fieldName])}
 			</h4>
 		</div>
 	}
@@ -129,6 +145,7 @@ class KingdomStats extends Component {
 				</div>*/}
 				<div style={{gridArea: "treasury"}}>
 					<h3>{this.state.kingdom.kingdomData.data.treasury} BP</h3>
+					<h4>{this.getExtraBpPerTurn(settlementBonuses)}</h4>
 				</div>
 				<div style={{gridArea: "size"}}>
 					<h5>Size</h5>
@@ -137,10 +154,10 @@ class KingdomStats extends Component {
 				<div style={{gridArea: "unrest"}}>
 					{this.state.kingdom.kingdomData.data.unrest + settlementBonuses.unrest > 0 ? (<>
 							<h4>Unrest:</h4>
-							<h3> {this.state.kingdom.kingdomData.data.unrest + settlementBonuses.unrest}</h3>
+							<h3 style={{color: "#a02222"}}> {this.state.kingdom.kingdomData.data.unrest + settlementBonuses.unrest}</h3>
 						</>)
 						:
-						<h3 className={"tempText"}>Unrest [doesn't render if 0]</h3>}
+						<h3 className={"tempText"}>Unrest 0</h3>}
 				</div>
 				<div style={{gridArea: "consumption"}}>
 					<h4>Consumption:</h4>

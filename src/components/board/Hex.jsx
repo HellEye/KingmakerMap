@@ -1,16 +1,16 @@
 import React, {Component} from 'react'
 import Hexagon from "react-hexagon"
-import {observer} from "mobx-react"
 import "../../res/css/Board/Hexagon.css"
 import {selectedHex} from "./HexGrid"
 import {observe} from "mobx"
+import {observer} from "mobx-react"
 
 class Hex extends Component {
 	static startOffsetX = 25
 	static startOffsetY = 6
 	hexData = null;
 	draggingStart = {
-		x: 0, y: 0
+		x: 0, y: 0,
 	}
 
 	constructor(props) {
@@ -28,7 +28,7 @@ class Hex extends Component {
 			top:
 				Hex.startOffsetY //align to hexes on board
 				+ this.props.coords.y * this.props.size * 0.86 //offset by the size (reduced because of tiling
-				+ this.props.margin * this.props.coords.y * 1.2 //add margin (with weird multiplier)
+				+ this.props.margin * this.props.coords.y * 1.2, //add margin (with weird multiplier)
 		}
 	}
 
@@ -38,7 +38,7 @@ class Hex extends Component {
 			top: `${this.renderData.top}px`,
 			left: `${this.renderData.left}px`,
 			width: this.props.size,
-			height: this.props.size
+			height: this.props.size,
 
 		}
 	}
@@ -51,7 +51,7 @@ class Hex extends Component {
 		return {
 			stroke: stroke,
 			cursor: 'default',
-			fill: this.props.hexData === selectedHex.get() ? "#ffffff40" : "#ffffff01"
+			fill: this.props.hexData === selectedHex.get() ? "#ffffff40" : "#ffffff01",
 		}
 	}
 
@@ -104,6 +104,19 @@ class Hex extends Component {
 				<Hexagon style={this.getHexStyle()}
 				         onClick={this.onHexClick}
 				         className={'hexagonInner'}/>
+				{(this.props.hexData && this.props.hexData.label) ? (
+						<div
+							className={"hexLabel"}
+							onClick={this.onHexClick}
+						>
+							<h2 style={{
+								color: (this.props.hexData && this.props.hexData.ownedBy) ? this.props.hexData.ownedBy.color : "#0a58a8",
+							}}
+							    className={"hexLabelText"}>
+								{this.props.hexData.label ? this.props.hexData.label : ""}
+							</h2>
+						</div>)
+					: ""}
 			</div>
 		)
 

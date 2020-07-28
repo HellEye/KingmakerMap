@@ -1,6 +1,5 @@
 import React, {Component} from "react"
 import {BuildingList} from "../../../scripts/kingdom/data/buildings/buildings"
-import HoverTooltip from "../../util/HoverTooltip"
 import BuildingHoverTooltip from "./BuildingHoverTooltip"
 
 class BuildingFilterDisplay extends Component {

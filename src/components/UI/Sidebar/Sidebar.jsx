@@ -9,6 +9,10 @@ import {selectedHex} from "../../board/HexGrid"
 import {observe} from "mobx"
 import SidebarSettlement from "./SidebarComponents/SidebarSettlement"
 import SidebarHex from "./SidebarComponents/SidebarHex"
+import socketIOClient from "socket.io-client"
+import Toast from "../../util/Toast"
+
+
 
 /*const tabs = [
 	<SidebarElement key={0} href={"/Map"} onClick={() => console.log("clicked first")}>Map</SidebarElement>,
@@ -31,6 +35,7 @@ class Sidebar extends Component {
 			if (this._isMounted)
 				this.setState({...this.state, selectedHex: change.newValue})
 		})
+		this.socket=socketIOClient("localhost:8255/")
 	}
 
 	componentWillUnmount() {
@@ -46,7 +51,14 @@ class Sidebar extends Component {
 		color: "#a8acb2",
 		size: "0.5em"
 	}
+	index=0
 
+	onLabelChange=(event)=>{
+		this.state.selectedHex.label=event.target.value
+	}
+	onLabelBlur=(e)=>{
+		this.state.selectedHex.saveToDb()
+	}
 
 	render() {
 		return (
@@ -58,6 +70,16 @@ class Sidebar extends Component {
 							`x:${this.state.selectedHex.x}, y:${this.state.selectedHex.y}` : "None"
 					}
 				</h3>
+				<textarea
+					className={"sidebarLabelInput"}
+					onChange={this.onLabelChange}
+					placeholder={"Label"}
+					onBlur={this.onLabelBlur}
+					disabled={!this.state.selectedHex}
+					rows={5}
+					cols={30}
+					value={this.state.selectedHex!=null?this.state.selectedHex.label:""}
+				/>
 				<div className={"sidebarPanels"}>
 					<ExpansionPanel
 						// onChange={this.handleChange(1)}

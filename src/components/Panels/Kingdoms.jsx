@@ -101,10 +101,7 @@ class KingdomDisplay extends Component {
 		kingdoms.editFinished(this.state.index)
 			.then()
 	}
-	//TODO fix this stupid uncontrolled input error thing (when adding a new field and editing the name
-	//TODO and some random other error about cancelling async tasks?
 	render() {
-		console.log(deleteIcon)
 		const popover = {}
 		return (
 			<div className={"kingdomDisplay"}>

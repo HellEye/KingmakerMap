@@ -8,7 +8,6 @@
     color: #a8acb2;
     border-right: #05386e 5px solid;
     grid-area: sidebar;
-
 }
 
 .sidebar h3 {
@@ -16,11 +15,20 @@
     margin-top:5px;
 }
 
+.sidebar .sidebarLabelInput {
+    resize: none;
+    color: #a8acb2;
+    background-color: #05386e;
+    border-radius: 5px;
+    border: #052a52 2px solid;
+    padding:5px;
+    width: 80%;
+    margin-left:5px;
+}
+
 .sidebar .sidebarElement{
     margin:0 10px 0 0;
     box-sizing: content-box;
-
-
 }
 .sidebar .sidebarElement a {
     padding: 5px 5px 5px 10px;;

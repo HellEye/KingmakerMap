@@ -14,8 +14,8 @@ class Alchemist {
 		economy: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
 	discountedBy = []
+	discounts = []
 	upgradesFrom = null
 	limit = "Adjacent to 1 House"
 	special = "Base Value +1,00gp"
@@ -34,8 +34,8 @@ class Bank {
 		economy: 4,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
 	discountedBy = []
+	discounts = []
 	upgradesFrom = null
 	limit = ""
 	special = "Base Value +2,00gp"
@@ -61,8 +61,8 @@ class BardicCollege {
 		fame: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = [Library, Museum, Theater]
-	discountedBy = [University]
+	discountedBy = [Library, Museum, Theater]
+	discounts = [University]
 	upgradesFrom = null
 	limit = ""
 	special = ""
@@ -85,8 +85,8 @@ class Barracks {
 		...Building.settlementBonus,
 		law: 1,
 	}
-	discounts = []
-	discountedBy = [MilitaryAcademy, TownHall]
+	discountedBy = []
+	discounts = [MilitaryAcademy, TownHall]
 	upgradesFrom = null
 	limit = ""
 	special = ""
@@ -111,8 +111,8 @@ class BlackMarket {
 		corruption: 2,
 		crime: 2,
 	}
-	discounts = [Brothel]
-	discountedBy = [Waterfront, Market]
+	discountedBy = [Brothel]
+	discounts = [Waterfront, Market]
 	upgradesFrom = null
 	limit = "Adjacent to 2 House"
 	special = "Base Value +2,00gp"
@@ -132,8 +132,8 @@ class Brewery {
 		stability: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
 	discountedBy = []
+	discounts = []
 	upgradesFrom = null
 	limit = ""
 	special = ""
@@ -152,8 +152,8 @@ class Bridge {
 		economy: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
 	discountedBy = []
+	discounts = []
 	upgradesFrom = null
 	limit = ""
 	special = "Shares the space with a river or Waterway lot"
@@ -178,8 +178,8 @@ class Brothel {
 		corruption: 1,
 		crime: 1,
 	}
-	discounts = []
-	discountedBy = [BlackMarket, Theater, Arena]
+	discountedBy = []
+	discounts = [BlackMarket, Theater, Arena]
 	upgradesFrom = null
 	limit = "Adjacent to 1 House"
 	special = ""
@@ -208,8 +208,8 @@ class Bureau {
 		corruption: 1,
 		crime: 1,
 	}
-	discounts = []
 	discountedBy = []
+	discounts = []
 	upgradesFrom = null
 	limit = ""
 	special = ""
@@ -229,8 +229,8 @@ class CastersTower {
 		loyalty: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
-	discountedBy = [Academy, MagicalAcademy]
+	discountedBy = []
+	discounts = [Academy, MagicalAcademy]
 	upgradesFrom = null
 	limit = ""
 	special = ""
@@ -260,8 +260,8 @@ class Castle {
 		defense: 8,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = [NobleVilla, TownHall]
-	discountedBy = []
+	discountedBy = [NobleVilla, TownHall]
+	discounts = []
 	upgradesFrom = null
 	limit = "1 per Settelment"
 	special = ""
@@ -292,8 +292,8 @@ class Cathedral {
 		...Building.settlementBonus,
 		law: 2,
 	}
-	discounts = [Academy, Temple]
-	discountedBy = []
+	discountedBy = [Academy, Temple]
+	discounts = []
 	upgradesFrom = null
 	limit = "1 per Settelment"
 	special = "Halves Consumption increase for Promotion edicts"
@@ -309,8 +309,8 @@ class Cistern {
 	size = 1
 	bonus = {...Building.bonus}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
-	discountedBy = [SewerSystem, TownHall]
+	discountedBy = []
+	discounts = [SewerSystem, TownHall]
 	upgradesFrom = null
 	limit = "Not Adjacent to Dump, Graveyard, Stable, Stockyard, or Tannery"
 	special = "Can share lot"
@@ -330,8 +330,8 @@ class CityWall {
 		defense: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
-	discountedBy = [Garrison]
+	discountedBy = []
+	discounts = [Garrison]
 	upgradesFrom = null
 	limit = ""
 	special = "You can place city gates for free in the wall you own"
@@ -350,8 +350,8 @@ class Dump {
 		stability: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
-	discountedBy = [SewerSystem, TownHall]
+	discountedBy = []
+	discounts = [SewerSystem, TownHall]
 	upgradesFrom = null
 	limit = "Not Adjacent to House, Mansion, Noble Villa"
 	special = ""
@@ -367,8 +367,8 @@ class EverflowingSpring {
 	size = 0
 	bonus = {...Building.bonus}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
 	discountedBy = []
+	discounts = []
 	upgradesFrom = null
 	limit = "Settlement must have a building that can create medium magic items"
 	special = "Can share lot with Castle, Cathedral, Market, Monument, Park, or Town Hall"
@@ -388,8 +388,8 @@ class ExoticArtisan {
 		stability: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
-	discountedBy = [NobleVilla, Theater]
+	discountedBy = []
+	discounts = [NobleVilla, Theater]
 	upgradesFrom = null
 	limit = "Adjacent to 1 House"
 	special = ""
@@ -420,8 +420,8 @@ class ForeignQuarter {
 		lore: 1,
 		society: 2,
 	}
-	discounts = []
 	discountedBy = []
+	discounts = []
 	upgradesFrom = null
 	limit = ""
 	special = "Increase the value of trade routes by 5% (max 100%)"
@@ -449,8 +449,8 @@ class Foundry {
 		...Building.settlementBonus,
 		productivity: 1,
 	}
-	discounts = [Smithy]
-	discountedBy = []
+	discountedBy = [Smithy]
+	discounts = []
 	upgradesFrom = null
 	limit = "Adjacent to district water border"
 	special = "Increase the Economy and BP earned per turn by 1 for 1 Mine connected to this settlement by a river or Road"
@@ -470,8 +470,8 @@ class Granary {
 		stability: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
-	discountedBy = [Garrison]
+	discountedBy = []
+	discounts = [Garrison]
 	upgradesFrom = null
 	limit = ""
 	special = "If Farms reduce Consumption below , store up to 5 BP of excess production for use on a later turn when Consumption exceeds the Treasury"
@@ -490,8 +490,8 @@ class Graveyard {
 		loyalty: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
-	discountedBy = [Temple]
+	discountedBy = []
+	discounts = [Temple]
 	upgradesFrom = null
 	limit = ""
 	special = ""
@@ -511,8 +511,8 @@ class Herbalist {
 		stability: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
 	discountedBy = []
+	discounts = []
 	upgradesFrom = null
 	limit = "Adjacent to 1 House"
 	special = ""
@@ -540,8 +540,8 @@ class Hospital {
 		lore: 1,
 		productivity: 2,
 	}
-	discounts = []
 	discountedBy = []
+	discounts = []
 	upgradesFrom = null
 	limit = ""
 	special = "Increase Stability by 2 during plague events"
@@ -564,8 +564,8 @@ class Inn {
 		...Building.settlementBonus,
 		society: 1,
 	}
-	discounts = []
-	discountedBy = [Market, Theater, Arena]
+	discountedBy = []
+	discounts = [Market, Theater, Arena]
 	upgradesFrom = null
 	limit = "Adjacent to 1 House"
 	special = "Base Value +500gp"
@@ -590,8 +590,8 @@ class Jail {
 		crime: -1,
 		law: 1,
 	}
-	discounts = []
-	discountedBy = [Garrison, TownHall]
+	discountedBy = []
+	discounts = [Garrison, TownHall]
 	upgradesFrom = null
 	limit = ""
 	special = ""
@@ -614,8 +614,8 @@ class Library {
 		...Building.settlementBonus,
 		lore: 1,
 	}
-	discounts = []
-	discountedBy = [Academy, BardicCollege, MagicalAcademy, University]
+	discountedBy = []
+	discounts = [Academy, BardicCollege, MagicalAcademy, University]
 	upgradesFrom = null
 	limit = ""
 	special = ""
@@ -643,8 +643,8 @@ class MagicalAcademy {
 		lore: 2,
 		society: 1,
 	}
-	discounts = [CastersTower, Library, MagicShop]
-	discountedBy = [University]
+	discountedBy = [CastersTower, Library, MagicShop]
+	discounts = [University]
 	upgradesFrom = null
 	limit = ""
 	special = "Increase Lore bonus by 2 for questions relating to Knowledge (arcana)"
@@ -663,8 +663,8 @@ class MagicalStreetlamps {
 		...Building.settlementBonus,
 		crime: -1,
 	}
-	discounts = []
 	discountedBy = []
+	discounts = []
 	upgradesFrom = null
 	limit = "Settlement must have a Cathedral, Magic Shop, Magical Academy, or Temple"
 	special = "Can share lot with any building or improvement"
@@ -687,8 +687,8 @@ class Mansion {
 		law: 1,
 		society: 1,
 	}
-	discounts = []
-	discountedBy = [NobleVilla, Palace]
+	discountedBy = []
+	discounts = [NobleVilla, Palace]
 	upgradesFrom = null
 	limit = ""
 	special = ""
@@ -714,8 +714,8 @@ class Menagerie {
 		fame: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
 	discountedBy = []
+	discounts = []
 	upgradesFrom = null
 	limit = ""
 	special = "Increase Loyality by 1/4 the CR of the highest-CR creature in the Menagerie. Pathfinder monsters of the same relative power have higher CR compared to 5e"
@@ -744,8 +744,8 @@ class MilitaryAcademy {
 		law: 1,
 		lore: 1,
 	}
-	discounts = [Barracks]
-	discountedBy = [University]
+	discountedBy = [Barracks]
+	discounts = [University]
 	upgradesFrom = null
 	limit = "1 per Settlement"
 	special = "Armies and commanders recruited at the settlement gain one bonus tactic"
@@ -768,8 +768,8 @@ class Mill {
 		...Building.settlementBonus,
 		productivity: 1,
 	}
-	discounts = []
 	discountedBy = []
+	discounts = []
 	upgradesFrom = null
 	limit = "Adjacent to district water border"
 	special = "With GM approval, you can construct a windmill (same cost) wthout the water"
@@ -791,8 +791,8 @@ class Mint {
 		fame: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
-	discountedBy = [Palace]
+	discountedBy = []
+	discounts = [Palace]
 	upgradesFrom = null
 	limit = ""
 	special = ""
@@ -812,8 +812,8 @@ class Moat {
 		defense: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
 	discountedBy = []
+	discounts = []
 	upgradesFrom = null
 	limit = "District land border"
 	special = "Cannot be damaged by siege engines"
@@ -840,8 +840,8 @@ class Monastery {
 		law: 1,
 		lore: 1,
 	}
-	discounts = []
 	discountedBy = []
+	discounts = []
 	upgradesFrom = null
 	limit = ""
 	special = ""
@@ -861,8 +861,8 @@ class Monument {
 		unrest: -1,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
-	discountedBy = [Temple]
+	discountedBy = []
+	discounts = [Temple]
 	upgradesFrom = null
 	limit = ""
 	special = ""
@@ -891,8 +891,8 @@ class Museum {
 		lore: 2,
 		society: 1,
 	}
-	discounts = []
-	discountedBy = [BardicCollege]
+	discountedBy = []
+	discounts = [BardicCollege]
 	upgradesFrom = null
 	limit = ""
 	special = "Increase Lore bonus by 2 for questions relating to Knowledge (history); apply Lore bonus on Appraise checks regarding art objects. Up to 6 additional Fame at GM discretion"
@@ -914,8 +914,8 @@ class Observatory {
 		...Building.settlementBonus,
 		lore: 2,
 	}
-	discounts = []
 	discountedBy = []
+	discounts = []
 	upgradesFrom = null
 	limit = ""
 	special = ""
@@ -935,8 +935,8 @@ class Orphanage {
 		unrest: -1,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
 	discountedBy = []
+	discounts = []
 	upgradesFrom = null
 	limit = ""
 	special = ""
@@ -967,8 +967,8 @@ class Palace {
 		...Building.settlementBonus,
 		law: 2,
 	}
-	discounts = [Mansion, Mint, NobleVilla]
-	discountedBy = []
+	discountedBy = [Mansion, Mint, NobleVilla]
+	discounts = []
 	upgradesFrom = null
 	limit = ""
 	special = "Base value +1,00gp; you may make two special edicts per turn, but take a –2 penalty on kingdom checks associated with each special edict"
@@ -988,8 +988,8 @@ class Park {
 		unrest: -1,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
-	discountedBy = [Theater]
+	discountedBy = []
+	discounts = [Theater]
 	upgradesFrom = null
 	limit = ""
 	special = ""
@@ -1012,8 +1012,8 @@ class PavedStreets {
 		...Building.settlementBonus,
 		productivity: 2,
 	}
-	discounts = []
 	discountedBy = []
+	discounts = []
 	upgradesFrom = null
 	limit = "1 per district"
 	special = ""
@@ -1036,8 +1036,8 @@ class Pier {
 		...Building.settlementBonus,
 		crime: 1,
 	}
-	discounts = []
-	discountedBy = [Guildhall, Waterfront]
+	discountedBy = []
+	discounts = [Guildhall, Waterfront]
 	upgradesFrom = null
 	limit = "Adjacent to district water border"
 	special = "Base value +1,00gp"
@@ -1061,8 +1061,8 @@ class SewerSystem {
 		crime: 1,
 		productivity: 1,
 	}
-	discounts = [Cistern, Dump]
-	discountedBy = []
+	discountedBy = [Cistern, Dump]
+	discounts = []
 	upgradesFrom = null
 	limit = "1 per district"
 	special = ""
@@ -1084,8 +1084,8 @@ class Shop {
 		...Building.settlementBonus,
 		productivity: 1,
 	}
-	discounts = []
-	discountedBy = [Market]
+	discountedBy = []
+	discounts = [Market]
 	upgradesFrom = null
 	limit = "Adjacent to House or Mansion"
 	special = "Base value +500gp"
@@ -1105,8 +1105,8 @@ class Shrine {
 		unrest: -1,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
-	discountedBy = [Temple]
+	discountedBy = []
+	discounts = [Temple]
 	upgradesFrom = null
 	limit = ""
 	special = ""
@@ -1126,8 +1126,8 @@ class Smithy {
 		stability: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
-	discountedBy = [Foundry]
+	discountedBy = []
+	discounts = [Foundry]
 	upgradesFrom = null
 	limit = ""
 	special = ""
@@ -1147,8 +1147,8 @@ class Stable {
 		loyalty: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
-	discountedBy = [Arena, Guildhall, Stockyard]
+	discountedBy = []
+	discounts = [Arena, Guildhall, Stockyard]
 	upgradesFrom = null
 	limit = "Adjacent to House, Mansion or Noble Villa"
 	special = "Base value +500gp"
@@ -1177,8 +1177,8 @@ class Stockyard {
 		...Building.settlementBonus,
 		productivity: 1,
 	}
-	discounts = [Stable, Tannery]
-	discountedBy = []
+	discountedBy = [Stable, Tannery]
+	discounts = []
 	upgradesFrom = null
 	limit = ""
 	special = "Farms in this hex or Adjacent to hexes reduce Consumption by 3 instead of 2"
@@ -1201,8 +1201,8 @@ class Tannery {
 		...Building.settlementBonus,
 		society: -1,
 	}
-	discounts = []
-	discountedBy = [Stockyard]
+	discountedBy = []
+	discounts = [Stockyard]
 	upgradesFrom = null
 	limit = "Not Adjacent to House, Mansion, Noble Villa or Tenement"
 	special = ""
@@ -1225,8 +1225,8 @@ class Tavern {
 		...Building.settlementBonus,
 		corruption: 1,
 	}
-	discounts = []
-	discountedBy = [Theater]
+	discountedBy = []
+	discounts = [Theater]
 	upgradesFrom = null
 	limit = "Adjacent to House or Mansion"
 	special = "Base value +500gp"
@@ -1245,8 +1245,8 @@ class Tenement {
 		unrest: 2,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
 	discountedBy = []
+	discounts = []
 	upgradesFrom = null
 	limit = ""
 	special = "Counts as House for buildings that must be Adjacent to"
@@ -1270,8 +1270,8 @@ class Theater {
 		stability: 2,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = [Brothel, ExoticArtisan, Inn, Park, Tavern]
-	discountedBy = [Arena, BardicCollege]
+	discountedBy = [Brothel, ExoticArtisan, Inn, Park, Tavern]
+	discounts = [Arena, BardicCollege]
 	upgradesFrom = null
 	limit = ""
 	special = ""
@@ -1299,8 +1299,8 @@ class TownHall {
 		...Building.settlementBonus,
 		law: 1,
 	}
-	discounts = [Barracks, Cistern, Dump, Jail, Watchtower]
-	discountedBy = [Castle]
+	discountedBy = [Barracks, Cistern, Dump, Jail, Watchtower]
+	discounts = [Castle]
 	upgradesFrom = null
 	limit = ""
 	special = ""
@@ -1323,8 +1323,8 @@ class TradeShop {
 		...Building.settlementBonus,
 		productivity: 1,
 	}
-	discounts = []
-	discountedBy = [Guildhall]
+	discountedBy = []
+	discounts = [Guildhall]
 	upgradesFrom = null
 	limit = "Adjacent to 1 House"
 	special = "Base balue +500gp"
@@ -1345,8 +1345,8 @@ class Watchtower {
 		defense: 2,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
-	discountedBy = [TownHall]
+	discountedBy = []
+	discounts = [TownHall]
 	upgradesFrom = null
 	limit = ""
 	special = ""
@@ -1362,8 +1362,8 @@ class Watergate {
 	size = 0
 	bonus = {...Building.bonus}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
 	discountedBy = []
+	discounts = []
 	upgradesFrom = null
 	limit = ""
 	special = "Shares City Wall, can be constructed together with it"
@@ -1379,8 +1379,8 @@ class Waterway {
 	size = 1
 	bonus = {...Building.bonus}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
 	discountedBy = []
+	discounts = []
 	upgradesFrom = null
 	limit = ""
 	special = "Counts as district water border for Adjacent to buildings, can build two Adjacent to in one turn for the same cost"
@@ -1409,8 +1409,8 @@ class Academy {
 		productivity: 1,
 		society: 2,
 	}
-	discounts = [CastersTower, Library, MagicShop]
-	discountedBy = [Cathedral, University]
+	discountedBy = [CastersTower, Library, MagicShop]
+	discounts = [Cathedral, University]
 	upgradesFrom = Library
 	limit = ""
 	special = "Increase Lore bonus by 2 for questions to one Knowledge or Profession skill"
@@ -1439,8 +1439,8 @@ class Arena {
 		...Building.settlementBonus,
 		crime: 1,
 	}
-	discounts = [Brothel, Garrison, Inn, Stable, Theater]
-	discountedBy = []
+	discountedBy = [Brothel, Garrison, Inn, Stable, Theater]
+	discounts = []
 	upgradesFrom = Theater
 	limit = "1 per Settlement"
 	special = ""
@@ -1465,8 +1465,8 @@ class Garrison {
 		unrest: -2,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = [CityWall, Granary, Jail]
-	discountedBy = [Arena]
+	discountedBy = [CityWall, Granary, Jail]
+	discounts = [Arena]
 	upgradesFrom = Barracks
 	limit = ""
 	special = ""
@@ -1494,8 +1494,8 @@ class Guildhall {
 		law: 1,
 		productivity: 2,
 	}
-	discounts = [Pier, Stable, TradeShop]
-	discountedBy = [Waterfront]
+	discountedBy = [Pier, Stable, TradeShop]
+	discounts = [Waterfront]
 	upgradesFrom = TradeShop
 	Shop
 	limit = ""
@@ -1515,8 +1515,8 @@ class House {
 		unrest: -1,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
 	discountedBy = []
+	discounts = []
 	upgradesFrom = Tenement
 	limit = ""
 	special = "The first House you build during the Improvement phase does not count against the total number of buildings you can build during the phase"
@@ -1535,8 +1535,8 @@ class LuxuryStore {
 		economy: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
-	discountedBy = [NobleVilla]
+	discountedBy = []
+	discounts = [NobleVilla]
 	upgradesFrom = Shop
 	limit = "Adjacent to 1 House"
 	special = "Base Value +2,00gp"
@@ -1555,8 +1555,8 @@ class MagicShop {
 		economy: 1,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = []
-	discountedBy = [Academy, MagicalAcademy]
+	discountedBy = []
+	discounts = [Academy, MagicalAcademy]
 	upgradesFrom = LuxuryStore
 	limit = "Adjacent to 2 House"
 	special = "Base Value +2,00gp"
@@ -1580,8 +1580,8 @@ class Market {
 		stability: 2,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = [BlackMarket, Inn, Shop]
-	discountedBy = [Waterfront]
+	discountedBy = [BlackMarket, Inn, Shop]
+	discounts = [Waterfront]
 	upgradesFrom = Shop
 	limit = "Adjacent to 2 House"
 	special = "Base Value +2,00gp"
@@ -1610,8 +1610,8 @@ class NobleVilla {
 		...Building.settlementBonus,
 		society: 1,
 	}
-	discounts = [ExoticArtisan, LuxuryStore, Mansion]
-	discountedBy = [Castle, Palace]
+	discountedBy = [ExoticArtisan, LuxuryStore, Mansion]
+	discounts = [Castle, Palace]
 	upgradesFrom = Mansion
 	limit = ""
 	special = ""
@@ -1636,8 +1636,8 @@ class Temple {
 		unrest: -2,
 	}
 	settlementBonus = {...Building.settlementBonus}
-	discounts = [Graveyard, Monument, Shrine]
-	discountedBy = [Cathedral]
+	discountedBy = [Graveyard, Monument, Shrine]
+	discounts = [Cathedral]
 	upgradesFrom = Shrine
 	limit = ""
 	special = ""
@@ -1668,8 +1668,8 @@ class University {
 		lore: 4,
 		society: 3,
 	}
-	discounts = [Academy, BardicCollege, Library, MagicalAcademy, MilitaryAcademy, Museum]
-	discountedBy = []
+	discountedBy = [Academy, BardicCollege, Library, MagicalAcademy, MilitaryAcademy, Museum]
+	discounts = []
 	upgradesFrom = Academy
 	limit = ""
 	special = "increase Lore bonus by 4 for questions relating to one Knowledge or Profession skill"
@@ -1697,8 +1697,8 @@ class Waterfront {
 		...Building.settlementBonus,
 		productivity: 2,
 	}
-	discounts = [BlackMarket, Guildhall, Market, Pier]
-	discountedBy = [University]
+	discountedBy = [BlackMarket, Guildhall, Market, Pier]
+	discounts = [University]
 	upgradesFrom = Pier
 	limit = "Adjacent to district water border, 1 per settlement"
 	special = "Base value +4,00gp; halves Loyalty penalty for Taxation edicts"

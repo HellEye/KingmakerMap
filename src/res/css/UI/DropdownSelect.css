@@ -11,7 +11,7 @@
     color:#888c72 !important;
 }
 .dropdownSelect__control {
-    width: 250px !important;
+    width: 250px;
     border-color: #052a52 !important;
     color: #a8acb2 !important;
     background-color: #2a3340 !important;
@@ -27,7 +27,7 @@
 }
 
 .dropdownSelect__menu {
-    width: 250px !important;
+    width: 250px;
     background-color: #2a3340 !important;
 }
 

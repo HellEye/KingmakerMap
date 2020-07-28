@@ -1,62 +1,32 @@
 import React, {Component} from "react"
-import {observe} from "mobx"
 import {kingdoms} from "../../../../scripts/kingdom/data/kingdoms"
 import {selectedHex} from "../../../board/HexGrid"
 import DropdownSelect from "../../../util/DropdownSelect"
 import {TerrainList} from "../../../../scripts/kingdom/data/hexImprovements/TerrainMilo"
 import SidebarHexImprovements from "./SidebarHexImprovements"
+import {observer} from "mobx-react"
 
 class SidebarHex extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
-			hexData: null,
-			kingdom: null,
-		}
+
 	}
 
 	componentDidMount = () => {
 		this._isMounted = true
-		/*this.onKingdomChange = observe(selectedKingdom, change => {
-			if (this._isMounted)
-				this.setState({
-					...this.state,
-					kingdom: change.newValue
-				})
-		})*/
-		this.onHexChange = observe(selectedHex, change => {
-			if (this._isMounted)
-				this.setState({
-					...this.state,
-					hexData: change.newValue,
-					kingdom: change.newValue.ownedBy,
-					terrain: change.newValue.terrainType,
-				})
-		})
 	}
 	componentWillUnmount = () => {
 		this._isMounted = false
-		this.onHexChange()
-		// this.onKingdomChange()
+
 	}
 	changeKingdom = (newValue) => {
-		const prevData = this.state.hexData
-		prevData.ownedBy = kingdoms.getById(newValue.value)
-		this.setState({
-			...this.state,
-			hexData: prevData,
-			kingdom: kingdoms.getById(newValue.value),
-		})
-		this.state.hexData.saveToDb()
+		const prevData = selectedHex.get().ownedBy = kingdoms.getById(newValue.value)
+		selectedHex.get().saveToDb()
 	}
 	changeTerrain = (newValue) => {
 		const newTerrain = TerrainList.getById(newValue.value)
-		this.state.hexData.setTerrain(newTerrain)
-		this.setState({
-			terrain: newValue === 0 ? null : newTerrain,
-		})
-
+		selectedHex.get().setTerrain(newTerrain)
 	}
 
 	render() {
@@ -68,12 +38,12 @@ class SidebarHex extends Component {
 						.concat(kingdoms.map((value) => {
 							return {value: value.id, label: value.name}
 						}))}
-					disabled={this.state.hexData == null}
+					disabled={selectedHex.get() == null}
 					onChange={this.changeKingdom}
 					value={
-						this.state.kingdom ? {
-							value: this.state.kingdom.id,
-							label: this.state.kingdom.name,
+						selectedHex.get() && selectedHex.get().ownedBy ? {
+							value: selectedHex.get().ownedBy.id,
+							label: selectedHex.get().ownedBy.name,
 						} : {
 							value: 0,
 							label: "None",
@@ -86,22 +56,23 @@ class SidebarHex extends Component {
 							return {value: value.id, label: value.name}
 						}))}
 					onChange={this.changeTerrain}
+					disabled={selectedHex.get() == null}
 					value={
-						this.state.terrain ? {
-							value: this.state.terrain.id,
-							label: this.state.terrain.name,
+						(selectedHex.get() && selectedHex.get().terrainType) ? {
+							value: selectedHex.get().terrainType.id,
+							label: selectedHex.get().terrainType.name,
 						} : {
 							value: 0,
 							label: "None",
 						}
 					}
 				/>
-				{this.state.terrain ?
+				{selectedHex.get() && selectedHex.get().terrainType ?
 					<>
 						<h3>Improvements:</h3>
 						<SidebarHexImprovements
-							hexData={this.state.hexData}
-							terrain={this.state.terrain}
+							hexData={selectedHex.get()}
+							terrain={selectedHex.get().terrainType}
 						/>
 					</>
 					: ""}
@@ -111,4 +82,4 @@ class SidebarHex extends Component {
 
 }
 
-export default SidebarHex
+export default observer(SidebarHex)

@@ -27,6 +27,7 @@
 .kingdomSheetContent {
     grid-area: content;
     max-height: 500px;
+    height:100%;
     padding: 0 20px;
 }
 
@@ -78,8 +79,12 @@
 
 .kingdomSheetRulerCheck {
     display: flex;
-    width: 50px !important;
+    width: 100px !important;
     flex-direction: row;
+}
+.kingdomSheetRulerCheck h4 {
+    width: 80px;
+    text-align: left;
 }
 
 .kingdomSheetRulerCheck .MuiFormControlLabel-label {
@@ -108,4 +113,37 @@
 
 .kingdomSheetRulerCheck .MuiButtonBase-root:hover {
     background-color: #055a6e20 !important;
+}
+
+.kingdomSheetEdicts{
+    display:flex;
+    margin-top: 20px;
+    flex-direction: column;
+    width:70%;
+}
+.kingdomSheetEdict {
+    display:flex;
+    width:100%;
+    flex-direction: row;
+    padding:5px;
+    margin-bottom: 10px;
+    height:40px;
+}
+.kingdomSheetEdict .dropdownSelect .dropdownSelect__control {
+    width:100%;
+}
+.kingdomSheetEdict .dropdownSelect {
+    width:15%;
+}
+.kingdomSheetEdict .numberField {
+    text-align: center;
+}
+.kingdomSheetEdict .otherEffect {
+    width:25%;
+}
+.kingdomSheetEdict h3 {
+    width:15%;
+}
+.kingdomSheetEdict h4 {
+    width:15%;
 }

@@ -25,14 +25,16 @@ class KingdomSheetField extends Component {
 			return (
 				<div className={"kingdomSheetField"}>Loading</div>
 			)*/
+		const inputValue=this.props.kingdom.kingdomData.data[this.props.value]
 		return (
 			<div className={"kingdomSheetField"}>
 				<h3>{this.props.name}:</h3>
 				<h4>{this.props.settlementBonuses[this.props.value]}</h4>
 				<h4>{this.props.kingdom.kingdomData[this.props.value]}</h4>
 				<NumberInput
+					key={inputValue}
 					name={this.props.value}
-					value={this.props.kingdom.kingdomData.data[this.props.value]}
+					value={inputValue}
 					changeCallback={this.props.changeCallback}
 					saveCallback={this.props.saveCallback}
 				/>

@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import "../../res/css/UI/numberInput.css"
+import {observer} from "mobx-react"
 
 class NumberInput extends Component {
 	constructor(props) {
@@ -75,4 +76,4 @@ class NumberInput extends Component {
 	}
 }
 
-export default NumberInput
+export default observer(NumberInput)

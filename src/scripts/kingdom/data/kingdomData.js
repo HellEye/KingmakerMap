@@ -1,6 +1,6 @@
 import {computed, decorate, observable} from "mobx"
 import dbLoader from "../../utils/dbLoader"
-import {HexData, hexDataGrid} from "./hexData"
+import {hexDataGrid} from "./hexData"
 
 const emptyKingdomData = observable({
 	alignment: 0,
@@ -39,6 +39,143 @@ const emptyKingdomData = observable({
 	},
 	kingdomId: 0,
 })
+
+const edicts = {
+	expansionEdict: [{
+		name: "Isolationist",
+		stability: 2,
+		loyalty: 1,
+		economy: -2,
+		other: "-1 hex claims, -1 consumption",
+	}, {
+		name: "Cautious",
+		stability: 1,
+		loyalty: 0,
+		economy: -1,
+		other: "standard claims",
+	}, {
+		name: "Standard",
+		stability: 0,
+		loyalty: 0,
+		economy: 0,
+		other: "standard claims",
+	}, {
+		name: "Aggressive",
+		stability: -1,
+		loyalty: -1,
+		economy: 1,
+		other: "+1 hex claims, 1d4 consumption",
+	}, {
+		name: "Imperialist",
+		stability: -2,
+		loyalty: -2,
+		economy: 2,
+		other: "+2 hex claims, 2d4 consumption",
+	}],
+	holidayEdict: [{
+		name: "None",
+		stability: 0,
+		loyalty: -4,
+		economy: -2,
+		other: "consumption: 0",
+	}, {
+		name: "Annual",
+		stability: 0,
+		loyalty: -2,
+		economy: -1,
+		other: "consumption: 1",
+	}, {
+		name: "Quaterly",
+		stability: 0,
+		loyalty: 0,
+		economy: 0,
+		other: "consumption: 1d3",
+	}, {
+		name: "Monthly",
+		stability: 0,
+		loyalty: 2,
+		economy: 1,
+		other: "consumption: 1d6",
+	}, {
+		name: "Weekly",
+		stability: 0,
+		loyalty: 4,
+		economy: 2,
+		other: "consumption: 1d12",
+	}],
+	taxationEdict: [{
+		name: "Minimal",
+		stability: 0,
+		loyalty: 2,
+		economy: 2,
+		divideBy:5,
+		other: "BP: Economy check/5",
+	}, {
+		name: "Light",
+		stability: 0,
+		loyalty: 1,
+		economy: 1,
+		divideBy:4,
+		other: "BP: Economy check/4",
+	}, {
+		name: "Normal",
+		stability: 0,
+		loyalty: 0,
+		economy: 0,
+		divideBy:3,
+		other: "BP: Economy check/3",
+	}, {
+		name: "Heavy",
+		stability: 0,
+		loyalty: -4,
+		economy: -2,
+		divideBy:2.5,
+		other: "BP: Economy check/2.5",
+	}, {
+		name: "Crushing",
+		stability: 0,
+		loyalty: -8,
+		economy: -4,
+		divideBy:2,
+		other: "BP: Economy check/2",
+	}],
+	recruitmentEdict: [{
+		name: "Pacifist",
+		stability: 0,
+		loyalty: 0,
+		economy: 2,
+		fame: 2,
+		other: "manpower 1%, elites 0%",
+	}, {
+		name: "Peaceful",
+		stability: 0,
+		loyalty: 0,
+		economy: 1,
+		fame: 1,
+		other: "manpower 5%, elites 0%",
+	}, {
+		name: "Normal",
+		stability: 0,
+		loyalty: 0,
+		economy: 0,
+		fame: 0,
+		other: "manpower 10%, elites 1%",
+	}, {
+		name: "Aggressive",
+		stability: 0,
+		loyalty: 0,
+		economy: -1,
+		fame: -1,
+		other: "manpower 15%, elites 3%",
+	}, {
+		name: "Warlike",
+		stability: 0,
+		loyalty: 0,
+		economy: -2,
+		fame: -2,
+		other: "manpower 20%, elites 5%",
+	}],
+}
 
 class KingdomData {
 
@@ -84,10 +221,14 @@ class KingdomData {
 		},
 		kingdomId: 0,
 		controlDCMod: 0,
-		extraBP:0,
+		extraBP: 0,
+		expansionEdict: 0,
+		holidayEdict: 0,
+		taxationEdict: 0,
+		recruitmentEdict: 0,
 	}
 	setData = (newData) => {
-		this.data = newData
+		this.data = observable(newData)
 	}
 
 	/*getters = {
@@ -117,22 +258,29 @@ class KingdomData {
 			((this.data.positions.treasurer) || 0) +
 			Math.floor(this.data.positions.viceroy / 2) +
 			((this.data.alignment % 3 === 2) ? 2 : 0) +
-			((Math.floor(this.data.alignment / 3) === 0) ? 2 : 0)
+			((Math.floor(this.data.alignment / 3) === 0) ? 2 : 0) +
+			edicts.expansionEdict[this.data.expansionEdict].economy +
+			edicts.holidayEdict[this.data.holidayEdict].economy +
+			edicts.recruitmentEdict[this.data.recruitmentEdict].economy +
+			edicts.taxationEdict[this.data.taxationEdict].economy
 		)
 	}
 
 	get stability() {
 		if (this.data == null) return 0
-		const out = (
+		return (
 			(this.data.positions.rulerSelectedAttributes.stability * ((this.data.positions.ruler) || 0)) +
 			Math.floor((this.data.positions.spymaster) || 0) * this.data.positions.spymasterSelectedAttribute.stability +
 			((this.data.positions.general) || 0) +
 			((this.data.positions.grandDiplomat) || 0) +
 			((this.data.positions.highPriest) || 0) +
 			((this.data.alignment % 3 === 1) ? 2 : 0) +
-			((Math.floor(this.data.alignment / 3) === 1) ? 2 : 0)
+			((Math.floor(this.data.alignment / 3) === 1) ? 2 : 0) +
+			edicts.expansionEdict[this.data.expansionEdict].stability +
+			edicts.holidayEdict[this.data.holidayEdict].stability +
+			edicts.recruitmentEdict[this.data.recruitmentEdict].stability +
+			edicts.taxationEdict[this.data.taxationEdict].stability
 		)
-		return out
 
 	}
 
@@ -147,7 +295,11 @@ class KingdomData {
 			((this.data.positions.royalEnforcer) || 0) +
 			((this.data.positions.warden) || 0) +
 			((this.data.alignment % 3 === 0) ? 2 : 0) +
-			((Math.floor(this.data.alignment / 3) === 2) ? 2 : 0)
+			((Math.floor(this.data.alignment / 3) === 2) ? 2 : 0) +
+			edicts.expansionEdict[this.data.expansionEdict].loyalty +
+			edicts.holidayEdict[this.data.holidayEdict].loyalty +
+			edicts.recruitmentEdict[this.data.recruitmentEdict].loyalty +
+			edicts.taxationEdict[this.data.taxationEdict].loyalty
 		)
 	}
 
@@ -160,8 +312,8 @@ class KingdomData {
 
 	get districtNumber() {
 		if (this.data != null) {
-			return hexDataGrid.getByKingdom(this.data.kingdomId).reduce(value => {
-				return value.settlement == null || value.settlement.districts==null ? 0 : value.settlement.districts.length
+			return hexDataGrid.getByKingdom(this.data.kingdomId).reduce((acc, value) => {
+				return acc + ((value.settlement == null || value.settlement.districts == null) ? 0 : value.settlement.districts.length)
 			}, 0)
 		}
 		return 0
@@ -169,7 +321,7 @@ class KingdomData {
 
 	get consumption() {
 		if (this.data == null) return 0
-		return Math.max(this.size +this.districtNumber, 0)
+		return Math.max(this.size + this.districtNumber, 0)
 	}
 
 	saveToDb = () => {
@@ -178,6 +330,9 @@ class KingdomData {
 				console.error("Failed to save kingdomData")
 				console.error(err)
 			})
+	}
+	loadFromDb = () => {
+
 	}
 	getRulerAttributes = () => {
 		return this.data.positions.rulerSelectedAttributes.stability ? 1 : 0 +
@@ -225,4 +380,4 @@ decorate(KingdomData, {
 	size: computed,
 })
 export default KingdomData
-export {emptyKingdomData}
+export {emptyKingdomData, edicts}

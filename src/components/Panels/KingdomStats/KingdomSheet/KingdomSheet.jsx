@@ -8,6 +8,9 @@ import "../../../../res/css/UI/Tabs.css"
 import KingdomSheetRuler from "./KingdomSheetRuler"
 import {kingdoms, selectedKingdom} from "../../../../scripts/kingdom/data/kingdoms"
 import {hexDataGrid} from "../../../../scripts/kingdom/data/hexData"
+import {observer} from "mobx-react"
+import KingdomSheetEdict from "./KingdomSheetEdict"
+import DropdownSelect from "../../../util/DropdownSelect"
 
 
 const statsToDisplay = [
@@ -16,24 +19,30 @@ const statsToDisplay = [
 	{name: "Economy", value: "economy"},
 	{name: "Consumption modifier", value: "consumption"},
 	{name: "Unrest", value: "unrest"},
-	{name: "Control DC Modifier", value:"controlDCMod"},
-	{name: "Extra BP/turn", value:"extraBP"}
+	{name: "Control DC Modifier", value: "controlDCMod"},
+	{name: "Extra BP/turn", value: "extraBP"},
 ]
 const leaders = [
 	{name: "Ruler", value: "ruler", extra: "rulerSelectedAttributes", extraMultiple: true},
-	{name: "Consort", value: "consort"},
-	{name: "Councilor", value: "councilor"},
-	{name: "General", value: "general"},
-	{name: "Grand Diplomat", value: "grandDiplomat"},
-	{name: "Heir", value: "heir"},
-	{name: "High Priest", value: "highPriest"},
-	{name: "Magister", value: "magister"},
-	{name: "Marshal", value: "marshal"},
-	{name: "Royal Enforcer", value: "royalEnforcer"},
+	{name: "Consort", value: "consort", attribute: "Loyalty"},
+	{name: "Councilor", value: "councilor", attribute:"Loyalty"},
+	{name: "General", value: "general", attribute:"Stability"},
+	{name: "Grand Diplomat", value: "grandDiplomat", attribute:"Stability"},
+	{name: "Heir", value: "heir", attribute:"Loyalty (1/2)"},
+	{name: "High Priest", value: "highPriest", attribute:"Stability"},
+	{name: "Magister", value: "magister", attribute:"Economy"},
+	{name: "Marshal", value: "marshal", attribute:"Economy"},
+	{name: "Royal Enforcer", value: "royalEnforcer", attribute:"Loyalty"},
 	{name: "Spymaster", value: "spymaster", extra: "spymasterSelectedAttribute", extraMultiple: false},
-	{name: "Treasurer", value: "treasurer"},
-	{name: "Viceroy", value: "viceroy"},
-	{name: "Warden", value: "warden"}
+	{name: "Treasurer", value: "treasurer", attribute:"Economy"},
+	{name: "Viceroy", value: "viceroy", attribute:"Economy (1/2)"},
+	{name: "Warden", value: "warden", attribute:"Loyalty"},
+]
+const edicts = [
+	{name: "Taxation", value: "taxationEdict"},
+	{name: "Holiday", value: "holidayEdict"},
+	{name: "Expansion", value: "expansionEdict"},
+	{name: "Recruitment", value: "recruitmentEdict"},
 ]
 
 class KingdomSheet extends Component {
@@ -41,14 +50,14 @@ class KingdomSheet extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			kingdom: null
+			kingdom: null,
 		}
 	}
 
 	componentDidMount() {
 		this._isMounted = true
-		if(kingdoms.finishedLoading)
-			this.setState({kingdom:selectedKingdom.get()})
+		if (kingdoms.finishedLoading)
+			this.setState({kingdom: selectedKingdom.get()})
 		this.onKingdomChange = observe(selectedKingdom, change => {
 			if (this._isMounted)
 				this.setState({kingdom: change.newValue})
@@ -81,6 +90,11 @@ class KingdomSheet extends Component {
 		selectedKingdom.get().kingdomData.data.positions[name] = parseInt(value)
 		this.forceUpdate()
 	}
+	changeEdictStats=({name, value})=>{
+		if(selectedKingdom.get()==null || selectedKingdom.get().kingdomData==null) return
+		selectedKingdom.get().kingdomData.data[name]=parseInt(value)
+		this.forceUpdate()
+	}
 
 	render() {
 		if (this.state.kingdom == null || this.state.kingdom.kingdomData.data == null)
@@ -104,7 +118,7 @@ class KingdomSheet extends Component {
 						: ""}
 				</div>
 			)
-		const settlementBonuses=hexDataGrid.getModifiersByKingdomId(this.state.kingdom.id)
+		const settlementBonuses = hexDataGrid.getModifiersByKingdomId(this.state.kingdom.id)
 		return (
 			<div>
 				<Tabs className={"kingdomSheet"}>
@@ -120,6 +134,7 @@ class KingdomSheet extends Component {
 						<TabList>
 							<Tab>Stats</Tab>
 							<Tab>Leaders</Tab>
+							<Tab>Edicts</Tab>
 						</TabList>
 					</div>
 					<div className={"kingdomSheetContent"}>
@@ -161,8 +176,32 @@ class KingdomSheet extends Component {
 											saveCallback={this.saveKingdomData}
 											changeCallback={this.changeRulerStats}
 											kingdom={this.state.kingdom}
+											attribute={val.attribute}
 										/>))
 								}
+							</div>
+						</TabPanel>
+						<TabPanel>
+							<div className={"kingdomSheetStats kingdomSheetEdicts"}>
+								<div className={"kingdomSheetEdict"}>
+									<h3>Edict</h3>
+									<h4 className={"kingdomSheetEdictsDropdownLabel"}>Current</h4>
+									<h4 className={"numberField"}>Loyalty</h4>
+									<h4 className={"numberField"}>Stability</h4>
+									<h4 className={"numberField"}>Economy</h4>
+									<h4 className={"otherEffect"}>Other effects</h4>
+								</div>
+								{edicts.map((val, index)=> (
+									<KingdomSheetEdict
+										key={index}
+										value={val.value}
+										name={val.name}
+										saveCallback={this.saveKingdomData}
+										changeCallback={this.changeEdictStats}
+										kingdom={this.state.kingdom}
+									/>
+								))}
+
 							</div>
 						</TabPanel>
 					</div>
@@ -175,4 +214,4 @@ class KingdomSheet extends Component {
 	}
 }
 
-export default KingdomSheet
+export default observer(KingdomSheet)
