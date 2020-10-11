@@ -27,7 +27,7 @@ class BuildingHoverTooltip extends Component {
 				<HoverTooltip
 					height={height + 20}
 					width={width + 20}
-					className={"buildingGridFilterTooltip"}
+					className={"buildingGridBuildingTooltip"}
 					hoverObject={this.props.hoverObject}
 				>
 					{nameElement}
@@ -87,35 +87,39 @@ class BuildingHoverTooltip extends Component {
 						</div>
 					</div>
 					<div className={"buildingGridBuildingTooltipContainer"}>
+						{building.special?
 						<div>
 							<h3>{building.special ? "Special" : ""}</h3>
 							<p>{building.special}</p>
-						</div>
+						</div>:""}
+						{building.magicItems ?
 						<div>
 							<h3>{building.magicItems ? "Magic items" : ""}</h3>
 							<p>{building.magicItems}</p>
-						</div>
+						</div>:""}
+						{building.discounts && building.discounts.length > 0 ?
 						<div>
 							<h3>{building.discounts.length > 0 ? "Discounts" : ""}</h3>
 							<p>{building.discounts.length > 0
 								? building.discounts.map((value) => BuildingList.getByType(value).name).join(", ")
 								: ""
 							}</p>
-						</div>
+						</div>:""}
+						{building.discountedBy && building.discountedBy.length > 0 ?
 						<div>
 							<h3>{building.discountedBy.length > 0 ? "Discounted by" : ""}</h3>
 							<p>{building.discountedBy.length > 0 ?
 								building.discountedBy.map((value) => BuildingList.getByType(value).name).join(", ")
 								: ""
 							}</p>
-						</div>
+						</div> :""}
+						{building.upgradesFrom?
 						<div>
 							<h3>{building.upgradesFrom ? "Upgrades from" : ""}</h3>
 							<p>
 								{building.upgradesFrom ? building.upgradesFrom.name : ""}
 							</p>
-						</div>
-
+						</div>:""}
 					</div>
 				</div>
 			</HoverTooltip>

@@ -2,7 +2,6 @@ import React, {useDebugValue} from "react"
 import Board from "./board/Board.jsx"
 import Sidebar from "./UI/Sidebar/Sidebar.jsx"
 import Header from "./UI/Header/Header.jsx"
-import HexGrid from "./board/HexGrid.jsx"
 import Kingdoms from "./Panels/Kingdoms.jsx"
 import CookiePopup from "./util/CookiePopup"
 import KingdomSheet from "./Panels/KingdomStats/KingdomSheet/KingdomSheet"
@@ -14,7 +13,6 @@ import {getCookie, setCookie} from "../scripts/utils/cookies"
 import BuildingGrid from "./Panels/District/BuildingGrid"
 import {ToastController} from "./util/Toast"
 
-const image = require("../res/img/stolenLandsMap.jpg")
 
 function App() {
 	const lastTabCookie = getCookie("lastTabNumber")
@@ -73,14 +71,9 @@ function App() {
 
 			/>
 			<TabPanel forceRender={true}>
-				<Board>
-					<img
-						alt={"Map"}
-						draggable={"false"}
-						src={image}
-					/>
-					<HexGrid/>
-				</Board>
+				<Board/>
+
+
 			</TabPanel>
 
 			<TabPanel>

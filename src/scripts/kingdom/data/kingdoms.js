@@ -161,7 +161,7 @@ const kingdoms = new Kingdoms()
 const kingdomsLoaded = observe(kingdoms, "finishedLoading", change => {
 	if (change.newValue) {
 		const loadedId = getCookie("lastLoadedKingdom")
-		if (loadedId !== "")
+		if (loadedId)
 			selectedKingdom.set(kingdoms.getById(parseInt(loadedId)))
 		kingdomsLoaded()
 	}

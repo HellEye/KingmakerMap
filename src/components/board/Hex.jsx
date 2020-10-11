@@ -4,6 +4,9 @@ import "../../res/css/Board/Hexagon.css"
 import {selectedHex} from "./HexGrid"
 import {observe} from "mobx"
 import {observer} from "mobx-react"
+import {BoardContext} from "./Board"
+
+const settlementIcon = require("../../res/img/icons/map/Settlement.png")
 
 class Hex extends Component {
 	static startOffsetX = 25
@@ -43,14 +46,15 @@ class Hex extends Component {
 		}
 	}
 
-	getHexStyle() {
+	getHexStyle(displayBorders) {
 		let stroke = "#00000001"
-		if (this.props.hexData && this.props.hexData.ownedBy) {
+		if (displayBorders && this.props.hexData && this.props.hexData.ownedBy) {
 			stroke = this.props.hexData.ownedBy.color + "a0"
 		}
 		return {
 			stroke: stroke,
 			cursor: 'default',
+			zIndex: 11,
 			fill: this.props.hexData === selectedHex.get() ? "#ffffff40" : "#ffffff01",
 		}
 	}
@@ -97,29 +101,49 @@ class Hex extends Component {
 
 
 	render() {
+		const improvements = this.props.hexData ? this.props.hexData.hexImprovements.filter(v => v.improvement.icon) : []
+		if (this.props.hexData.settlement)
+			improvements.unshift({improvement: {icon: settlementIcon}})
 		return (
-			<div style={this.getDivStyle()}
-			     onMouseDown={this.onDragStart}
-			>
-				<Hexagon style={this.getHexStyle()}
-				         onClick={this.onHexClick}
-				         className={'hexagonInner'}/>
-				{(this.props.hexData && this.props.hexData.label) ? (
-						<div
-							className={"hexLabel"}
-							onClick={this.onHexClick}
-						>
-							<h2 style={{
-								color: (this.props.hexData && this.props.hexData.ownedBy) ? this.props.hexData.ownedBy.color : "#0a58a8",
-							}}
-							    className={"hexLabelText"}>
-								{this.props.hexData.label ? this.props.hexData.label : ""}
-							</h2>
-						</div>)
-					: ""}
-			</div>
+			<BoardContext.Consumer>
+				{({mapOpacity, displayIcons, displayBorders, displayLabels}) => {
+					return <div style={this.getDivStyle()}
+					            onMouseDown={this.onDragStart}
+					>
+						<Hexagon style={this.getHexStyle(displayBorders)}
+						         onClick={this.onHexClick}
+						         className={'hexagonInner'}/>
+						{(displayLabels && this.props.hexData && this.props.hexData.label) ? (
+								<div
+									className={"hexLabel"}
+									onClick={this.onHexClick}
+								>
+									<h2 style={{
+										color: (this.props.hexData && this.props.hexData.ownedBy) ? this.props.hexData.ownedBy.color : "#1a88d8",
+									}}
+									    className={"hexLabelText"}>
+										{this.props.hexData.label ? this.props.hexData.label : ""}
+									</h2>
+								</div>)
+							: ""}
+						{displayIcons && improvements.length > 0 ? (
+							<div className={"hexIcons"} onClick={this.onHexClick}>
+								{improvements.map((v, i) => {
+									return (
+										<img
+											src={v.improvement.icon}
+											alt={""}
+											key={i}
+											style={{
+												filter: mapOpacity <= 0.4 ? "invert() brightness(65%)" : "",
+											}}/>
+									)
+								})}
+							</div>) : ""}
+					</div>
+				}}
+			</BoardContext.Consumer>
 		)
-
 	}
 }
 

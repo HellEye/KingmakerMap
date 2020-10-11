@@ -46,30 +46,58 @@ const edicts = {
 		stability: 2,
 		loyalty: 1,
 		economy: -2,
+		extraClaims: -1,
+		consumption:{
+			min:-1,
+			max:-1
+		},
+		consumptionDie:"-1",
 		other: "-1 hex claims, -1 consumption",
 	}, {
 		name: "Cautious",
 		stability: 1,
 		loyalty: 0,
 		economy: -1,
+		extraClaims:0,
+		consumption:{
+			min:0,
+			max:0
+		},
 		other: "standard claims",
 	}, {
 		name: "Standard",
 		stability: 0,
 		loyalty: 0,
 		economy: 0,
+		extraClaims:0,
+		consumption:{
+			min:0,
+			max:0
+		},
 		other: "standard claims",
 	}, {
 		name: "Aggressive",
 		stability: -1,
 		loyalty: -1,
 		economy: 1,
+		extraClaims:1,
+		consumption:{
+			min:1,
+			max:4
+		},
+		consumptionDie:"1d4",
 		other: "+1 hex claims, 1d4 consumption",
 	}, {
 		name: "Imperialist",
 		stability: -2,
 		loyalty: -2,
 		economy: 2,
+		extraClaims:2,
+		consumption:{
+			min:2,
+			max:8
+		},
+		consumptionDie:"2d4",
 		other: "+2 hex claims, 2d4 consumption",
 	}],
 	holidayEdict: [{
@@ -77,30 +105,55 @@ const edicts = {
 		stability: 0,
 		loyalty: -4,
 		economy: -2,
+		consumption:{
+			min:0,
+			max:0
+		},
+		consumptionDie:"0",
 		other: "consumption: 0",
 	}, {
 		name: "Annual",
 		stability: 0,
 		loyalty: -2,
 		economy: -1,
+		consumption:{
+			min:1,
+			max:1
+		},
+		consumptionDie:"1",
 		other: "consumption: 1",
 	}, {
 		name: "Quaterly",
 		stability: 0,
 		loyalty: 0,
 		economy: 0,
+		consumption:{
+			min:1,
+			max:3
+		},
+		consumptionDie:"1d3",
 		other: "consumption: 1d3",
 	}, {
 		name: "Monthly",
 		stability: 0,
 		loyalty: 2,
 		economy: 1,
+		consumption:{
+			min:1,
+			max:6
+		},
+		consumptionDie:"1d6",
 		other: "consumption: 1d6",
 	}, {
 		name: "Weekly",
 		stability: 0,
 		loyalty: 4,
 		economy: 2,
+		consumption:{
+			min:1,
+			max:12
+		},
+		consumptionDie:"1d12",
 		other: "consumption: 1d12",
 	}],
 	taxationEdict: [{
@@ -177,6 +230,8 @@ const edicts = {
 	}],
 }
 
+
+
 class KingdomData {
 
 	constructor(data) {
@@ -242,6 +297,77 @@ class KingdomData {
 */
 	get unrest() {
 		return ""
+	}
+	get edictMinConsumption(){
+		return edicts.expansionEdict[this.data.expansionEdict].consumption.min
+			+ edicts.holidayEdict[this.data.holidayEdict].consumption.min
+	}
+	get edictMaxConsumption(){
+		return edicts.expansionEdict[this.data.expansionEdict].consumption.max
+			+ edicts.holidayEdict[this.data.holidayEdict].consumption.max
+	}
+
+	get hexClaims(){
+		const bonus=edicts.expansionEdict[this.data.expansionEdict].extraClaims
+		if(this.size<=10)
+			return 1+bonus
+		if(this.size<=25)
+			return 2+bonus
+		if(this.size<=50)
+			return 3+bonus
+		if(this.size<=100)
+			return 4+bonus
+		if(this.size<=200)
+			return 8+bonus
+		return 12+bonus
+	}
+	get newSettlements(){
+		if(this.size<=10)
+			return 1
+		if(this.size<=25)
+			return 1
+		if(this.size<=50)
+			return 1
+		if(this.size<=100)
+			return 2
+		if(this.size<=200)
+			return 3
+		return 4
+	}
+	get newImprovements(){
+		if(this.size<=10)
+			return 2
+		if(this.size<=25)
+			return 3
+		if(this.size<=50)
+			return 5
+		if(this.size<=100)
+			return 7
+		if(this.size<=200)
+			return 9
+		return 12
+	}
+	get newBuildings(){
+		if(this.size<=10)
+			return 1
+		if(this.size<=25)
+			return 2
+		if(this.size<=50)
+			return 5
+		if(this.size<=100)
+			return 10
+		if(this.size<=200)
+			return 20
+		return Infinity
+	}
+	get bpCost(){
+		if(this.size<=25)
+			return 1000
+		if(this.size<=50)
+			return 2000
+		if(this.size<=100)
+			return 3000
+		return 4000
 	}
 
 	get controlDCMod() {

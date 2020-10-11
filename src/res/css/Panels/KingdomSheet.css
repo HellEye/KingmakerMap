@@ -147,3 +147,33 @@
 .kingdomSheetEdict h4 {
     width:15%;
 }
+
+.kingdomSheetBuildingList {
+    display:flex;
+    flex-direction: column;
+    height:100%;
+    overflow-y: scroll;
+    margin-top: 10px;
+}
+.kingdomSheetBuildingListBuilding{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+    border-bottom: 1px #333c4a solid;
+}
+
+.kingdomSheetBuildingListBuildingHeader {
+    background-color: #333c4a;
+}
+.kingdomSheetBuildingListBuilding h3 {
+    width: 19%;
+    text-align: center;
+}
+.kingdomSheetBuildingListBuilding h4 {
+    width: 14%;
+    text-align: center;
+}
+.kingdomSheetBuildingList .buildingGridBuildingTooltip {
+    font-size: 0.9em;
+}
+

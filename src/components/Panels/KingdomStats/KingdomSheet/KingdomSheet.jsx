@@ -11,6 +11,7 @@ import {hexDataGrid} from "../../../../scripts/kingdom/data/hexData"
 import {observer} from "mobx-react"
 import KingdomSheetEdict from "./KingdomSheetEdict"
 import DropdownSelect from "../../../util/DropdownSelect"
+import KingdomSheetBuildingList from "./KingdomSheetBuildingList"
 
 
 const statsToDisplay = [
@@ -135,6 +136,7 @@ class KingdomSheet extends Component {
 							<Tab>Stats</Tab>
 							<Tab>Leaders</Tab>
 							<Tab>Edicts</Tab>
+							<Tab>Buildings</Tab>
 						</TabList>
 					</div>
 					<div className={"kingdomSheetContent"}>
@@ -203,6 +205,11 @@ class KingdomSheet extends Component {
 								))}
 
 							</div>
+						</TabPanel>
+						<TabPanel>
+							<KingdomSheetBuildingList
+								kingdom={this.state.kingdom}
+							/>
 						</TabPanel>
 					</div>
 				</Tabs>

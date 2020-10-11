@@ -10,6 +10,7 @@ class Aqueduct {
 		consumption: 0,
 		bonusBP: 0,
 	}
+	icon=require("../../../../res/img/icons/map/Aqueduct.png")
 	effect = "One end must be hill or mountain hex. Allows settelment to build water-dependet buildings"
 }
 
@@ -55,6 +56,7 @@ class Farm {
 		consumption: -2,
 		bonusBP: 0,
 	}
+	icon=require("../../../../res/img/icons/map/Farm.png")
 	effect = " "
 }
 
@@ -85,6 +87,7 @@ class Fort {
 		consumption: 1,
 		bonusBP: 0,
 	}
+	icon=require("../../../../res/img/icons/map/Castle.png")
 	effect = "Defense +4. If this hex becomes a settlement, this improvement counts as one Barracks and one Stables building."
 }
 
@@ -100,6 +103,7 @@ class Highway {
 		consumption: 0,
 		bonusBP: 0,
 	}
+	icon=require("../../../../res/img/icons/map/Road.png")
 	effect = "Improves overland travel speed"
 }
 
@@ -115,6 +119,7 @@ class Mine {
 		consumption: 0,
 		bonusBP: 1,
 	}
+	icon=require("../../../../res/img/icons/map/Mine.png")
 	effect = ""
 }
 
@@ -145,6 +150,7 @@ class Road {
 		consumption: 0,
 		bonusBP: 0,
 	}
+	icon=require("../../../../res/img/icons/map/Road.png")
 	effect = "Improves overland travel speed"
 }
 
@@ -220,6 +226,7 @@ class Resource {
 		consumption: 0,
 		bonusBP: 0,
 	}
+	icon=require("../../../../res/img/icons/map/Resource.png")
 	effect = "Economy/Stability and BP +1 with Mine/Quarry/Sawmill, Consumption -1 with Farm/Fishery"
 }
 
@@ -235,6 +242,7 @@ class River {
 		consumption: 0,
 		bonusBP: 0,
 	}
+	icon=require("../../../../res/img/icons/map/River.png")
 	effect = ""
 }
 

@@ -2,7 +2,7 @@
     /*opacity: 0.3;*/
     /*z-index: 1;*/
     background-color: #ffffff44;
-    z-index: 1;
+    z-index: 12;
 }
 .hexagonInner {
     position: relative;
