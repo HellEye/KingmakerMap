@@ -40,6 +40,7 @@ function App() {
 	useDebugValue(state.selectedDistrict)
 
 	return (
+		
 		<Tabs
 			forceRenderTabPanel={false}
 			onSelect={onTabSwitch}
@@ -72,8 +73,6 @@ function App() {
 			/>
 			<TabPanel forceRender={true}>
 				<Board/>
-
-
 			</TabPanel>
 
 			<TabPanel>

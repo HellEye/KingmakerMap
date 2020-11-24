@@ -1,7 +1,7 @@
 import openSocket from "socket.io-client"
 
 class Settings {
-	address = "79.110.201.49"
+	address =  "79.110.201.49"
 	sitePort = "3000"
 	dbPort = "8255"
 	constructor() {
