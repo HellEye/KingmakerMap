@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 import {observer} from "mobx-react"
-import {decorate, observable} from "mobx"
+import {makeObservable, observable} from "mobx"
 import "../../res/css/UI/Toast.css"
 class ToastObject {
 	constructor(text, time, type, deleteCallback) {
@@ -13,6 +13,10 @@ class ToastObject {
 		this.fresh=true
 		setTimeout(()=>this.fresh=false, 300)
 		setTimeout(this.dismiss, time*1000)
+		makeObservable(this, {
+			removed:observable,
+			fresh:observable
+		})
 	}
 	dismiss=()=>{
 		this.removed=true
@@ -22,12 +26,13 @@ class ToastObject {
 		this.deleteCallback(this)
 	}
 }
-decorate(ToastObject, {
-	removed:observable,
-	fresh:observable
-})
 class ToastManager {
 	_toasts=[]
+	constructor(){
+		makeObservable(this, {
+			_toasts:observable
+		})
+	}
 	push=(text, time=10, type="")=>{
 		const newToast=new ToastObject(text, time, type, this.dismiss)
 		this._toasts.unshift(newToast)
@@ -40,9 +45,6 @@ class ToastManager {
 	}
 
 }
-decorate(ToastManager, {
-	_toasts:observable
-})
 const instance=new ToastManager()
 
 const ToastWindow=observer(class ToastWindow extends Component {

@@ -4,11 +4,15 @@
     z-index: -10;
     background-color: #2a2222; /*#282c34;*/
     color: #a8acb2;
-    grid-area: main
+    grid-area: main;
 }
 
 .map {
     position: relative;
+
+}
+.map.zoom{
+    transition: all .2s ease
 }
 
 .board img {

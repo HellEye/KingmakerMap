@@ -1,50 +1,86 @@
-import React, {Component} from "react"
+import React, { Component } from "react"
 import Hex from "./Hex"
-import {hexDataGrid} from "../../scripts/kingdom/data/hexData"
-import {observer} from "mobx-react"
-import {observable} from "mobx"
+import hexDataGrid from "../../scripts/kingdom/data/hexes/HexDataGrid"
+import { observer } from "mobx-react"
+import { action, makeObservable, observable, observe, when } from "mobx"
 
-let selectedHex = observable.box(null)
+class SelectedHex {
+	constructor(){
+		this.selectedHex=null
+		this.previousHex=null
+		makeObservable(this, {selectedHex:observable})
+	}
+	get=()=>{
+		return this.selectedHex
+	}
+	set=(hex)=>{
+		this.previousHex=this.selectedHex
+		this.selectedHex=hex
+	}
+}
+let selectedHex = new SelectedHex()
 
+const maxX = 30
+const maxY = 11
 class HexGrid extends Component {
 	//Magic numbers, do not touch
-	hexSize = 228
-	margin = 0.7
+	
 
-	loadComplete = false
-	hexes = []
+	constructor(props) {
+		super(props)
 
-	selectHex = (hex) => {
-		selectedHex.set(hex)
+		this.hexSize = 228
+		this.margin = 0.7
+		this.hexDataGrid = hexDataGrid
+		this.hexes = []
+		this.state = {
+			loaded: false
+		}
+		when(
+			() => hexDataGrid.loaded,
+			() => {
+				console.log("Loaded", hexDataGrid.loaded)
+				console.log("loaded hexGrid")
+				this.createHexes()
+				this.setState({ loaded: true })
+			}
+		)
 	}
+	selectHex = action((hex) => {
+		selectedHex.set(hex)
+	})
 	createHexes = () => {
-		if (!this.loadComplete && hexDataGrid.loaded) {
-			this.hexes = []
-			for (let y = 0; y < 11; y++) {
-				for (let x = 0; x < (y % 2 === 1 ? 27 : 28); x++) {
-					this.hexes.push(<Hex
-						key={y * 28 + x}
+		this.hexes = []
+		for (let y = 0; y < maxY; y++) {
+			for (let x = 0; x < (y % 2 === 1 ? maxX - 1 : maxX); x++) {
+				this.hexes.push(
+					<Hex
+						key={y * maxX + x}
 						size={this.hexSize}
 						margin={this.margin}
-						coords={{x: x, y: y}}
+						coords={{ x: x, y: y }}
 						selectHex={this.selectHex}
 						hexData={hexDataGrid.getByCoords(x, y)}
-					/>)
-				}
+					/>
+				)
 			}
-			this.loadComplete = true;
 		}
 	}
 
 	render() {
-		this.createHexes()
 		return (
-			<div style={{position: "absolute", top: 0, left: 0}}>
-				{this.hexes}
-			</div>
+			<>
+				{this.state.loaded ? (
+					<div style={{ position: "absolute", top: 0, left: 0 }}>
+						{this.hexes}
+					</div>
+				) : (
+					""
+				)}
+			</>
 		)
 	}
 }
 
 export default observer(HexGrid)
-export {selectedHex}
+export { selectedHex }

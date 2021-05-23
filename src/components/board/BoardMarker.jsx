@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import {markers} from "../../scripts/kingdom/data/hexData"
+import markers from "../../scripts/kingdom/data/hexes/Markers"
 
 class BoardMarker extends Component {
 	constructor(props) {

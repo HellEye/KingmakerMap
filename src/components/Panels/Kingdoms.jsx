@@ -7,8 +7,8 @@ import {BlockPicker} from "react-color"
 import {observer} from "mobx-react"
 import makeCancelable from "../../scripts/utils/makeCancellable"
 import ConfirmButton from "../util/ConfirmButton"
+import deleteIcon from "../../res/img/icons/deleteIcon.png"
 
-const deleteIcon = require("../../res/img/icons/deleteIcon.png")
 
 class Kingdoms extends Component {
 

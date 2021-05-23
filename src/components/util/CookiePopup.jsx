@@ -3,7 +3,7 @@ import {getCookie, setCookie} from "../../scripts/utils/cookies"
 import "../../res/css/UI/CookiePopup.css"
 import "../../res/css/UI/Button.css"
 
-const img = require("../../res/img/cookieImg.png")
+import img from "../../res/img/cookieImg.png"
 
 class CookiePopup extends Component {
 

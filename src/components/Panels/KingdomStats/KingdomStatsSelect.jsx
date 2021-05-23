@@ -1,15 +1,17 @@
-import React, {Component} from "react"
-import {kingdoms, selectedKingdom} from "../../../scripts/kingdom/data/kingdoms"
-import {observer} from "mobx-react"
-import {observe} from "mobx"
+import React, { Component } from "react"
+import {
+	kingdoms,
+	selectedKingdom
+} from "../../../scripts/kingdom/data/kingdoms"
+import { observer } from "mobx-react"
+import { observe } from "mobx"
 import Select from "react-select"
 import "../../../res/css/UI/Select.css"
-import {setCookie} from "../../../scripts/utils/cookies"
+import { setCookie } from "../../../scripts/utils/cookies"
 
 class KingdomStats extends Component {
-
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			selected: this.props.value
 		}
@@ -17,17 +19,27 @@ class KingdomStats extends Component {
 
 	componentDidMount() {
 		this._isMounted = true
-		if(kingdoms.finishedLoading)
-			this.selectKingdom({value:selectedKingdom.get().id, label:selectedKingdom.get().name})
-		this.kingdomChanged = observe(selectedKingdom, change => {
-			if (this.state.selected==null || change.newValue.id !== this.state.selected.value) {
+		if (kingdoms.finishedLoading) {
+			if(selectedKingdom?.get())
+				this.selectKingdom({
+					value: selectedKingdom?.get()?.id,
+					label: selectedKingdom?.get()?.name
+				})
+		}
+		this.kingdomChanged = observe(selectedKingdom, (change) => {
+			if (
+				this.state.selected == null ||
+				change.newValue.id !== this.state.selected.value
+			) {
 				if (this._isMounted) {
-					this.selectKingdom({value: change.newValue.id, label: change.newValue.name})
+					this.selectKingdom({
+						value: change.newValue.id,
+						label: change.newValue.name
+					})
 					this.forceUpdate()
 				}
 			}
 		})
-
 	}
 
 	componentWillUnmount() {
@@ -35,15 +47,11 @@ class KingdomStats extends Component {
 		this.kingdomChanged()
 	}
 
-
 	getKingdomList = () => {
-		if (!kingdoms.finishedLoading)
-			return ""
-		return kingdoms.kingdoms.map(
-			(k, ind) => {
-				return {value: k.id, label: k.name}
-			})
-
+		if (!kingdoms.finishedLoading) return ""
+		return kingdoms.kingdoms.map((k, ind) => {
+			return { value: k.id, label: k.name }
+		})
 	}
 
 	selectKingdom = (selected) => {
@@ -56,7 +64,6 @@ class KingdomStats extends Component {
 		selectedKingdom.set(kingdom)
 	}
 
-
 	styles = {
 		option: (provided, state) => {
 			return {
@@ -66,17 +73,17 @@ class KingdomStats extends Component {
 		}
 	}
 
-
 	render() {
-		const {selected} = this.state
+		const { selected } = this.state
 		return (
 			<div className={"selectKingdomWrap"} style={this.props.style}>
-				<Select options={this.getKingdomList()}
-				        onChange={this.selectKingdom}
-				        value={selected != null ? selected : ""}
-				        styles={this.styles}
-				        className={"selectKingdom"}
-				        classNamePrefix={"selectKingdom"}
+				<Select
+					options={this.getKingdomList()}
+					onChange={this.selectKingdom}
+					value={selected != null ? selected : ""}
+					styles={this.styles}
+					className={"selectKingdom"}
+					classNamePrefix={"selectKingdom"}
 				/>
 			</div>
 		)

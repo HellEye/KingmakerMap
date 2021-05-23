@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 import {observer} from "mobx-react"
-import {hexDataGrid} from "../../../../scripts/kingdom/data/hexData"
+import hexDataGrid from "../../../../scripts/kingdom/data/hexes/HexDataGrid"
 import BuildingHoverTooltip from "../../District/BuildingHoverTooltip"
 import SidebarHexImprovementTooltip from "../../../UI/Sidebar/SidebarComponents/SidebarHexImprovementTooltip"
 

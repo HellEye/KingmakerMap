@@ -1,24 +1,23 @@
-import React, {Component} from "react"
-import {observe} from "mobx"
-import {selectedHex} from "../../../board/HexGrid"
-import {selectedKingdom} from "../../../../scripts/kingdom/data/kingdoms"
+import React, { Component } from "react"
+import { action, makeObservable, observe } from "mobx"
+import { selectedHex } from "../../../board/HexGrid"
+import { selectedKingdom } from "../../../../scripts/kingdom/data/kingdoms"
 import "../../../../res/css/Panels/Sidebar/SidebarSettlement.css"
 import ConfirmButton from "../../../util/ConfirmButton"
-import {observable} from "mobx"
-const selectedDistrict=observable.box(null)
-class DistrictElement extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			district: props.district
-		}
-	}
+import { observable } from "mobx"
+import { observer } from "mobx-react"
+const selectedDistrict = observable.box(null)
+const DistrictElement=observer(class DistrictElement extends Component {
+	
 
 	openDistrict = () => {
-		this.props.onSelect(this.state.district)
+		this.props.onSelect(this.props.district)
 	}
-	removeDistrict = ()=>{
-		this.props.onDelete(this.state.district.id)
+	removeDistrict = () => {
+		this.props.onDelete(this.props.district.id)
+	}
+	changeDistrictName = (e) => {
+		this.props.district.setName(e.target.value)
 	}
 
 	//some async mess to properly update the list
@@ -26,7 +25,12 @@ class DistrictElement extends Component {
 	render() {
 		return (
 			<div className={"sidebarSettlementDistrictPanel"}>
-				<h4>{this.state.district.id}</h4>
+				<input
+					type="text"
+					className="sidebarSettlementNameInput"
+					value={this.props.district.name}
+					onChange={this.changeDistrictName}
+				/>
 
 				<input
 					type={"button"}
@@ -44,24 +48,24 @@ class DistrictElement extends Component {
 			</div>
 		)
 	}
-
-}
+})
 
 class SidebarSettlement extends Component {
-
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
-			selectedHex: null,
-			selectedKingdom: null
+			selectedKingdom: null,
 		}
+		makeObservable(this, {
+			onSettlementNameChange: action,
+		})
 	}
 
 	componentDidMount() {
-		this._isMounted = true;
+		this._isMounted = true
 		this.changeHex = observe(selectedHex, (change) => {
 			if (this._isMounted) {
-				this.setState({...this.state, selectedHex: change.newValue})
+				this.setState({ ...this.state, selectedHex: change.newValue })
 				/*if(change.newValue.settlement!=null){
 					if(this.onDistrictChange)
 						this.onDistrictChange()
@@ -76,13 +80,12 @@ class SidebarSettlement extends Component {
 		})
 		this.changeKingdom = observe(selectedKingdom, (change) => {
 			if (this._isMounted)
-				this.setState({...this.state, selectedKingdom: change.newValue})
+				this.setState({ ...this.state, selectedKingdom: change.newValue })
 		})
-
 	}
 
 	componentWillUnmount() {
-		this._isMounted = false;
+		this._isMounted = false
 		this.changeHex()
 		this.changeKingdom()
 		/*if(this.onDistrictChange)
@@ -90,21 +93,17 @@ class SidebarSettlement extends Component {
 	}
 
 	addDistrict = () => {
-		this.state.selectedHex.settlement.addDistrict()
+		this.props.settlement.addDistrict()
 		this.forceUpdate()
 	}
 
 	addSettlement = () => {
-		this.state.selectedHex.createSettlement()
+		this.props.selectedHex.createSettlement()
 		this.forceUpdate()
 	}
 	removeDistrict = (id) => {
-		if (this.state.selectedHex == null) return
-		this.state.selectedHex.settlement.deleteDistrict(id)
-			.then(() => {
-				this.props.onDistrictRemoved(id)
-				this.forceUpdate()
-			})
+		if (this.props.selectedHex == null) return
+		this.props.settlement.deleteDistrict(id)
 	}
 
 	selectDistrict = (district) => {
@@ -112,8 +111,8 @@ class SidebarSettlement extends Component {
 		selectedDistrict.set(district)
 	}
 
-	getDistrictElementList = ()=>{
-		return this.state.selectedHex.settlement.districts.map((value, index) =>
+	getDistrictElementList = () => {
+		return this.props.settlement.districts.map((value, index) => (
 			<DistrictElement
 				district={value}
 				key={value.id}
@@ -121,33 +120,28 @@ class SidebarSettlement extends Component {
 				onSelect={this.selectDistrict}
 				onDelete={this.removeDistrict}
 			/>
-		)
+		))
 	}
-	onSettlementNameChange=(event)=>{
-		const hex=this.state.selectedHex
+	onSettlementNameChange = (event) => {
+		this.props.settlement.setName(event.target.value)
+	}
 
-		hex.settlement.name=event.target.value;
-		this.setState({
-			selectedHex:hex
-		})
-	}
-	onSettlementNameBlur=()=>{
-		this.state.selectedHex.settlement.saveSettlement()
-	}
 	render() {
-		if (this.state.selectedKingdom == null) {
+		if (this.props.selectedKingdom == null) {
 			return (
 				<div className={"sidebarSettlement"}>
 					<h3>No kingdom selected</h3>
-				</div>)
+				</div>
+			)
 		}
-		if (this.state.selectedHex == null) {
+		if (this.props.selectedHex == null) {
 			return (
 				<div className={"sidebarSettlement"}>
 					<h3>Select a hex first</h3>
-				</div>)
+				</div>
+			)
 		}
-		if (this.state.selectedHex.settlement == null) {
+		if (this.props.settlement == null) {
 			return (
 				<div className={"sidebarSettlement"}>
 					<h3>No settlement on this hex</h3>
@@ -162,12 +156,12 @@ class SidebarSettlement extends Component {
 		}
 		return (
 			<div className={"sidebarSettlement"}>
-				<input type={"text"}
-				       className={"sidebarSettlementNameInput"}
-				       value={this.state.selectedHex.settlement.name}
-				       onChange={this.onSettlementNameChange}
-				       onBlur={this.onSettlementNameBlur}
-				       />
+				<input
+					type={"text"}
+					className={"sidebarSettlementNameInput"}
+					value={this.props.settlement.name}
+					onChange={this.onSettlementNameChange}
+				/>
 				<div className={"sidebarSettlementDistrictList"}>
 					{this.getDistrictElementList()}
 				</div>
@@ -182,5 +176,5 @@ class SidebarSettlement extends Component {
 	}
 }
 
-export default SidebarSettlement
-export {selectedDistrict}
+export default observer(SidebarSettlement)
+export { selectedDistrict }

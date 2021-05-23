@@ -10,7 +10,7 @@ class Aqueduct {
 		consumption: 0,
 		bonusBP: 0,
 	}
-	icon=require("../../../../res/img/icons/map/Aqueduct.png")
+	icon=require("../../../../res/img/icons/map/Aqueduct.png").default
 	effect = "One end must be hill or mountain hex. Allows settelment to build water-dependet buildings"
 }
 
@@ -56,7 +56,7 @@ class Farm {
 		consumption: -2,
 		bonusBP: 0,
 	}
-	icon=require("../../../../res/img/icons/map/Farm.png")
+	icon=require("../../../../res/img/icons/map/Farm.png").default
 	effect = " "
 }
 
@@ -87,7 +87,7 @@ class Fort {
 		consumption: 1,
 		bonusBP: 0,
 	}
-	icon=require("../../../../res/img/icons/map/Castle.png")
+	icon=require("../../../../res/img/icons/map/Castle.png").default
 	effect = "Defense +4. If this hex becomes a settlement, this improvement counts as one Barracks and one Stables building."
 }
 
@@ -103,7 +103,7 @@ class Highway {
 		consumption: 0,
 		bonusBP: 0,
 	}
-	icon=require("../../../../res/img/icons/map/Road.png")
+	icon=require("../../../../res/img/icons/map/Road.png").default
 	effect = "Improves overland travel speed"
 }
 
@@ -119,7 +119,7 @@ class Mine {
 		consumption: 0,
 		bonusBP: 1,
 	}
-	icon=require("../../../../res/img/icons/map/Mine.png")
+	icon=require("../../../../res/img/icons/map/Mine.png").default
 	effect = ""
 }
 
@@ -150,7 +150,7 @@ class Road {
 		consumption: 0,
 		bonusBP: 0,
 	}
-	icon=require("../../../../res/img/icons/map/Road.png")
+	icon=require("../../../../res/img/icons/map/Road.png").default
 	effect = "Improves overland travel speed"
 }
 
@@ -226,7 +226,7 @@ class Resource {
 		consumption: 0,
 		bonusBP: 0,
 	}
-	icon=require("../../../../res/img/icons/map/Resource.png")
+	icon=require("../../../../res/img/icons/map/Resource.png").default
 	effect = "Economy/Stability and BP +1 with Mine/Quarry/Sawmill, Consumption -1 with Farm/Fishery"
 }
 
@@ -242,7 +242,7 @@ class River {
 		consumption: 0,
 		bonusBP: 0,
 	}
-	icon=require("../../../../res/img/icons/map/River.png")
+	icon=require("../../../../res/img/icons/map/River.png").default
 	effect = ""
 }
 
@@ -276,6 +276,7 @@ class ImprovementList {
 			if (ImprovementList.extraList[i].id === id)
 				return ImprovementList.extraList[i]
 		}
+		console.warn(`Did not find an improvement with id of ${id}`)
 		return null
 	}
 	static getByName = (name) => {

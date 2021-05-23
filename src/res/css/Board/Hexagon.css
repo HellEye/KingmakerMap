@@ -1,6 +1,9 @@
 .hexagonInner:hover {
     /*opacity: 0.3;*/
     /*z-index: 1;*/
+    
+}
+.hexagonInner.hovered {
     background-color: #ffffff44;
     z-index: 12;
 }

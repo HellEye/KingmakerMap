@@ -26,13 +26,9 @@ function makeRequest(url, method, data = null) {
 		.catch(err => {
 			if (err instanceof SyntaxError) {
 				console.error(`Json parse error from ${method} at ${addr + url}`)
-				console.error(err)
 				Toast.push("Json parse error, this really shouldn't happen", 10, "warn")
 				return []
 			} else {
-				console.log(err)
-				console.log(err.data)
-				Toast.push("Error with loading data: " + err.data?.status, 10, "warn")
 				return []
 			}
 		})

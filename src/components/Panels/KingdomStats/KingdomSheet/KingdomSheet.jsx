@@ -7,10 +7,9 @@ import {Tab, TabList, TabPanel, Tabs} from "react-tabs"
 import "../../../../res/css/UI/Tabs.css"
 import KingdomSheetRuler from "./KingdomSheetRuler"
 import {kingdoms, selectedKingdom} from "../../../../scripts/kingdom/data/kingdoms"
-import {hexDataGrid} from "../../../../scripts/kingdom/data/hexData"
+import hexDataGrid from "../../../../scripts/kingdom/data/hexes/HexDataGrid"
 import {observer} from "mobx-react"
 import KingdomSheetEdict from "./KingdomSheetEdict"
-import DropdownSelect from "../../../util/DropdownSelect"
 import KingdomSheetBuildingList from "./KingdomSheetBuildingList"
 
 
@@ -53,6 +52,7 @@ class KingdomSheet extends Component {
 		this.state = {
 			kingdom: null,
 		}
+		this.hexDataGrid=hexDataGrid
 	}
 
 	componentDidMount() {

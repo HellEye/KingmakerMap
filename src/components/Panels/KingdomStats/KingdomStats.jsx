@@ -1,7 +1,8 @@
 import React, {Component} from "react"
 import {observer} from "mobx-react"
 import "../../../res/css/Panels/KingdomStats.css"
-import {Accumulator, hexDataGrid} from "../../../scripts/kingdom/data/hexData"
+import hexDataGrid from "../../../scripts/kingdom/data/hexes/HexDataGrid"
+import { Accumulator } from "../../../scripts/kingdom/data/hexes/Accumulator"
 import {selectedKingdom} from "../../../scripts/kingdom/data/kingdoms"
 import {observe} from "mobx"
 import NumberInput from "../../util/NumberInput"
@@ -73,7 +74,7 @@ class KingdomStats extends Component {
 
 
 		return {
-			calc: `(d20 + ${bonus}/${divideBy}) + ${kingdomData.data.extraBP}`,
+			calc: `(1d20+${bonus})/${divideBy}+${kingdomData.data.extraBP}`,
 			total: `(${Math.floor((bonus + 1) / divideBy + kingdomData.data.extraBP)}
 		-${Math.floor((bonus + 20) / divideBy + kingdomData.data.extraBP)})`,
 		}
@@ -167,14 +168,14 @@ class KingdomStats extends Component {
 				</div>
 				<div style={{gridArea: "consumption"}}>
 					<h4>Consumption:</h4>
-					<h3>
-						{Math.max(0, consumption)}
-					</h3>
 					<h4>
+						{Math.max(0, consumption)}
+					</h4>
+					<h5>
 						+
 						({Math.max(0, kingdomData.edictMinConsumption)} - {Math.max(0, kingdomData.edictMaxConsumption)})
-					</h4>
-					{consumption < 0 ? <h3>({consumption})</h3> : ""}
+					</h5>
+					{consumption < 0 ? <h4>({consumption})</h4> : ""}
 				</div>
 				<div style={{gridArea: "bp"}}>
 					<NumberInput

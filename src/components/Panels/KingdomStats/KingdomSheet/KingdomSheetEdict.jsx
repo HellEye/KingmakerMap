@@ -1,7 +1,6 @@
 import React, {Component} from "react"
 import {edicts} from "../../../../scripts/kingdom/data/kingdomData"
 import {observer} from "mobx-react"
-import DropdownSelect from "../../../util/DropdownSelect"
 import Select from "react-select"
 
 class KingdomSheetEdict extends Component {

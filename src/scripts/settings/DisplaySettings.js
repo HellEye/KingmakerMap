@@ -1,12 +1,14 @@
-import {decorate, observable} from "mobx"
+import { makeObservable, observable} from "mobx"
 
 class DisplaySettings {
+	
 	drawHexes = true
+
 }
 
-decorate(DisplaySettings, {
+const instance = new DisplaySettings()
+makeObservable(instance, {
 	drawHexes: observable,
 })
-const instance = new DisplaySettings()
 
 export default instance

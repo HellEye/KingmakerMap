@@ -37,8 +37,8 @@ class BuildingGrid extends Component {
 		return (
 			<div className={"buildingGrid"}>
 				<h1>Selected district: {
-					this.props.selectedDistrict != null ?
-						this.props.selectedDistrict.id : "Error"}
+					this.props.selectedDistrict ?
+						this.props.selectedDistrict.name : "Error"}
 				</h1>
 				<BuildingGridImprovements
 					settlement={this.props.selectedDistrict.settlement}
@@ -57,6 +57,7 @@ class BuildingGrid extends Component {
 				</div>*/}
 				<BuildingFilter
 					onSelect={this.onBuildingSelect}
+					settlement={this.props.selectedDistrict.settlement}
 				/>
 
 			</div>

@@ -375,7 +375,9 @@
 .buildingGridImprovementsImprovement .MuiButtonBase-root:hover {
     background-color: #055a6e20 !important;
 }
-
+.buildingGridFilterBuilding.discounted {
+    color:#6cb3d4;
+}
 /*
 Maybe in the future resize when smaller screen?
 @media only screen and (max-width: 1350px){

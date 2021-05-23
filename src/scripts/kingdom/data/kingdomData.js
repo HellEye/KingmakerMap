@@ -1,6 +1,6 @@
-import {computed, decorate, observable} from "mobx"
+import {computed, makeObservable, observable} from "mobx"
 import dbLoader from "../../utils/dbLoader"
-import {hexDataGrid} from "./hexData"
+import hexDataGrid from "./hexes/HexDataGrid"
 
 const emptyKingdomData = observable({
 	alignment: 0,
@@ -235,7 +235,11 @@ const edicts = {
 class KingdomData {
 
 	constructor(data) {
-		this.data = data
+		this.data = {...this.data, ...data}
+		makeObservable(this, {
+			data: observable,
+			size: computed,
+		})
 	}
 
 	data = {
@@ -501,9 +505,6 @@ class KingdomData {
 	}
 }
 
-decorate(KingdomData, {
-	data: observable,
-	size: computed,
-})
+
 export default KingdomData
 export {emptyKingdomData, edicts}

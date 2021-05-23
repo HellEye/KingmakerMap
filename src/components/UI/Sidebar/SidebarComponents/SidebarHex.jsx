@@ -1,16 +1,20 @@
-import React, {Component} from "react"
-import {kingdoms} from "../../../../scripts/kingdom/data/kingdoms"
-import {selectedHex} from "../../../board/HexGrid"
+import React, { Component } from "react"
+import { kingdoms } from "../../../../scripts/kingdom/data/kingdoms"
+import { selectedHex } from "../../../board/HexGrid"
 import DropdownSelect from "../../../util/DropdownSelect"
-import {TerrainList} from "../../../../scripts/kingdom/data/hexImprovements/TerrainMilo"
+import { TerrainList } from "../../../../scripts/kingdom/data/hexImprovements/TerrainMilo"
 import SidebarHexImprovements from "./SidebarHexImprovements"
-import {observer} from "mobx-react"
+import { observer } from "mobx-react"
+import { autorun } from "mobx"
 
 class SidebarHex extends Component {
-
 	constructor(props) {
-		super(props);
-
+		super(props)
+		this.state = {
+			selectedHex: undefined
+		}
+		this.autoruns=[]
+		
 	}
 
 	componentDidMount = () => {
@@ -18,15 +22,16 @@ class SidebarHex extends Component {
 	}
 	componentWillUnmount = () => {
 		this._isMounted = false
-
 	}
 	changeKingdom = (newValue) => {
-		const prevData = selectedHex.get().ownedBy = kingdoms.getById(newValue.value)
-		selectedHex.get().saveToDb()
+		const prevData = (this.props.selectedHex.ownedBy = kingdoms.getById(
+			newValue.value
+		))
+		this.props.selectedHex.saveToDb()
 	}
 	changeTerrain = (newValue) => {
 		const newTerrain = TerrainList.getById(newValue.value)
-		selectedHex.get().setTerrain(newTerrain)
+		this.props.selectedHex.setTerrain(newTerrain)
 	}
 
 	render() {
@@ -34,52 +39,60 @@ class SidebarHex extends Component {
 			<div className={"sidebarHexPanel"}>
 				<h3>Hex owned by:</h3>
 				<DropdownSelect
-					options={[{value: 0, label: "None"}]
-						.concat(kingdoms.map((value) => {
-							return {value: value.id, label: value.name}
-						}))}
-					disabled={selectedHex.get() == null}
+					options={[{ value: 0, label: "None" }].concat(
+						kingdoms.map((value) => {
+							return { value: value.id, label: value.name }
+						})
+					)}
+					disabled={this.props.selectedHex == null}
 					onChange={this.changeKingdom}
 					value={
-						selectedHex.get() && selectedHex.get().ownedBy ? {
-							value: selectedHex.get().ownedBy.id,
-							label: selectedHex.get().ownedBy.name,
-						} : {
-							value: 0,
-							label: "None",
-						}}
+						this.props.selectedHex && this.props.selectedHex.ownedBy
+							? {
+									value: this.props.selectedHex.ownedBy.id,
+									label: this.props.selectedHex.ownedBy.name
+							  }
+							: {
+									value: 0,
+									label: "None"
+							  }
+					}
 				/>
 				<h3>Terrain:</h3>
 				<DropdownSelect
-					options={[{value: 0, label: "None"}]
-						.concat(TerrainList.list.map((value) => {
-							return {value: value.id, label: value.name}
-						}))}
+					options={[{ value: 0, label: "None" }].concat(
+						TerrainList.list.map((value) => {
+							return { value: value.id, label: value.name }
+						})
+					)}
 					onChange={this.changeTerrain}
-					disabled={selectedHex.get() == null}
+					disabled={this.props.selectedHex == null}
 					value={
-						(selectedHex.get() && selectedHex.get().terrainType) ? {
-							value: selectedHex.get().terrainType.id,
-							label: selectedHex.get().terrainType.name,
-						} : {
-							value: 0,
-							label: "None",
-						}
+						this.props.selectedHex && this.props.selectedHex.terrainType
+							? {
+									value: this.props.selectedHex.terrainType.id,
+									label: this.props.selectedHex.terrainType.name
+							  }
+							: {
+									value: 0,
+									label: "None"
+							  }
 					}
 				/>
-				{selectedHex.get() && selectedHex.get().terrainType ?
+				{this.props.selectedHex && this.props.selectedHex.terrainType ? (
 					<>
 						<h3>Improvements:</h3>
 						<SidebarHexImprovements
-							hexData={selectedHex.get()}
-							terrain={selectedHex.get().terrainType}
+							hexData={this.props.selectedHex}
+							terrain={this.props.selectedHex.terrainType}
 						/>
 					</>
-					: ""}
+				) : (
+					""
+				)}
 			</div>
 		)
 	}
-
 }
 
 export default observer(SidebarHex)

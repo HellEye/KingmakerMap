@@ -1,11 +1,10 @@
-import React, {Component} from "react"
-import {BuildingList} from "../../../scripts/kingdom/data/buildings/buildings"
+import React, { Component } from "react"
+import { BuildingList } from "../../../scripts/kingdom/data/buildings/buildings"
 import BuildingHoverTooltip from "./BuildingHoverTooltip"
 
 class BuildingFilterDisplay extends Component {
-
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			mouseHover: false,
 			mousePosX: 0,
@@ -29,23 +28,29 @@ class BuildingFilterDisplay extends Component {
 		})
 	}
 
-
 	selectBuilding = () => {
 		this.props.onSelect(this.props.building)
 	}
 
-
 	render() {
-		const {name, bpCost} = this.props.building
-		const {stability, loyalty, economy} = this.props.building.bonus
+		const { name, bpCost } = this.props.building
+		const { stability, loyalty, economy } = this.props.building.bonus
 		return (
 			<>
-				<div ref={this.divRef} className={"buildingGridFilterBuilding"}>
+				<div
+					ref={this.divRef}
+					className={
+						"buildingGridFilterBuilding " + (this.props.discounted
+							? "discounted"
+							: "")
+					}
+				>
 					<h3
 						onClick={this.selectBuilding}
 						onMouseEnter={this.onMouseEnter}
 						onMouseLeave={this.onMouseLeave}
-						onMouseMove={this.onMouseMove}>
+						onMouseMove={this.onMouseMove}
+					>
 						{name}
 					</h3>
 					<h3>{economy || 0}</h3>
@@ -110,23 +115,31 @@ class BuildingFilter extends Component {
 	getFilteredBuildingList = () => {
 		return this.buildingList
 			.filter((building) => {
-				return building.name.toLowerCase().includes(this.state.sortName) && building.size > 0
+				return (
+					building.name.toLowerCase().includes(this.state.sortName) &&
+					building.size > 0
+				)
 			})
 			.map((building) => {
-				return <BuildingFilterDisplay
-					key={building.id}
-					building={building}
-					onSelect={this.onBuildingSelect}
-				/>
+				return (
+					<BuildingFilterDisplay
+						key={building.id}
+						building={building}
+						onSelect={this.onBuildingSelect}
+						discounted={this.props.settlement.hasDiscountFor(building)}
+					/>
+				)
 			})
 	}
 	buildingComparator = (fieldName, ascending) => (first, second) => {
-		if (!fieldName) return 0;
+		if (!fieldName) return 0
 		if (fieldName === "bpCost")
-			return ascending ?
-				(first[fieldName] || 0) - (second[fieldName] || 0) : (second[fieldName] || 0) - (first[fieldName] || 0)
-		return ascending ?
-			(first.bonus[fieldName] || 0) - (second.bonus[fieldName] || 0) : (second.bonus[fieldName] || 0) - (first.bonus[fieldName] || 0)
+			return ascending
+				? (first[fieldName] || 0) - (second[fieldName] || 0)
+				: (second[fieldName] || 0) - (first[fieldName] || 0)
+		return ascending
+			? (first.bonus[fieldName] || 0) - (second.bonus[fieldName] || 0)
+			: (second.bonus[fieldName] || 0) - (first.bonus[fieldName] || 0)
 	}
 
 	changeSorting = (field) => (event) => {
@@ -149,7 +162,9 @@ class BuildingFilter extends Component {
 				},
 			})
 		}
-		this.buildingList = this.buildingList.sort(this.buildingComparator(field, newAscending))
+		this.buildingList = this.buildingList.sort(
+			this.buildingComparator(field, newAscending)
+		)
 	}
 
 	render() {
