@@ -47,12 +47,12 @@ class KingdomStats extends Component {
 
 	updateTreasury = value => event => {
 		const lastKingdom = this.state.kingdom
-		lastKingdom.kingdomData.data.treasury += value * this.state.treasuryChange
+		const currentTreasury = lastKingdom.kingdomData.data.treasury
+		lastKingdom.kingdomData.setField("treasury", currentTreasury+(value * this.state.treasuryChange))
 		this.setState({
 			...this.state,
 			kingdom: lastKingdom,
 		})
-		lastKingdom.kingdomData.saveToDb()
 	}
 
 	resetTreasuryInput = (event) => {
@@ -172,8 +172,7 @@ class KingdomStats extends Component {
 						{Math.max(0, consumption)}
 					</h4>
 					<h5>
-						+
-						({Math.max(0, kingdomData.edictMinConsumption)} - {Math.max(0, kingdomData.edictMaxConsumption)})
+						{kingdomData.getConsumptionExtrasString()}
 					</h5>
 					{consumption < 0 ? <h4>({consumption})</h4> : ""}
 				</div>

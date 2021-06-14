@@ -1,12 +1,11 @@
-import { observable, makeObservable, action } from "mobx";
-import dbLoader from "../../../utils/dbLoader";
-import socketHandler from "../../../utils/socketHandler";
-import socketDataReplacer from "../../../utils/socketDataReplacer";
-import { Marker } from "./Marker";
+import { observable, makeObservable, action } from "mobx"
+import socketHandler from "../../../utils/socketHandler"
+import socketDataReplacer from "../../../utils/socketDataReplacer"
+import { Marker } from "./Marker"
 
 class Markers {
-	markerList = [];
-	loaded = false;
+	markerList = []
+	loaded = false
 
 	constructor() {
 		// dbLoader("markers", "GET")
@@ -27,59 +26,55 @@ class Markers {
 		// })
 		makeObservable(this, {
 			markerList: observable,
-			loaded: observable
-		});
+			loaded: observable,
+		})
 		const callbacks = {
 			onLoaded: action(() => (this.loaded = true)),
 			onDelete: this._deleteMarker,
 			onInsert: this._addMarker,
-			clearAll: this._clearAll
-		};
-		socketDataReplacer.watch("markers", callbacks);
-
-		// Settings.socket.on("markers", id => {
-		// 	dbLoader("markers/" + id)
-		// 		.then(obj => {
-		// 			this.update(id, obj)
-		// 		})
-		// })
+			clearAll: this._clearAll,
+		}
+		socketDataReplacer.watch("markers", callbacks)
 	}
 	_clearAll = () => {
-		this.markerList.clear();
-	};
+		this.markerList.clear()
+	}
 	_deleteMarker = (id) => {
-		const index = this.markerList.findIndex((v) => v.id === id);
-		this.markerList.splice(index, 1);
-	};
+		const index = this.markerList.findIndex((v) => v.id === id)
+		if (index>-1)
+			this.markerList.splice(index, 1)
+	}
 	_addMarker = (addObj) => {
-		this.markerList.push(new Marker(addObj));
-	};
+		this.markerList.push(new Marker(addObj))
+	}
 
 	update = (id, obj) => {
-		const index = this.markerList.findIndex((v) => v.id === id || v.id === -1);
+		const index = this.markerList.findIndex((v) => v.id === id || v.id === -1)
 		if (index < 0 && obj) {
-			this.markerList.push(new Marker(obj));
+			this.markerList.push(new Marker(obj))
 		} else if (index >= 0 && !obj) {
-			this.markerList.splice(index, 1);
+			this.markerList.splice(index, 1)
 		}
-	};
+	}
 
 	addMarker = (x, y, color) => {
-		// const newMarker = new Marker({ id: -1, x: x, y: y, color: color })
-		// const index = this.markerList.push(newMarker) - 1
-		// dbLoader("markers", "PUT", newMarker.toFormData()).then((response) => {
-		// 	this.markerList[index].id = response.id
-		// })
-		socketHandler.emit();
-	};
+		socketHandler.emit("insert", {
+			collection: "markers",
+			newObj: {
+				x: x,
+				y: y,
+				color: color,
+			},
+		})
+	}
 	removeMarker = (id) => {
-		const index = this.markerList.findIndex((v) => v.id === id);
-		if (index >= 0) {
-			dbLoader("markers/" + id, "DELETE").then(() => {
-				this.markerList.splice(index, 1);
-			});
-		}
-	};
+		socketHandler.emit("delete", {
+			collection:"markers",
+			findObj: {
+				_id: id,
+			},
+		})
+	}
 }
 const markers = new Markers()
 export default markers

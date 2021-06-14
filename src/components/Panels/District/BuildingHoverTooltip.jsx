@@ -3,7 +3,7 @@ import HoverTooltip from "../../util/HoverTooltip"
 import {BuildingList} from "../../../scripts/kingdom/data/buildings/buildings"
 
 class BuildingHoverTooltip extends Component {
-	constructor(props) {
+	constructor(props) { 
 		super(props)
 		this.state = {}
 	}

@@ -6,7 +6,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
 import AccordionDetails from "@material-ui/core/AccordionDetails"
 import { observer } from "mobx-react"
 import { selectedHex } from "../../board/HexGrid"
-import { action, autorun, makeObservable, observe } from "mobx"
+import { action, autorun } from "mobx"
 import SidebarSettlement from "./SidebarComponents/SidebarSettlement"
 import SidebarHex from "./SidebarComponents/SidebarHex"
 import { selectedKingdom } from "../../../scripts/kingdom/data/kingdoms"
@@ -37,7 +37,7 @@ class Sidebar extends Component {
 
 	componentWillUnmount() {
 		this._isMounted = false
-		this.selectHex()
+		// this.selectHex()
 	}
 
 	panelStyle = {

@@ -1,9 +1,7 @@
 import { observable, makeObservable } from "mobx"
 import dbLoader from "../../../utils/dbLoader"
-import { BuildingList } from "../buildings/buildings"
 import { buildingReducer } from "./buildingReducer"
 import { BuildingDetails } from "./BuildingDetails"
-import dotNotation from "mongo-dot-notation"
 import socketHandler from "../../../utils/socketHandler"
 
 export class BuildingGrid {
@@ -12,10 +10,12 @@ export class BuildingGrid {
 
 	constructor(obj, district) {
 		this.district = district
-		this.buildings.push(obj?.map((v) => new BuildingDetails(v)) || [])
+		if(obj)
+			this.buildings.push(...obj?.map((v) => new BuildingDetails(v)))
 		makeObservable(this, {
 			buildings: observable.shallow,
 		})
+
 	}
 	getFindPath = () => {
 		return this.district.getFindPath()
@@ -33,8 +33,6 @@ export class BuildingGrid {
 					newObj[fieldName] = this[fieldName]
 				}
 		}
-		console.log("findObj", findObj, dotNotation.flatten(findObj).$set)
-		console.log("newObj", newObj, dotNotation.flatten(newObj))
 		socketHandler.emit("update", {
 			collection: "districts",
 			findObj: findObj,
@@ -45,10 +43,10 @@ export class BuildingGrid {
 	addBuilding = (x, y, building, rotation) => {
 		if (!building || x < 0 || y < 0) return
 		const kingdomData = this.district?.settlement?.hex?.ownedBy?.kingdomData
-		const discount = this.district.settlement.applyDiscountFor(building)
+		const discount = this.district.settlement.hasDiscountFor(building)
 		const price = discount ? Math.ceil(building.bpCost / 2) : building.bpCost
 		if (kingdomData && kingdomData.data.treasury < price) return
-
+		this.district.settlement.applyDiscountFor(building)
 		const newBuilding = new BuildingDetails(
 			{ id: -1, building: building.id, x: x, y: y, rotation: rotation },
 			this
@@ -66,7 +64,6 @@ export class BuildingGrid {
 	}
 	removeBuilding = (x, y) => {
 		const index = this.buildings.findIndex((b) => b.x === x && b.y === y)
-		console.log(index)
 		if (index < 0) return
 		dbLoader(`district/buildings/${this.district.id}/${x}-${y}`, "DELETE")
 		this.buildings.splice(index, 1)
@@ -95,12 +92,12 @@ export class BuildingGrid {
 
 	update = (obj) => {
 		this.buildings.clear()
-		this.buildings.push(obj.map((v) => new BuildingDetails(v, this)))
+		this.buildings.push(...obj.map((v) => new BuildingDetails(v, this)))
 	}
 
 	updateBuildings = (obj) => {
 		this.buildings.clear()
-		this.buildings.push(obj.map((v) => new BuildingDetails(v, this)))
+		this.buildings.push(...obj.map((v) => new BuildingDetails(v, this)))
 		/* 
 		const index = this.buildings.findIndex((v) => v.id === id || v.id === -1);
 		if (!obj && index >= 0) {

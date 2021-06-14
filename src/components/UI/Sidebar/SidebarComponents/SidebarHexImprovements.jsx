@@ -23,7 +23,7 @@ const SidebarHexImprovement = observer(class SidebarHexImprovement extends Compo
 
 	buildImprovement = (event) => {
 		if (event.target.checked) {
-			const built = this.props.hexData
+			this.props.hexData
 				.addImprovement(this.props.improvement, this.props.cost)
 		} else {
 			this.props.hexData.removeImprovement(this.props.improvement)

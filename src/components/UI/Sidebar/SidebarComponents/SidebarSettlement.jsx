@@ -27,22 +27,22 @@ const DistrictElement=observer(class DistrictElement extends Component {
 			<div className={"sidebarSettlementDistrictPanel"}>
 				<input
 					type="text"
-					className="sidebarSettlementNameInput"
+					className="sidebarSettlementNameInput district"
 					value={this.props.district.name}
 					onChange={this.changeDistrictName}
 				/>
 
 				<input
 					type={"button"}
-					className={"button"}
+					className={"button sidebarButton"}
 					value={"Open"}
 					onClick={this.openDistrict}
 				/>
 				<ConfirmButton
 					first={"Delete"}
 					second={"Confirm"}
-					firstClass={"button sidebarSettlementRemoveButton"}
-					secondClass={"button buttonRed sidebarSettlementRemoveButtonConfirm"}
+					firstClass={"button sidebarSettlementRemoveButton sidebarButton"}
+					secondClass={"button buttonRed sidebarSettlementRemoveButtonConfirm sidebarButton"}
 					callback={this.removeDistrict}
 				/>
 			</div>

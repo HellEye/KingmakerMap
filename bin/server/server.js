@@ -48,7 +48,7 @@ var getUser = function getUser(id) {
 };
 
 io.on("connection", function (socket) {
-  console.log("connected from " + socket.id);
+  console.info("connected from " + socket.id);
   socket.on("greet", function (_ref) {
     var clientName = _ref.clientName;
     if (getUser(socket.id) === "<undefined>") users.push({
@@ -63,7 +63,7 @@ io.on("connection", function (socket) {
         options = _ref2.options,
         causedBy = _ref2.causedBy,
         projection = _ref2.projection;
-    console.log("received find from ".concat(getUser(socket.id), " with "), collection, findObj);
+    console.info("received find from ".concat(getUser(socket.id), " with "), collection, findObj, projection);
     if (findObj && "_id" in findObj) findObj._id = (0, _bson.ObjectID)(findObj._id);
 
     _db.default.find(findObj, collection, options, projection).then(function (result) {
@@ -86,7 +86,7 @@ io.on("connection", function (socket) {
           switch (_context.prev = _context.next) {
             case 0:
               collection = _ref3.collection, findObj = _ref3.findObj, options = _ref3.options;
-              console.log("received delete from ".concat(getUser(socket.id), " with "), collection, findObj);
+              console.info("received delete from ".concat(getUser(socket.id), " with "), collection, findObj);
               if (findObj && "_id" in findObj) findObj._id = (0, _bson.ObjectID)(findObj._id);
               _context.next = 5;
               return getIdToChange(findObj, collection);
@@ -116,7 +116,7 @@ io.on("connection", function (socket) {
           switch (_context2.prev = _context2.next) {
             case 0:
               collection = _ref5.collection, findObj = _ref5.findObj, newObj = _ref5.newObj, options = _ref5.options;
-              console.log("received update from ".concat(getUser(socket.id), " with "), collection, findObj, newObj);
+              console.info("received update from ".concat(getUser(socket.id), " with "), collection, findObj, newObj);
               _context2.next = 4;
               return getIdToChange(findObj, collection);
 
@@ -141,7 +141,7 @@ io.on("connection", function (socket) {
     var collection = _ref7.collection,
         newObj = _ref7.newObj,
         options = _ref7.options;
-    console.log("received insert from ".concat(getUser(socket.id), " with "), collection);
+    console.info("received insert from ".concat(getUser(socket.id), " with "), collection);
 
     _db.default.insert(newObj, collection, options).then(makeReply("insert", collection, undefined, options, undefined, newObj));
   });
@@ -230,12 +230,10 @@ function _getIdToChange() {
 
           case 8:
             idsList = _context4.t0;
-            console.log(idsList);
             idToChange = idsList ? idsList[0] : "";
-            console.log("Id to change: ", idToChange || "no id");
             return _context4.abrupt("return", idToChange);
 
-          case 13:
+          case 11:
           case "end":
             return _context4.stop();
         }

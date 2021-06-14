@@ -1,7 +1,8 @@
 import React, { Component } from "react"
 import { BuildingList } from "../../../scripts/kingdom/data/buildings/buildings"
 import BuildingHoverTooltip from "./BuildingHoverTooltip"
-
+import {buildingGridStore } from "./BuildingGridBuildings"
+import { action } from "mobx"
 class BuildingFilterDisplay extends Component {
 	constructor(props) {
 		super(props)
@@ -28,9 +29,9 @@ class BuildingFilterDisplay extends Component {
 		})
 	}
 
-	selectBuilding = () => {
-		this.props.onSelect(this.props.building)
-	}
+	selectBuilding = action("buildingFilterSelectBuilding",() => {
+		buildingGridStore.selectedBuilding=this.props.building
+	})
 
 	render() {
 		const { name, bpCost } = this.props.building

@@ -1,4 +1,4 @@
-import { reaction, isObservableArray, toJS } from "mobx"
+import { reaction, isObservableArray } from "mobx"
 
 /**
  * Function will create a mobx reaction to watch given fields for changes,

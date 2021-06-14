@@ -136,7 +136,6 @@ class SocketDataReplacer {
 	}
 
 	update = (data) => {
-		console.warn("result from update", data.result)
 		this.watchList.forEach((e) => {
 			e.synchronize(data)
 		})

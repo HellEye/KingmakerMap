@@ -16,14 +16,13 @@ class KingdomSheetEdict extends Component {
 		this._isMounted = false
 	}
 	onChange = (newValue)=>{
-		console.log(this.props.kingdom.kingdomData.data[this.props.value])
 		this.props.changeCallback({name:this.props.value,value:newValue.value})
 		this.props.saveCallback()
 	}
 
 	render() {
 		const selectedEdict=edicts[this.props.value]
-		const currentValue=this.props.kingdom.kingdomData.data[this.props.value]
+		const currentValue=this.props.kingdom.kingdomData.data[this.props.value] || 0
 		return (
 			<div className={"kingdomSheetEdict"}>
 				<h3>{this.props.name}</h3>

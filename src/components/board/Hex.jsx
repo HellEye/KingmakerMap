@@ -2,12 +2,11 @@ import React, { Component } from "react"
 import Hexagon from "react-hexagon"
 import "../../res/css/Board/Hexagon.css"
 import { selectedHex } from "./HexGrid"
-import { makeObservable, observe, autorun, action } from "mobx"
+import { autorun } from "mobx"
 import { observer } from "mobx-react"
 import { BoardContext } from "./Board"
 
 import settlementIcon from "../../res/img/icons/map/Settlement.png"
-import { computedFn } from "mobx-utils"
 
 
 class Hex extends Component {

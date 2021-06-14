@@ -62,7 +62,6 @@ class KingdomSheetBuildingList extends Component {
 
 	componentDidMount = () => {
 		this._isMounted = true
-		console.log(this.buildingCount)
 	}
 	componentWillUnmount = () => {
 		this._isMounted = false

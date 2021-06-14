@@ -1,11 +1,9 @@
 import React, { Component } from "react"
 import { kingdoms } from "../../../../scripts/kingdom/data/kingdoms"
-import { selectedHex } from "../../../board/HexGrid"
 import DropdownSelect from "../../../util/DropdownSelect"
 import { TerrainList } from "../../../../scripts/kingdom/data/hexImprovements/TerrainMilo"
 import SidebarHexImprovements from "./SidebarHexImprovements"
 import { observer } from "mobx-react"
-import { autorun } from "mobx"
 
 class SidebarHex extends Component {
 	constructor(props) {
@@ -24,10 +22,7 @@ class SidebarHex extends Component {
 		this._isMounted = false
 	}
 	changeKingdom = (newValue) => {
-		const prevData = (this.props.selectedHex.ownedBy = kingdoms.getById(
-			newValue.value
-		))
-		this.props.selectedHex.saveToDb()
+		this.props.selectedHex.setOwnedBy(kingdoms.getById(newValue.value))
 	}
 	changeTerrain = (newValue) => {
 		const newTerrain = TerrainList.getById(newValue.value)

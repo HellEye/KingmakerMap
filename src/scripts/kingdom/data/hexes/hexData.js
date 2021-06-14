@@ -1,11 +1,12 @@
-import { observable, observe, makeObservable, when, reaction, action } from "mobx"
+import { observable, makeObservable, when, action } from "mobx"
 import { kingdoms } from "../kingdoms"
+import hexDataGrid from "../hexes/HexDataGrid"
 import { ImprovementList } from "../hexImprovements/ImprovmentsMilo"
 import { TerrainList } from "../hexImprovements/TerrainMilo"
 import socketHandler from "../../../utils/socketHandler"
 import { Settlement } from "./Settlement"
 import { improvementReducer } from "./improvementReducer"
-import dotNotation from "mongo-dot-notation"
+import dotNotation from "mongo-dot-notation" 
 class HexData {
 	id = 0
 	x = 0
@@ -65,12 +66,16 @@ class HexData {
 	// }
 
 	getFindPath = () =>{
+		if(!this.id) return {
+			x:this.x, y:this.y
+		}
 		return { 
 			_id: this.id
 		}
 	}
 	fieldChanged = (fieldName) => {
 		const findObj = this.getFindPath()
+		hexDataGrid.saveHexIfEmpty(this)
 		const newObj = {}
 		switch (fieldName) {
 			case "terrainType":
@@ -92,6 +97,14 @@ class HexData {
 		})
 	}
 
+	toJson = () => {
+		return { 
+			x:this.x,
+			y:this.y,
+			ownedBy: this.ownedBy,
+			terrainType:this.terrainType,
+		}
+	}
 	hasImprovement = (improvement) => {
 		const index = this.hexImprovements.findIndex(
 			(value) => value.id === improvement.id
@@ -131,16 +144,27 @@ class HexData {
 		this.fieldChanged("label")
 	}
 
-	// createSettlement = () => {
-	// 	if (this.settlement == null) {
-	// 		this.settlement = new Settlement(null, this)
-	// 		dbLoader("settlement", "PUT", this.settlement.toFormData()).then(
-	// 			(out) => (this.settlement.id = out.id)
-	// 		)
-	// 	}
-	// }
+	setOwnedBy = action("hexSetOwnedBy", (kingdom)=>{
+		this.ownedBy=kingdom
+		this.fieldChanged("ownedBy")
+	})
+
+	createSettlement = action("createNewSettlement",() => {
+		hexDataGrid.saveHexIfEmpty(this)
+		if (!this.settlement) {
+			this.settlement = new Settlement(null, this)
+			socketHandler.emit("update", {
+				collection: 'hexes',
+				findObj: this.getFindPath(),
+				newObj: {$set:{settlement:this.settlement.toJson()}},
+			})
+		}
+	})
 
 	update = action((obj) => {
+		console.log("update hex obj", obj)
+		if(!this.id && obj._id)
+			this.id=obj._id
 		this.ownedBy = kingdoms.getById(obj?.ownedBy) || this.ownedBy
 		this.terrainType = TerrainList.getById(obj?.terrainType) || this.terrainType
 		this.label = obj?.label || this.label

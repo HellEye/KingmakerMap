@@ -1,8 +1,9 @@
-import { makeObservable, observable, observe } from "mobx"
+import { action, makeObservable, observable, observe } from "mobx"
 import dbLoader from "../../utils/dbLoader"
 import KingdomData, { emptyKingdomData } from "./kingdomData"
 import { getCookie } from "../../utils/cookies"
-import { computedFn } from "mobx-utils"
+import socketHandler from "../../utils/socketHandler"
+import dotNotation from "mongo-dot-notation"
 import socketDataReplacer from "../../utils/socketDataReplacer"
 const kingdomUrl = "kingdoms"
 const kingdomDataUrl = "kingdomStats"
@@ -13,17 +14,48 @@ class Kingdom {
 		this.id = obj._id
 		this.name = obj.name
 		this.color = obj.color
-		this.kingdomData = new KingdomData(obj.stats)
+		this.kingdomData = new KingdomData(obj.stats, this)
 		makeObservable(this, {
 			name: observable,
 			color: observable
 		})
 	}
-	update(id, name, color) {
-		this.id = id
-		this.name = name
-		this.color = color
+	update=action("updateKingdom",(obj) => {
+		if(obj.id)
+			this.id=obj.id
+		if(obj.name)
+			this.name=obj.name
+		if(obj.color)
+			this.color=obj.color
+		if(obj.stats)
+			this.kingdomData.update(obj.stats)
+	})
+
+	toJson = () => {
+		return { 
+			name:this.name,
+			color:this.color,
+		}
 	}
+
+	fieldChanged=(fieldName)=> {
+		const newObj = {}
+		newObj[fieldName]= this[fieldName]
+		socketHandler.emit("update", {
+			collection: "kingdoms",
+			findObj: { _id: this.id },
+			newObj: dotNotation.flatten(newObj),
+		})
+	}
+	setColor=action("setKingdomColor",(value)=>{
+		this.color=value
+		this.fieldChanged("color")
+	})
+
+	setName=action("setKingdomName",(value)=>{
+		this.name=value
+		this.fieldChanged("name")
+	})
 
 	toFormData = () => {
 		const data = new FormData()
@@ -52,7 +84,7 @@ class Kingdoms {
 	constructor() {
 		this.finishedLoading = false
 		makeObservable(this, {
-			kingdoms: observable,
+			kingdoms: observable.shallow,
 			finishedLoading: observable,
 			kingdomChanged: observable
 		})
@@ -60,24 +92,29 @@ class Kingdoms {
 			onLoaded: this._onLoaded,
 			onInsert: this._onInsert,
 			onDelete: this._onDelete,
-			clearAll: this._clearAll
+			clearAll: this._clearAll,
+			onUpdate:this._onUpdate
 		}
 		socketDataReplacer.watch("kingdoms", callbacks)
 	}
-	_onLoaded = () => {
+	_onLoaded = action("onKingdomFinishedLoading",() => {
 		this.finishedLoading = true
-	}
-	_onDelete = (id) => {
+	})
+	_onDelete = action("onDeleteKingdom",(id) => {
 		this.kingdoms.splice(
 			this.kingdoms.findIndex((v) => v.id === id),
 			1
 		)
-	}
-	_onInsert = (obj) => {
+	})
+	_onInsert = action("onInsertKingdom", (obj) => {
 		this.kingdoms.push(new Kingdom(obj))
-	}
-	_clearAll = () => {
+	})
+	_clearAll = action("onClearKingdoms",() => {
 		this.kingdoms.clear()
+	})
+	_onUpdate=(obj)=>{
+		const kingdomToUpdate = this.kingdoms.find(v=>v.id===obj._id)
+		kingdomToUpdate.update(obj)
 	}
 
 	getIndexById = (id) => {
@@ -99,24 +136,23 @@ class Kingdoms {
 		}
 		return null
 	}
-	push = async (obj) => {
-		this.kingdoms.push(obj)
-		await dbLoader(kingdomUrl, "PUT", obj.toFormData())
+	createNew = () => {
+		socketHandler.emit('insert', {
+			collection:"kingdoms", 
+			newObj: new Kingdom({name:"New Kingdom", color:"#555555"}).toJson(),
+		})
 	}
-	remove = async (index) => {
-		await dbLoader(`${kingdomUrl}/${this.kingdoms[index].id}`, "DELETE")
-		this.kingdoms.splice(index, 1)
-	}
+	remove = action("removeKingdom",(id) => {
+		socketHandler.emit('delete', {
+			collection:"kingdoms",
+			findObj:{_id:id}
+		})
+	})
 
 	editFinished = async (index) => {
-		await dbLoader(
-			`${kingdomUrl}/${this.kingdoms[index].id}`,
-			"POST",
-			this.kingdoms[index].toFormData()
-		)
-		this.kingdomChanged = this.kingdoms[index].id
-		this.kingdomChanged = -1
+		
 	}
+
 	loadKingdomDataFromDb = async () => {
 		const kingdomData = await dbLoader(kingdomDataUrl, "GET")
 		this.kingdoms.forEach((k) => {

@@ -42,7 +42,8 @@ const edicts = [
 	{name: "Taxation", value: "taxationEdict"},
 	{name: "Holiday", value: "holidayEdict"},
 	{name: "Expansion", value: "expansionEdict"},
-	{name: "Recruitment", value: "recruitmentEdict"},
+	{ name: "Recruitment", value: "recruitmentEdict" },
+	{name: "Widthdrawal", value: "widthdrawalEdict"}
 ]
 
 class KingdomSheet extends Component {
@@ -83,19 +84,15 @@ class KingdomSheet extends Component {
 
 	changeKingdomStats = ({name, value}) => {
 		if (selectedKingdom.get() == null || selectedKingdom.get().kingdomData == null) return
-		selectedKingdom.get().kingdomData.data[name] = parseInt(value)
+		selectedKingdom.get().kingdomData.setField(name, parseInt(value))
 		this.forceUpdate()
 	}
 	changeRulerStats = ({name, value}) => {
 		if (selectedKingdom.get() == null || selectedKingdom.get().kingdomData == null) return
-		selectedKingdom.get().kingdomData.data.positions[name] = parseInt(value)
+		selectedKingdom.get().kingdomData.setPositionsField(name, parseInt(value))
 		this.forceUpdate()
 	}
-	changeEdictStats=({name, value})=>{
-		if(selectedKingdom.get()==null || selectedKingdom.get().kingdomData==null) return
-		selectedKingdom.get().kingdomData.data[name]=parseInt(value)
-		this.forceUpdate()
-	}
+
 
 	render() {
 		if (this.state.kingdom == null || this.state.kingdom.kingdomData.data == null)
@@ -199,7 +196,7 @@ class KingdomSheet extends Component {
 										value={val.value}
 										name={val.name}
 										saveCallback={this.saveKingdomData}
-										changeCallback={this.changeEdictStats}
+										changeCallback={this.changeKingdomStats}
 										kingdom={this.state.kingdom}
 									/>
 								))}

@@ -8,9 +8,7 @@ class SettingsSidebarElement extends SidebarElement{
 		this.onClick = this.onClickHandler
 	}
 	onClickHandler = () => {
-		console.log(DisplaySettings.drawHexes)
 		DisplaySettings.drawHexes=!DisplaySettings.drawHexes
-		console.log(DisplaySettings.drawHexes)
 	}
 }
 export default SettingsSidebarElement

@@ -53,7 +53,7 @@ class Farm {
 		loyalty: 0,
 		stability: 0,
 		unrest: 0,
-		consumption: -2,
+		consumption: -3,
 		bonusBP: 0,
 	}
 	icon=require("../../../../res/img/icons/map/Farm.png").default

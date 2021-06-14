@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import Hex from "./Hex"
 import hexDataGrid from "../../scripts/kingdom/data/hexes/HexDataGrid"
 import { observer } from "mobx-react"
-import { action, makeObservable, observable, observe, when } from "mobx"
+import { action, makeObservable, observable, when } from "mobx"
 
 class SelectedHex {
 	constructor(){
@@ -39,8 +39,6 @@ class HexGrid extends Component {
 		when(
 			() => hexDataGrid.loaded,
 			() => {
-				console.log("Loaded", hexDataGrid.loaded)
-				console.log("loaded hexGrid")
 				this.createHexes()
 				this.setState({ loaded: true })
 			}

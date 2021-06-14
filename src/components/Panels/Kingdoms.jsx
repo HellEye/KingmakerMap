@@ -1,11 +1,10 @@
 import React, {Component} from "react"
 import "../../res/css/Board/Board.css"
-import {Kingdom, kingdoms} from "../../scripts/kingdom/data/kingdoms"
+import {kingdoms} from "../../scripts/kingdom/data/kingdoms"
 import "../../res/css/UI/Button.css"
 import "../../res/css/Panels/KingdomDisplay.css"
 import {BlockPicker} from "react-color"
 import {observer} from "mobx-react"
-import makeCancelable from "../../scripts/utils/makeCancellable"
 import ConfirmButton from "../util/ConfirmButton"
 import deleteIcon from "../../res/img/icons/deleteIcon.png"
 
@@ -13,8 +12,7 @@ import deleteIcon from "../../res/img/icons/deleteIcon.png"
 class Kingdoms extends Component {
 
 	addKingdom = () => {
-		kingdoms.push(new Kingdom("Name"))
-			.then(() => this.forceUpdate())
+		kingdoms.createNew()
 	}
 
 	render() {
@@ -35,13 +33,11 @@ class Kingdoms extends Component {
 	}
 }
 
-class KingdomDisplay extends Component {
+const KingdomDisplay = observer(class KingdomDisplay extends Component {
 
 	constructor(props) {
 		super(props)
 		this.state = {
-			index: props.index,
-			kingdom: props.kingdom,
 			pickingColor: false,
 			tryingToRemove: false
 		}
@@ -53,42 +49,22 @@ class KingdomDisplay extends Component {
 	}
 	removePromise = null
 	updateKingdomName = (e) => {
-		const newState = this.state
-		newState.kingdom.name = e.target.value
-		this.setState(newState)
+		this.props.kingdom.setName(e.target.value)
 	}
 	startPickingColor = (e) => {
-		const newState = this.state
-		newState.pickingColor = true
-		this.setState(newState)
+		this.setState({pickingColor:true})
 	}
 	changeColor = (color, e) => {
-		const newState = this.state
-		newState.kingdom.color = color.hex
-		this.setState(newState)
+		this.props.kingdom.setColor(color.hex)
 	}
 	stopPickingColor = (color, e) => {
-		const newState = this.state
-		newState.pickingColor = false
-		newState.kingdom.color = color.hex
-		this.setState(newState)
-		this.editFinished()
+		this.props.kingdom.setColor(color.hex)
+		this.setState({pickingColor:false})
 	}
 
 
 	confirmRemove = (e) => {
-		this.removePromise = makeCancelable(kingdoms.remove(this.state.index))
-		this.removePromise.promise
-			.then(() => {
-				this.setState({tryingToRemove: false})
-				this.removePromise=null
-			})
-			.catch((reason) => {
-				if (!reason.isCanceled)
-					console.error("Database failed", reason)
-				this.removePromise=null
-			})
-
+		kingdoms.remove(this.props.kingdom.id)
 	}
 
 	componentWillUnmount = () => {
@@ -97,19 +73,14 @@ class KingdomDisplay extends Component {
 		this.removePromise=null
 	}
 
-	editFinished = () => {
-		kingdoms.editFinished(this.state.index)
-			.then()
-	}
 	render() {
 		const popover = {}
 		return (
 			<div className={"kingdomDisplay"}>
 				<input className={"kingdomName"}
 				       type={"text"}
-				       value={this.state.kingdom.name}
+				       value={this.props.kingdom.name}
 				       onChange={this.updateKingdomName}
-				       onBlur={this.editFinished}
 				/>
 				<div className={"kingdomColor"}
 				     style={{
@@ -123,7 +94,7 @@ class KingdomDisplay extends Component {
 						>
 							<BlockPicker
 								className={"colorPicker"}
-								color={this.state.kingdom.color}
+								color={this.props.kingdom.color}
 								onChange={this.changeColor}
 								onChangeComplete={this.stopPickingColor}
 							/>
@@ -144,6 +115,6 @@ class KingdomDisplay extends Component {
 			</div>
 		)
 	}
-}
+})
 
 export default observer(Kingdoms)

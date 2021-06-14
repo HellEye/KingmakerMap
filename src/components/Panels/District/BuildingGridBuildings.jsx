@@ -1,8 +1,8 @@
 import React, { Component } from "react"
 import { observer } from "mobx-react"
 import BuildingHoverTooltip from "./BuildingHoverTooltip"
-import { observe, observable } from "mobx"
-import { selectedDistrict } from "../../UI/Sidebar/SidebarComponents/SidebarSettlement"
+import {computedFn} from "mobx-utils"
+import { observe, observable, action, reaction, makeObservable} from "mobx"
 import { BuildingList } from "../../../scripts/kingdom/data/buildings/buildings"
 import DISPLAY from "../../../res/img/icons/buildingGridDisplay.png"
 
@@ -10,25 +10,17 @@ import BUILD from "../../../res/img/icons/buildingGridBuild.png"
 import UPGRADE from "../../../res/img/icons/buildingGridUpgrade.png"
 import DELETE from "../../../res/img/icons/buildingGridDelete.png"
 
-const BuildingGridContext = React.createContext({
-	hovered: [],
-	selected: [],
-	rotation: 0,
-	selectedBuilding: null,
-	shouldDisplay: [],
-	mode: 0
-})
 const gridModeIcons = {
 	DISPLAY,
 	BUILD,
 	UPGRADE,
-	DELETE
+	DELETE,
 }
 const GridMode = {
 	DISPLAY: 0,
 	BUILD: 1,
 	UPGRADE: 3,
-	DELETE: 2
+	DELETE: 2,
 }
 /* hovered,
 						selected,
@@ -37,58 +29,71 @@ const GridMode = {
 						shouldDisplay,
 						mode,
 						district */
-const selectedBuildingStore = observable({
-	selected:{ 
-		x:-5, 
-		y:-5
+const buildingGridStore = {
+	selected: {
+		x: -5,
+		y: -5,
 	},
-	hovered:{ 
-		x:-5, 
-		y:-5
+	hovered: {
+		x: -5,
+		y: -5,
 	},
-	rotation:0,
-	selectedBuilding:undefined,
-	shouldDisplay:false,
-	mode:0,
-	district:undefined
+	hoveredList:[],
+	selectedList:[],
+	rotation: 0,
+	selectedBuilding: undefined,
+	shouldDisplay: undefined,
+	mode: 0,
+	district: undefined,
+	buildingData:computedFn((x, y)=>{
+		return buildingGridStore.district.buildingGrid.getBuilding(x, y)
+	})
+}
+
+makeObservable(buildingGridStore, {
+	selected:observable,
+	hovered:observable,
+	rotation:observable,
+	selectedBuilding:observable,
+	shouldDisplay:observable,
+	mode:observable,
+	district:observable,
 })
+
 const BuildingGridSquare = observer(
 	class BuildingGridSquare extends Component {
-		constructor(props) {
-			super(props)
-			this.state = {
-				buildingData: props.district.buildingGrid.getBuilding(props.x, props.y),
-				district: props.district
-			}
+
+		getBuildingData=()=>{
+			return buildingGridStore.buildingData(this.props.x, this.props.y)
 		}
 
 		componentDidMount = () => {
 			this._isMounted = true
-			this.observeDistrict = observe(selectedDistrict, (change) => {
-				const buildingData = change.newValue.buildingGrid.getBuilding(
-					this.props.x,
-					this.props.y
-				)
-				this.setState({
-					district: change.newValue,
-					buildingData: buildingData
-				})
-				this.changeBuildingListObserver(change.newValue)
-			})
-			this.buildingsChangedListener = observe(
-				this.props.district.buildingGrid.buildings,
-				(change) => {
-					if (this._isMounted) {
-						this.setState({
-							buildingData: this.props.district.buildingGrid.getBuilding(
-								this.props.x,
-								this.props.y
-							)
-						})
-					}
-				}
-			)
-			this.changeBuildingListObserver(this.props.district)
+			// this.observeDistrict = observe(selectedDistrict, (change) => {
+			// 	const buildingData = change.newValue.buildingGrid.getBuilding(
+			// 		this.props.x,
+			// 		this.props.y
+			// 	)
+			// 	this.setState({
+			// 		buildingData: buildingData,
+			// 	})
+			// 	this.changeBuildingListObserver(change.newValue)
+			// })
+			// this.buildingsChangedListener = observe(
+			// 	buildingGridStore.district.buildingGrid.buildings,
+			// 	(change) => {
+			// 		if (this._isMounted) {
+			// 			this.setState({
+			// 				buildingData: buildingGridStore.district.buildingGrid.getBuilding(
+			// 					this.props.x,
+			// 					this.props.y
+			// 				),
+			// 			})
+			// 		}
+			// 	}
+			// )
+			//TODO
+			// this.changeBuildingListObserver(buildingGridStore.district)
 		}
 		changeBuildingListObserver = (district) => {
 			if (this.observeBuildingList) this.observeBuildingList()
@@ -102,17 +107,17 @@ const BuildingGridSquare = observer(
 								buildingData: this.state.district.buildingGrid.getBuilding(
 									this.props.x,
 									this.props.y
-								)
+								),
 							})
 						else if (
 							buildingChange.removedCount > 0 &&
-							this.state.buildingData &&
+							this.getBuildingData() &&
 							buildingChange.removed.some(
-								(v) => v.id === this.state.buildingData.id
+								(v) => v.id === this.getBuildingData().id
 							)
 						) {
 							this.setState({
-								buildingData: null
+								buildingData: null,
 							})
 						}
 					}
@@ -148,69 +153,64 @@ const BuildingGridSquare = observer(
 		componentWillUnmount() {
 			this._isMounted = false
 			if (this.observeBuildingList) this.observeBuildingList()
-			this.observeDistrict()
-			this.buildingsChangedListener()
+			// this.observeDistrict()
+			// this.buildingsChangedListener()
 		}
 
-		onSelect = (
-			selected,
-			selectedBuilding,
-			rotation,
-			mode,
-			district,
-			upgradingFrom
-		) => (e) => {
-			//TODO check if fits
-			if (selected) {
-				if (
-					!this.state.buildingData &&
-					mode === GridMode.BUILD &&
-					selectedBuilding
-				) {
-					if (this.canBuild(selected, district, mode, upgradingFrom))
-						district.buildingGrid.addBuilding(
-							this.props.x,
-							this.props.y,
-							selectedBuilding,
-							rotation
-						)
-				} else if (mode === GridMode.DELETE && this.state.buildingData) {
-					district.buildingGrid.removeBuilding(
-						this.state.buildingData.x,
-						this.state.buildingData.y
-					)
-				} else if (
-					selectedBuilding &&
-					mode === GridMode.UPGRADE &&
-					(!this.state.buildingData ||
-						this.state.buildingData.building.upgradesFrom === selectedBuilding)
-				) {
-					if (upgradingFrom) {
-						if (this.canBuild(selected, district, mode, upgradingFrom)) {
-							district.buildingGrid.removeBuilding()
+		onSelect =
+			(selected, selectedBuilding, rotation, mode, district, upgradingFrom) =>
+			(e) => {
+				//TODO check if fits
+				if (selected) {
+					if (
+						!this.getBuildingData() &&
+						mode === GridMode.BUILD &&
+						selectedBuilding
+					) {
+						if (this.canBuild(selected, district, mode, upgradingFrom))
 							district.buildingGrid.addBuilding(
 								this.props.x,
 								this.props.y,
 								selectedBuilding,
 								rotation
 							)
-							this.props.onUpgrade(null, null)
-						}
-					} else {
-						const upgradesTo = BuildingList.getUpgradeFor(
-							this.state.buildingData.building
+					} else if (mode === GridMode.DELETE && this.getBuildingData()) {
+						district.buildingGrid.removeBuilding(
+							this.getBuildingData().x,
+							this.getBuildingData().y
 						)
-						console.log(upgradesTo)
-						if (upgradesTo != null) {
-							this.props.onUpgrade(this.state.buildingData, upgradesTo)
+					} else if (
+						selectedBuilding &&
+						mode === GridMode.UPGRADE &&
+						(!this.getBuildingData() ||
+							this.getBuildingData().building.upgradesFrom ===
+								selectedBuilding)
+					) {
+						if (upgradingFrom) {
+							if (this.canBuild(selected, district, mode, upgradingFrom)) {
+								district.buildingGrid.removeBuilding()
+								district.buildingGrid.addBuilding(
+									this.props.x,
+									this.props.y,
+									selectedBuilding,
+									rotation
+								)
+								this.props.onUpgrade(null, null)
+							}
+						} else {
+							const upgradesTo = BuildingList.getUpgradeFor(
+								this.getBuildingData().building
+							)
+							if (upgradesTo != null) {
+								this.props.onUpgrade(this.getBuildingData(), upgradesTo)
+							}
 						}
 					}
+					this.props.onSelect(-5, -5)
+				} else {
+					this.props.onSelect(this.props.x, this.props.y)
 				}
-				this.props.onSelect(-5, -5)
-			} else {
-				this.props.onSelect(this.props.x, this.props.y)
 			}
-		}
 		onHover = (e) => {
 			this.props.onHover(this.props.x, this.props.y)
 		}
@@ -230,18 +230,18 @@ const BuildingGridSquare = observer(
 				buildingX: -1,
 				buildingY: -1,
 				rotation: -1,
-				building: null
+				building: null,
 			}
 			if (selectedBuilding && shouldDisplay) {
 				info.buildingX = hoveredSquare.x
 				info.buildingY = hoveredSquare.y
 				info.building = selectedBuilding
 				info.rotation = rotation
-			} else if (this.state.buildingData) {
-				info.buildingX = this.state.buildingData.x
-				info.buildingY = this.state.buildingData.y
-				info.building = this.state.buildingData.building
-				info.rotation = this.state.buildingData.rotation
+			} else if (this.getBuildingData()) {
+				info.buildingX = this.getBuildingData().x
+				info.buildingY = this.getBuildingData().y
+				info.building = this.getBuildingData().building
+				info.rotation = this.getBuildingData().rotation
 			}
 			if (info.buildingX === -1) return imageData
 			imageData.imageIndex =
@@ -270,113 +270,98 @@ const BuildingGridSquare = observer(
 		}
 
 		checkBuilding = (list, district) => {
-			if (!this.state.buildingData) return false
+			if (!this.getBuildingData()||!list||!list[0]) return false
 			const buildingUnderCursor = district.buildingGrid.getBuilding(
 				list[0].x,
 				list[0].y
 			)
 			return (
 				buildingUnderCursor &&
-				buildingUnderCursor.id === this.state.buildingData.id
+				buildingUnderCursor.id === this.getBuildingData().id
 			)
 		}
 
 		render() {
+			const selected = buildingGridStore.selectedList
+			const hovered = buildingGridStore.hoveredList
+			const district = buildingGridStore.district
+			const shouldDisplay = buildingGridStore.shouldDisplay
+			const selectedBuilding = buildingGridStore.selectedBuilding
+			const rotation = buildingGridStore.rotation
+			const mode = buildingGridStore.mode
+			const isSelected =
+				this.checkCoords(selected) || this.checkBuilding(selected, district)
+			this._isSelected = isSelected
+			const isHovered = this.checkCoords(buildingGridStore.hovered)
+			const isHoveredFullBuilding = this.checkBuilding(hovered, district)
+			const displayBuilding = shouldDisplay[this.props.x][this.props.y]
+			const {
+				imageIndex,
+				building,
+				rotation: imageRotation,
+			} = this.getImageData(
+				hovered[0],
+				selectedBuilding,
+				rotation,
+				displayBuilding,
+				district
+			)
+
+			const divRef = React.createRef()
 			return (
-				<BuildingGridContext.Consumer>
-					{({
-						hovered,
-						selected,
-						rotation,
-						selectedBuilding,
-						shouldDisplay,
-						mode,
-						district
-					}) => {
-						const isSelected =
-							this.checkCoords(selected) ||
-							this.checkBuilding(selected, district)
-						this._isSelected = isSelected
-						const isHovered = this.checkCoords(hovered)
-						const isHoveredFullBuilding = this.checkBuilding(hovered, district)
-						const displayBuilding = shouldDisplay[this.props.x][this.props.y]
-						const {
-							imageIndex,
-							building,
-							rotation: imageRotation
-						} = this.getImageData(
-							hovered[0],
+				<>
+					<div
+						onClick={this.onSelect(
+							isSelected,
 							selectedBuilding,
 							rotation,
-							displayBuilding,
+							mode,
 							district
-						)
-
-						const divRef = React.createRef()
-
-						return (
-							<>
-								<div
-									onClick={this.onSelect(
-										isSelected,
-										selectedBuilding,
-										rotation,
-										mode,
-										district
-									)}
-									onMouseEnter={this.onHover}
-									onMouseLeave={this.onMouseLeave}
-									ref={divRef}
-									className={
-										"buildingGridBuildingsGridSquare " +
-										(isSelected
-											? "buildingGridBuildingsGridSquare_selected "
-											: "") +
-										(isHovered || isHoveredFullBuilding
-											? "buildingGridBuildingsGridSquare_hovered "
-											: "") +
-										(isHovered &&
-										selectedBuilding &&
-										(((mode === GridMode.BUILD || mode === GridMode.UPGRADE) &&
-											typeof district.buildingGrid.getBuilding(
-												this.props.x,
-												this.props.y
-											)) !== "undefined" ||
-											(mode === GridMode.UPGRADE &&
-												district.buildingGrid.getBuilding(
-													this.props.x,
-													this.props.y
-												).building === selectedBuilding))
-											? "buildingGridBuildingsGridSquare_incorrect "
-											: "")
-									}
-								>
-									{imageIndex >= 0 ? (
-										<img
-											style={{
-												transform: `rotate(${imageRotation * 90}deg)`
-											}}
-											src={building.image[imageIndex]}
-											alt={""}
-										/>
-									) : (
-										""
-									)}
-								</div>
-								{isHovered &&
-								mode === GridMode.DISPLAY &&
-								this.state.buildingData ? (
-									<BuildingHoverTooltip
-										building={this.state.buildingData.building}
-										hoverObject={divRef}
-									/>
-								) : (
-									""
-								)}
-							</>
-						)
-					}}
-				</BuildingGridContext.Consumer>
+						)}
+						onMouseEnter={this.onHover}
+						onMouseLeave={this.onMouseLeave}
+						ref={divRef}
+						className={
+							"buildingGridBuildingsGridSquare " +
+							(isSelected ? "buildingGridBuildingsGridSquare_selected " : "") +
+							(isHovered || isHoveredFullBuilding
+								? "buildingGridBuildingsGridSquare_hovered "
+								: "") +
+							(isHovered &&
+							selectedBuilding &&
+							(((mode === GridMode.BUILD || mode === GridMode.UPGRADE) &&
+								typeof district.buildingGrid.getBuilding(
+									this.props.x,
+									this.props.y
+								)) !== "undefined" ||
+								(mode === GridMode.UPGRADE &&
+									district.buildingGrid.getBuilding(this.props.x, this.props.y)
+										.building === selectedBuilding))
+								? "buildingGridBuildingsGridSquare_incorrect "
+								: "")
+						}
+					>
+						{imageIndex >= 0 ? (
+							<img
+								style={{
+									transform: `rotate(${imageRotation * 90}deg)`,
+								}}
+								src={building.image[imageIndex]}
+								alt={""}
+							/>
+						) : (
+							""
+						)}
+					</div>
+					{isHovered && mode === GridMode.DISPLAY && this.getBuildingData() ? (
+						<BuildingHoverTooltip
+							building={this.getBuildingData().building}
+							hoverObject={divRef}
+						/>
+					) : (
+						""
+					)}
+				</>
 			)
 		}
 	}
@@ -385,33 +370,33 @@ const BuildingGridSquare = observer(
 class BuildingGridBuildings extends Component {
 	constructor(props) {
 		super(props)
-		this.state = {
-			hovered: {
-				x: undefined,
-				y: undefined
-			},
-			selected: {
-				x: undefined,
-				y: undefined
-			},
-			rotation: 0,
-			wrong: false,
-			mode: 0,
-			upgradingFrom: null
-		}
+		buildingGridStore.district = props.district
+		buildingGridStore.shouldDisplay = this.getShouldDisplay()
+		this.store=buildingGridStore
+		
 	}
-
-	district = {}
 
 	componentDidMount = () => {
 		this._isMounted = true
 		this.buildingsChangedListener = observe(
-			this.props.district.buildingGrid.buildings,
+			buildingGridStore.district.buildingGrid.buildings,
 			(change) => {
-				console.log("Buildings changed")
 				if (this._isMounted) {
 					this.forceUpdate()
 				}
+			}
+		)
+		this.changeShouldDisplay = reaction(
+			() => {
+				return {
+					hovered: buildingGridStore.hovered,
+					selected: buildingGridStore.selected,
+				}
+			},
+			() => {
+				buildingGridStore.shouldDisplay = this.getShouldDisplay()
+				buildingGridStore.hoveredList=this.getHighlightList("hovered")
+				buildingGridStore.selectedList=this.getHighlightList("selected")
 			}
 		)
 	}
@@ -420,45 +405,36 @@ class BuildingGridBuildings extends Component {
 		this.buildingsChangedListener()
 	}
 
-	changeRotation = (event) => {
+	changeRotation = action("buildingGridRotation", (event) => {
 		const change = event.deltaY > 0 ? 1 : -1
-		let newRotation = this.state.rotation + change
+		let newRotation = buildingGridStore.rotation + change
 		while (newRotation < 0) newRotation += 4
 		while (newRotation > 3) {
 			newRotation -= 4
 		}
-		this.setState({
-			...this.state,
-			rotation: newRotation
-		})
-	}
+
+		buildingGridStore.rotation = newRotation
+	})
 
 	getPos = (i, j) => {
 		return i * 2 + (j < 2 ? j : j + 4) + Math.floor(i / 3) * 6
 	}
 
-	onSquareHover = (x, y) => {
-		this.setState({
-			hovered: { x: x, y: y }
-		})
-	}
-	onSquareSelect = (x, y) => {
-		this.setState({
-			selected: { x: x, y: y }
-		})
-	}
+	onSquareHover = action("buildingGridSquareHover", (x, y) => {
+		buildingGridStore.hovered = { x: x, y: y }
+	})
+	onSquareSelect = action("buildingGridSquareSelect", (x, y) => {
+		buildingGridStore.selected = { x: x, y: y }
+	})
 	startUpgrade = (buildingData, building) => {
-		this.setState({
-			upgradingFrom: buildingData
-		})
-		this.props.onUpgrade(building)
+		//TODO
 	}
 
 	shouldBuildingDisplay = (x, y) => {
-		if (!this.props.selectedBuilding) return false
-		const b = this.props.selectedBuilding
-		const br = this.state.rotation
-		const { x: bx, y: by } = this.state.hovered
+		if (!buildingGridStore.selectedBuilding) return false
+		const b = buildingGridStore.selectedBuilding
+		const br = buildingGridStore.rotation
+		const { x: bx, y: by } = buildingGridStore.hovered
 		return (
 			(x === bx && y === by) ||
 			(x === bx + 1 &&
@@ -473,7 +449,10 @@ class BuildingGridBuildings extends Component {
 
 	isWrong = (x, y) => {
 		if (!this.props.selectedBuilding) return false
-		const buildingHere = this.props.district.buildingGrid.getBuilding(x, y)
+		const buildingHere = buildingGridStore.district.buildingGrid.getBuilding(
+			x,
+			y
+		)
 		return typeof buildingHere !== "undefined"
 	}
 	buildingGridSquares = [...Array(9).keys()].map((i) => {
@@ -492,7 +471,6 @@ class BuildingGridBuildings extends Component {
 								key={pos}
 								x={x}
 								y={y}
-								district={this.props.district}
 								onHover={this.onSquareHover}
 								onSelect={this.onSquareSelect}
 								onUpgrade={this.startUpgrade}
@@ -504,19 +482,19 @@ class BuildingGridBuildings extends Component {
 	})
 
 	getHighlightList = (value) => {
-		const out = [{ ...this.state[value] }]
+		const out = [{ ...buildingGridStore[value] }]
 
 		if (this.props.selectedBuilding) {
 			if (this.props.selectedBuilding.size === 2) {
 				out.push({
-					x: this.state[value].x + ((this.state.rotation + 1) % 2),
-					y: this.state[value].y + (this.state.rotation % 2)
+					x: buildingGridStore[value].x + ((buildingGridStore.rotation + 1) % 2),
+					y: buildingGridStore[value].y + (buildingGridStore.rotation % 2),
 				})
 			} else if (this.props.selectedBuilding.size === 4) {
 				for (let i = 1; i < 4; i++) {
 					out.push({
-						x: this.state[value].x + (i % 2),
-						y: this.state[value].y + Math.floor(i / 2)
+						x: buildingGridStore[value].x + (i % 2),
+						y: buildingGridStore[value].y + Math.floor(i / 2),
 					})
 				}
 			}
@@ -528,8 +506,8 @@ class BuildingGridBuildings extends Component {
 		for (let y = 0; y < 6; y++) {
 			for (let x = 0; x < 6; x++) {
 				out[x][y] =
-					this.state.mode === GridMode.BUILD ||
-					this.state.mode === GridMode.UPGRADE
+					buildingGridStore.mode === GridMode.BUILD ||
+					buildingGridStore.mode === GridMode.UPGRADE
 						? this.shouldBuildingDisplay(x, y)
 						: false
 			}
@@ -537,21 +515,13 @@ class BuildingGridBuildings extends Component {
 		return out
 	}
 
-	selectMode = (mode) => (e) => {
-		this.setState({
-			mode: mode,
-			selected: {
-				x: -5,
-				y: -5
-			}
+	selectMode = (mode) =>
+		action("buildingGridSelectMode", (e) => {
+			if (mode !== GridMode.BUILD) this.props.deselectBuilding()
+			buildingGridStore.mode = mode
 		})
-		if (mode !== GridMode.BUILD) this.props.deselectBuilding()
-	}
 
-	//TODO try using context instead of mapping all the time
 	render() {
-		//TODO tooltip on hovering over existing buildings
-
 		return (
 			<div className={"buildingGridBuildings"} onWheel={this.changeRotation}>
 				<div className={"buildingGridBuildingsMode"}>
@@ -561,7 +531,7 @@ class BuildingGridBuildings extends Component {
 								key={index}
 								className={
 									"buildingGridBuildingsModeIcon " +
-									(this.state.mode === GridMode[value]
+									(buildingGridStore.mode === GridMode[value]
 										? "buildingGridBuildingsModeIcon_selected"
 										: "")
 								}
@@ -573,24 +543,7 @@ class BuildingGridBuildings extends Component {
 					})}
 				</div>
 				<div className={"buildingGridBuildingsGrid"}>
-					<BuildingGridContext.Provider
-						value={{
-							hovered: this.getHighlightList("hovered"),
-							selected: this.getHighlightList("selected"),
-							rotation: this.state.rotation,
-							selectedBuilding:
-								this.state.mode === GridMode.BUILD ||
-								this.state.mode === GridMode.UPGRADE
-									? this.props.selectedBuilding
-									: null,
-							shouldDisplay: this.getShouldDisplay(),
-							mode: this.state.mode,
-							district: this.props.district,
-							upgradingFrom: this.state.upgradingFrom
-						}}
-					>
-						{this.buildingGridSquares}
-					</BuildingGridContext.Provider>
+					{this.buildingGridSquares}
 				</div>
 			</div>
 		)
@@ -598,3 +551,4 @@ class BuildingGridBuildings extends Component {
 }
 
 export default observer(BuildingGridBuildings)
+export {buildingGridStore}

@@ -1,161 +1,204 @@
 //gets rid of the stupid warning without having to sort all this stuff
 /*eslint no-use-before-define: [0, { "classes": false }]*/
 /*eslint-env es6*/
-import AlchemistImg from "../../../../res/img/BuildingImages/Alchemist.png"
+
+import AlchemistImg from "../../../../res/img/BuildingImagesNew/Alchemist.jpg"
 import Building from "./building"
-import BankImg from "../../../../res/img/BuildingImages/Bank.png"
-import BarracksImg from "../../../../res/img/BuildingImages/Barracks.png"
-import BardicCollege_0Img from "../../../../res/img/BuildingImages/BardicCollege_0.png"
-import BardicCollege_1Img from "../../../../res/img/BuildingImages/BardicCollege_1.png"
-import BardicCollegeImg from "../../../../res/img/BuildingImages/BardicCollege.png"
-import BlackMarketImg from "../../../../res/img/BuildingImages/BlackMarket.png"
-import BreweryImg from "../../../../res/img/BuildingImages/Brewery.png"
-import BridgeImg from "../../../../res/img/BuildingImages/BridgeC.png"
-import BrothelImg from "../../../../res/img/BuildingImages/Brothel.png"
-import CastersTowerImg from "../../../../res/img/BuildingImages/CastersTower.png"
+import BankImg from "../../../../res/img/BuildingImagesNew/Bank.jpg"
+import BarracksImg from "../../../../res/img/BuildingImagesNew/Barracks.jpg"
+import BardicCollege_0Img from "../../../../res/img/BuildingImagesNew/BardicCollege_0.jpg"
+import BardicCollege_1Img from "../../../../res/img/BuildingImagesNew/BardicCollege_1.jpg"
+import BardicCollegeImg from "../../../../res/img/BuildingImagesNew/BardicCollege.jpg"
+import BlackMarketImg from "../../../../res/img/BuildingImagesNew/BlackMarket.jpg"
+import BreweryImg from "../../../../res/img/BuildingImagesNew/Brewery.jpg"
+import BridgeImg from "../../../../res/img/BuildingImagesNew/BridgeC.png"
+import BrothelImg from "../../../../res/img/BuildingImagesNew/Brothel.png"
+import CastersTowerImg from "../../../../res/img/BuildingImagesNew/CastersTower.jpg"
 
-import BureauImg from "../../../../res/img/BuildingImages/Bureau.png"
-import Bureau_0Img from "../../../../res/img/BuildingImages/Bureau_0.png"
-import Bureau_1Img from "../../../../res/img/BuildingImages/Bureau_1.png"
-import CisternImg from "../../../../res/img/BuildingImages/Cistern.png"
+import BureauImg from "../../../../res/img/BuildingImagesNew/Bureau.jpg"
+import Bureau_0Img from "../../../../res/img/BuildingImagesNew/Bureau_0.jpg"
+import Bureau_1Img from "../../../../res/img/BuildingImagesNew/Bureau_1.jpg"
+import CisternImg from "../../../../res/img/BuildingImagesNew/Cistern.jpg"
 
-import Castle_0Img from "../../../../res/img/BuildingImages/Castle_0.png"
-import Castle_1Img from "../../../../res/img/BuildingImages/Castle_1.png"
-import Castle_3Img from "../../../../res/img/BuildingImages/Castle_3.png"
-import Castle_2Img from "../../../../res/img/BuildingImages/Castle_2.png"
-import CastleImg from "../../../../res/img/BuildingImages/Castle.png"
+import Castle_0Img from "../../../../res/img/BuildingImagesNew/Castle_0.jpg"
+import Castle_1Img from "../../../../res/img/BuildingImagesNew/Castle_1.jpg"
+import Castle_3Img from "../../../../res/img/BuildingImagesNew/Castle_3.jpg"
+import Castle_2Img from "../../../../res/img/BuildingImagesNew/Castle_2.jpg"
+import CastleImg from "../../../../res/img/BuildingImagesNew/Castle.jpg"
 
-import Cathedral_0Img from "../../../../res/img/BuildingImages/Cathedral_0.png"
-import Cathedral_1Img from "../../../../res/img/BuildingImages/Cathedral_1.png"
-import Cathedral_3Img from "../../../../res/img/BuildingImages/Cathedral_3.png"
-import Cathedral_2Img from "../../../../res/img/BuildingImages/Cathedral_2.png"
-import CathedralImg from "../../../../res/img/BuildingImages/Cathedral.png"
-import DumpImg from "../../../../res/img/BuildingImages/Dump.png"
-import ExoticArtisanImg from "../../../../res/img/BuildingImages/ExoticArtisan.png"
-import GranaryImg from "../../../../res/img/BuildingImages/Granary.png"
+import Cathedral_0Img from "../../../../res/img/BuildingImagesNew/Cathedral_0.jpg"
+import Cathedral_1Img from "../../../../res/img/BuildingImagesNew/Cathedral_1.jpg"
+import Cathedral_3Img from "../../../../res/img/BuildingImagesNew/Cathedral_3.jpg"
+import Cathedral_2Img from "../../../../res/img/BuildingImagesNew/Cathedral_2.jpg"
+import CathedralImg from "../../../../res/img/BuildingImagesNew/Cathedral.jpg"
+import DumpImg from "../../../../res/img/BuildingImagesNew/Dump.jpg"
+import ExoticArtisanImg from "../../../../res/img/BuildingImagesNew/ExoticArtisan.jpg"
+import GranaryImg from "../../../../res/img/BuildingImagesNew/Granary.jpg"
 
-import ForeignQuarter_0Img from "../../../../res/img/BuildingImages/ForeignQuarter_0.png"
-import ForeignQuarter_1Img from "../../../../res/img/BuildingImages/ForeignQuarter_1.png"
-import ForeignQuarter_3Img from "../../../../res/img/BuildingImages/ForeignQuarter_3.png"
-import ForeignQuarter_2Img from "../../../../res/img/BuildingImages/ForeignQuarter_2.png"
-import ForeignQuarterImg from "../../../../res/img/BuildingImages/ForeignQuarter.png"
+import ForeignQuarter_0Img from "../../../../res/img/BuildingImagesNew/ForeignQuarter_0.jpg"
+import ForeignQuarter_1Img from "../../../../res/img/BuildingImagesNew/ForeignQuarter_1.jpg"
+import ForeignQuarter_3Img from "../../../../res/img/BuildingImagesNew/ForeignQuarter_3.jpg"
+import ForeignQuarter_2Img from "../../../../res/img/BuildingImagesNew/ForeignQuarter_2.jpg"
+import ForeignQuarterImg from "../../../../res/img/BuildingImagesNew/ForeignQuarter.jpg"
 
-import Foundry_0Img from "../../../../res/img/BuildingImages/Foundry_0.png"
-import Foundry_1Img from "../../../../res/img/BuildingImages/Foundry_1.png"
-import FoundryImg from "../../../../res/img/BuildingImages/Foundry.png"
-import GraveyardImg from "../../../../res/img/BuildingImages/Graveyard.png"
-import HerbalistImg from "../../../../res/img/BuildingImages/Herbalist.png"
-import InnImg from "../../../../res/img/BuildingImages/Inn.png"
+import Foundry_0Img from "../../../../res/img/BuildingImagesNew/Foundry_0.jpg"
+import Foundry_1Img from "../../../../res/img/BuildingImagesNew/Foundry_1.jpg"
+import FoundryImg from "../../../../res/img/BuildingImagesNew/Foundry.jpg"
+import GraveyardImg from "../../../../res/img/BuildingImagesNew/Graveyard.jpg"
+import HerbalistImg from "../../../../res/img/BuildingImagesNew/Herbalist.jpg"
+import InnImg from "../../../../res/img/BuildingImagesNew/Inn.jpg"
 
-import Hospital_0Img from "../../../../res/img/BuildingImages/Hospital_0.png"
-import Hospital_1Img from "../../../../res/img/BuildingImages/Hospital_1.png"
-import HospitalImg from "../../../../res/img/BuildingImages/Hospital.png"
-import JailImg from "../../../../res/img/BuildingImages/Jail.png"
-import LibraryImg from "../../../../res/img/BuildingImages/Library.png"
-import MansionImg from "../../../../res/img/BuildingImages/Mansion.png"
+import Hospital_0Img from "../../../../res/img/BuildingImagesNew/Hospital_0.jpg"
+import Hospital_1Img from "../../../../res/img/BuildingImagesNew/Hospital_1.jpg"
+import HospitalImg from "../../../../res/img/BuildingImagesNew/Hospital.jpg"
+import JailImg from "../../../../res/img/BuildingImagesNew/Jail.jpg"
+import LibraryImg from "../../../../res/img/BuildingImagesNew/Library.jpg"
+import MansionImg from "../../../../res/img/BuildingImagesNew/Mansion.jpg"
 
-import MagicalAcademy_0Img from "../../../../res/img/BuildingImages/MagicalAcademy_0.png"
-import MagicalAcademy_1Img from "../../../../res/img/BuildingImages/MagicalAcademy_1.png"
-import MagicalAcademyImg from "../../../../res/img/BuildingImages/MagicalAcademy.png"
-import MillImg from "../../../../res/img/BuildingImages/Mill.png"
+import MagicalAcademy_0Img from "../../../../res/img/BuildingImagesNew/MagicalAcademy_0.jpg"
+import MagicalAcademy_1Img from "../../../../res/img/BuildingImagesNew/MagicalAcademy_1.jpg"
+import MagicalAcademyImg from "../../../../res/img/BuildingImagesNew/MagicalAcademy.jpg"
+import MillImg from "../../../../res/img/BuildingImagesNew/Mill.jpg"
 
-import Menagerie_0Img from "../../../../res/img/BuildingImages/Menagerie_0.png"
-import Menagerie_1Img from "../../../../res/img/BuildingImages/Menagerie_1.png"
-import Menagerie_3Img from "../../../../res/img/BuildingImages/Menagerie_3.png"
-import Menagerie_2Img from "../../../../res/img/BuildingImages/Menagerie_2.png"
-import MenagerieImg from "../../../../res/img/BuildingImages/Menagerie.png"
+import Menagerie_0Img from "../../../../res/img/BuildingImagesNew/Menagerie_0.jpg"
+import Menagerie_1Img from "../../../../res/img/BuildingImagesNew/Menagerie_1.jpg"
+import Menagerie_3Img from "../../../../res/img/BuildingImagesNew/Menagerie_3.jpg"
+import Menagerie_2Img from "../../../../res/img/BuildingImagesNew/Menagerie_2.jpg"
+import MenagerieImg from "../../../../res/img/BuildingImagesNew/Menagerie.jpg"
 
-import MilitaryAcademy_0Img from "../../../../res/img/BuildingImages/MilitaryAcademy_0.png"
-import MilitaryAcademy_1Img from "../../../../res/img/BuildingImages/MilitaryAcademy_1.png"
-import MilitaryAcademyImg from "../../../../res/img/BuildingImages/MilitaryAcademy.png"
-import MintImg from "../../../../res/img/BuildingImages/Mint.png"
-import MonumentImg from "../../../../res/img/BuildingImages/Monument.png"
+import MilitaryAcademy_0Img from "../../../../res/img/BuildingImagesNew/MilitaryAcademy_0.jpg"
+import MilitaryAcademy_1Img from "../../../../res/img/BuildingImagesNew/MilitaryAcademy_1.jpg"
+import MilitaryAcademyImg from "../../../../res/img/BuildingImagesNew/MilitaryAcademy.jpg"
+import MintImg from "../../../../res/img/BuildingImagesNew/Mint.jpg"
+import MonumentImg from "../../../../res/img/BuildingImagesNew/Monument.jpg"
 
-import Monastery_0Img from "../../../../res/img/BuildingImages/Monastery_0.png"
-import Monastery_1Img from "../../../../res/img/BuildingImages/Monastery_1.png"
-import MonasteryImg from "../../../../res/img/BuildingImages/Monastery.png"
-import ObservatoryImg from "../../../../res/img/BuildingImages/Observatory.png"
+import Monastery_0Img from "../../../../res/img/BuildingImagesNew/Monastery_0.jpg"
+import Monastery_1Img from "../../../../res/img/BuildingImagesNew/Monastery_1.jpg"
+import MonasteryImg from "../../../../res/img/BuildingImagesNew/Monastery.jpg"
+import ObservatoryImg from "../../../../res/img/BuildingImagesNew/Observatory.jpg"
 
-import Museum_0Img from "../../../../res/img/BuildingImages/Museum_0.png"
-import Museum_1Img from "../../../../res/img/BuildingImages/Museum_1.png"
-import MuseumImg from "../../../../res/img/BuildingImages/Museum.png"
-import OrphanageImg from "../../../../res/img/BuildingImages/Orphanage.png"
-import ParkImg from "../../../../res/img/BuildingImages/Park.png"
+import Museum_0Img from "../../../../res/img/BuildingImagesNew/Museum_0.jpg"
+import Museum_1Img from "../../../../res/img/BuildingImagesNew/Museum_1.jpg"
+import MuseumImg from "../../../../res/img/BuildingImagesNew/Museum.jpg"
+import OrphanageImg from "../../../../res/img/BuildingImagesNew/Orphanage.jpg"
+import ParkImg from "../../../../res/img/BuildingImagesNew/Park.jpg"
 
-import Palace_0Img from "../../../../res/img/BuildingImages/Palace_0.png"
-import Palace_1Img from "../../../../res/img/BuildingImages/Palace_1.png"
-import Palace_3Img from "../../../../res/img/BuildingImages/Palace_3.png"
-import Palace_2Img from "../../../../res/img/BuildingImages/Palace_2.png"
-import PalaceImg from "../../../../res/img/BuildingImages/Palace.png"
-import PierImg from "../../../../res/img/BuildingImages/Pier.png"
-import ShopImg from "../../../../res/img/BuildingImages/Shop.png"
-import ShrineImg from "../../../../res/img/BuildingImages/Shrine.png"
-import SmithyImg from "../../../../res/img/BuildingImages/Smithy.png"
-import StableImg from "../../../../res/img/BuildingImages/Stable.png"
-import TanneryImg from "../../../../res/img/BuildingImages/Tannery.png"
+import Palace_0Img from "../../../../res/img/BuildingImagesNew/Palace_0.jpg"
+import Palace_1Img from "../../../../res/img/BuildingImagesNew/Palace_1.jpg"
+import Palace_3Img from "../../../../res/img/BuildingImagesNew/Palace_3.jpg"
+import Palace_2Img from "../../../../res/img/BuildingImagesNew/Palace_2.jpg"
+import PalaceImg from "../../../../res/img/BuildingImagesNew/Palace.jpg"
+import PierImg from "../../../../res/img/BuildingImagesNew/Pier.jpg"
+import ShopImg from "../../../../res/img/BuildingImagesNew/Shop.jpg"
+import ShrineImg from "../../../../res/img/BuildingImagesNew/Shrine.jpg"
+import SmithyImg from "../../../../res/img/BuildingImagesNew/Smithy.jpg"
+import StableImg from "../../../../res/img/BuildingImagesNew/Stable.jpg"
+import TanneryImg from "../../../../res/img/BuildingImagesNew/Tannery.jpg"
 
-import Stockyard_0Img from "../../../../res/img/BuildingImages/Stockyard_0.png"
-import Stockyard_1Img from "../../../../res/img/BuildingImages/Stockyard_1.png"
-import Stockyard_3Img from "../../../../res/img/BuildingImages/Stockyard_3.png"
-import Stockyard_2Img from "../../../../res/img/BuildingImages/Stockyard_2.png"
-import StockyardImg from "../../../../res/img/BuildingImages/Stockyard.png"
-import TavernImg from "../../../../res/img/BuildingImages/Tavern.png"
-import TenementImg from "../../../../res/img/BuildingImages/Tenement.png"
-import TradeShopImg from "../../../../res/img/BuildingImages/TradeShop.png"
+import Stockyard_0Img from "../../../../res/img/BuildingImagesNew/Stockyard_0.jpg"
+import Stockyard_1Img from "../../../../res/img/BuildingImagesNew/Stockyard_1.jpg"
+import Stockyard_3Img from "../../../../res/img/BuildingImagesNew/Stockyard_3.jpg"
+import Stockyard_2Img from "../../../../res/img/BuildingImagesNew/Stockyard_2.jpg"
+import StockyardImg from "../../../../res/img/BuildingImagesNew/Stockyard.jpg"
+import TavernImg from "../../../../res/img/BuildingImagesNew/Tavern.jpg"
+import TenementImg from "../../../../res/img/BuildingImagesNew/Tenement.jpg"
+import TradeShopImg from "../../../../res/img/BuildingImagesNew/TradeShop.jpg"
 
-import Theater_0Img from "../../../../res/img/BuildingImages/Theater_0.png"
-import Theater_1Img from "../../../../res/img/BuildingImages/Theater_1.png"
-import TheaterImg from "../../../../res/img/BuildingImages/Theater.png"
+import Theater_0Img from "../../../../res/img/BuildingImagesNew/Theater_0.jpg"
+import Theater_1Img from "../../../../res/img/BuildingImagesNew/Theater_1.jpg"
+import TheaterImg from "../../../../res/img/BuildingImagesNew/Theater.jpg"
 
-import TownHall_0Img from "../../../../res/img/BuildingImages/TownHall_0.png"
-import TownHall_1Img from "../../../../res/img/BuildingImages/TownHall_1.png"
-import TownHallImg from "../../../../res/img/BuildingImages/TownHall.png"
-import WatchtowerImg from "../../../../res/img/BuildingImages/Watchtower.png"
-import WaterwayImg from "../../../../res/img/BuildingImages/WaterwayUD.png"
-import HouseImg from "../../../../res/img/BuildingImages/House.png"
+import TownHall_0Img from "../../../../res/img/BuildingImagesNew/TownHall_0.jpg"
+import TownHall_1Img from "../../../../res/img/BuildingImagesNew/TownHall_1.jpg"
+import TownHallImg from "../../../../res/img/BuildingImagesNew/TownHall.jpg"
+import WatchtowerImg from "../../../../res/img/BuildingImagesNew/Watchtower.jpg"
+import WaterwayImg from "../../../../res/img/BuildingImagesNew/Waterway.jpg"
+import HouseImg from "../../../../res/img/BuildingImagesNew/House.jpg"
 
-import Academy_0Img from "../../../../res/img/BuildingImages/Academy_0.png"
-import Academy_1Img from "../../../../res/img/BuildingImages/Academy_1.png"
-import AcademyImg from "../../../../res/img/BuildingImages/Academy.png"
+import Academy_0Img from "../../../../res/img/BuildingImagesNew/Academy_0.jpg"
+import Academy_1Img from "../../../../res/img/BuildingImagesNew/Academy_1.jpg"
+import AcademyImg from "../../../../res/img/BuildingImagesNew/Academy.jpg"
 
-import Arena_1Img from "../../../../res/img/BuildingImages/Arena_1.png"
-import Arena_3Img from "../../../../res/img/BuildingImages/Arena_3.png"
-import Arena_2Img from "../../../../res/img/BuildingImages/Arena_2.png"
-import ArenaImg from "../../../../res/img/BuildingImages/Arena.png"
+import Arena_1Img from "../../../../res/img/BuildingImagesNew/Arena_1.jpg"
+import Arena_3Img from "../../../../res/img/BuildingImagesNew/Arena_3.jpg"
+import Arena_2Img from "../../../../res/img/BuildingImagesNew/Arena_2.jpg"
+import ArenaImg from "../../../../res/img/BuildingImagesNew/Arena.jpg"
 
-import Garrison_0Img from "../../../../res/img/BuildingImages/Garrison_0.png"
-import Garrison_1Img from "../../../../res/img/BuildingImages/Garrison_1.png"
-import GarrisonImg from "../../../../res/img/BuildingImages/Garrison.png"
+import Garrison_0Img from "../../../../res/img/BuildingImagesNew/Garrison_0.jpg"
+import Garrison_1Img from "../../../../res/img/BuildingImagesNew/Garrison_1.jpg"
+import GarrisonImg from "../../../../res/img/BuildingImagesNew/Garrison.jpg"
 
-import Guildhall_0Img from "../../../../res/img/BuildingImages/Guildhall_0.png"
-import Guildhall_1Img from "../../../../res/img/BuildingImages/Guildhall_1.png"
-import GuildhallImg from "../../../../res/img/BuildingImages/Guildhall.png"
-import LuxuryStoreImg from "../../../../res/img/BuildingImages/LuxuryStore.png"
-import MagicShopImg from "../../../../res/img/BuildingImages/MagicShop.png"
+import Guildhall_0Img from "../../../../res/img/BuildingImagesNew/Guildhall_0.jpg"
+import Guildhall_1Img from "../../../../res/img/BuildingImagesNew/Guildhall_1.jpg"
+import GuildhallImg from "../../../../res/img/BuildingImagesNew/Guildhall.jpg"
+import LuxuryStoreImg from "../../../../res/img/BuildingImagesNew/LuxuryStore.jpg"
+import MagicShopImg from "../../../../res/img/BuildingImagesNew/MagicShop.jpg"
 
-import Market_0Img from "../../../../res/img/BuildingImages/Market_0.png"
-import Market_1Img from "../../../../res/img/BuildingImages/Market_1.png"
-import MarketImg from "../../../../res/img/BuildingImages/Market.png"
+import Market_0Img from "../../../../res/img/BuildingImagesNew/Market_0.jpg"
+import Market_1Img from "../../../../res/img/BuildingImagesNew/Market_1.jpg"
+import MarketImg from "../../../../res/img/BuildingImagesNew/Market.jpg"
 
-import NobleVilla_0Img from "../../../../res/img/BuildingImages/NobleVilla_0.png"
-import NobleVilla_1Img from "../../../../res/img/BuildingImages/NobleVilla_1.png"
-import NobleVillaImg from "../../../../res/img/BuildingImages/NobleVilla.png"
+import NobleVilla_0Img from "../../../../res/img/BuildingImagesNew/NobleVilla_0.jpg"
+import NobleVilla_1Img from "../../../../res/img/BuildingImagesNew/NobleVilla_1.jpg"
+import NobleVillaImg from "../../../../res/img/BuildingImagesNew/NobleVilla.jpg"
 
-import Temple_0Img from "../../../../res/img/BuildingImages/Temple_0.png"
-import Temple_1Img from "../../../../res/img/BuildingImages/Temple_1.png"
-import TempleImg from "../../../../res/img/BuildingImages/Temple.png"
+import Temple_0Img from "../../../../res/img/BuildingImagesNew/Temple_0.jpg"
+import Temple_1Img from "../../../../res/img/BuildingImagesNew/Temple_1.jpg"
+import TempleImg from "../../../../res/img/BuildingImagesNew/Temple.jpg"
 
-import University_0Img from "../../../../res/img/BuildingImages/University_0.png"
-import University_1Img from "../../../../res/img/BuildingImages/University_1.png"
-import University_3Img from "../../../../res/img/BuildingImages/University_3.png"
-import University_2Img from "../../../../res/img/BuildingImages/University_2.png"
-import UniversityImg from "../../../../res/img/BuildingImages/University.png"
+import University_0Img from "../../../../res/img/BuildingImagesNew/University_0.jpg"
+import University_1Img from "../../../../res/img/BuildingImagesNew/University_1.jpg"
+import University_3Img from "../../../../res/img/BuildingImagesNew/University_3.jpg"
+import University_2Img from "../../../../res/img/BuildingImagesNew/University_2.jpg"
+import UniversityImg from "../../../../res/img/BuildingImagesNew/University.jpg"
 
-import Waterfront_0Img from "../../../../res/img/BuildingImages/WaterfrontS_0.png"
-import Waterfront_1Img from "../../../../res/img/BuildingImages/WaterfrontS_1.png"
-import Waterfront_3Img from "../../../../res/img/BuildingImages/WaterfrontS_3.png"
-import Waterfront_2Img from "../../../../res/img/BuildingImages/WaterfrontS_2.png"
-import WaterfrontImg from "../../../../res/img/BuildingImages/WaterfrontS.png"
+import Waterfront_0Img from "../../../../res/img/BuildingImagesNew/Waterfront_0.jpg"
+import Waterfront_1Img from "../../../../res/img/BuildingImagesNew/Waterfront_1.jpg"
+import Waterfront_3Img from "../../../../res/img/BuildingImagesNew/Waterfront_3.jpg"
+import Waterfront_2Img from "../../../../res/img/BuildingImagesNew/Waterfront_2.jpg"
+import WaterfrontImg from "../../../../res/img/BuildingImagesNew/Waterfront.jpg"
+
+import AerieImg from "../../../../res/img/BuildingImagesNew/Aerie.jpg"
+import BathhouseImg from "../../../../res/img/BuildingImagesNew/Bathhouse.jpg"
+
+import Assembly_0Img from "../../../../res/img/BuildingImagesNew/Assembly_0.jpg"
+import Assembly_1Img from "../../../../res/img/BuildingImagesNew/Assembly_1.jpg"
+import AssemblyImg from "../../../../res/img/BuildingImagesNew/Assembly.jpg"
+
+import BordelloImg from "../../../../res/img/BuildingImagesNew/Bordello.jpg"
+
+import Brickyard_0Img from "../../../../res/img/BuildingImagesNew/Brickyard_0.jpg"
+import Brickyard_1Img from "../../../../res/img/BuildingImagesNew/Brickyard_1.jpg"
+import BrickyardImg from "../../../../res/img/BuildingImagesNew/Brickyard.jpg"
+
+import Colossus_0Img from "../../../../res/img/BuildingImagesNew/Colossus_0.jpg"
+import Colossus_1Img from "../../../../res/img/BuildingImagesNew/Colossus_1.jpg"
+import Colossus_3Img from "../../../../res/img/BuildingImagesNew/Colossus_3.jpg"
+import Colossus_2Img from "../../../../res/img/BuildingImagesNew/Colossus_2.jpg"
+import ColossusImg from "../../../../res/img/BuildingImagesNew/Colossus.jpg"
+
+import CourthouseImg from "../../../../res/img/BuildingImagesNew/Courthouse.jpg"
+import CrematoriumImg from "../../../../res/img/BuildingImagesNew/Crematorium.jpg"
+import GamblingDenImg from "../../../../res/img/BuildingImagesNew/GamblingDen.jpg"
+
+import HangingGardens_0Img from "../../../../res/img/BuildingImagesNew/HangingGardens_0.jpg"
+import HangingGardens_1Img from "../../../../res/img/BuildingImagesNew/HangingGardens_1.jpg"
+import HangingGardens_3Img from "../../../../res/img/BuildingImagesNew/HangingGardens_3.jpg"
+import HangingGardens_2Img from "../../../../res/img/BuildingImagesNew/HangingGardens_2.jpg"
+import HangingGardensImg from "../../../../res/img/BuildingImagesNew/HangingGardens.jpg"
+
+import Lumberyard_0Img from "../../../../res/img/BuildingImagesNew/Lumberyard_0.jpg"
+import Lumberyard_1Img from "../../../../res/img/BuildingImagesNew/Lumberyard_1.jpg"
+import LumberyardImg from "../../../../res/img/BuildingImagesNew/Lumberyard.jpg"
+
+import SacredGroveImg from "../../../../res/img/BuildingImagesNew/SacredGrove.jpg"
+
+import Warehouse_0Img from "../../../../res/img/BuildingImagesNew/Warehouse_0.jpg"
+import Warehouse_1Img from "../../../../res/img/BuildingImagesNew/Warehouse_1.jpg"
+import WarehouseImg from "../../../../res/img/BuildingImagesNew/Warehouse.jpg"
+
+import WindmillImg from "../../../../res/img/BuildingImagesNew/Windmill.jpg"
+import LighthouseImg from "../../../../res/img/BuildingImagesNew/Lighthouse.jpg"
 
 class Alchemist {
 	id = 2
@@ -167,7 +210,7 @@ class Alchemist {
 	size = 1
 	bonus = {
 		...Building.bonus,
-		economy: 1
+		economy: 1,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
@@ -190,7 +233,7 @@ class Bank {
 	size = 1
 	bonus = {
 		...Building.bonus,
-		economy: 4
+		economy: 4,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
@@ -212,7 +255,7 @@ class BardicCollege {
 		economy: 1,
 		loyalty: 3,
 		stability: 1,
-		fame: 1
+		fame: 1,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = [Library, Museum, Theater]
@@ -236,11 +279,11 @@ class Barracks {
 	bonus = {
 		...Building.bonus,
 		unrest: -1,
-		defense: 2
+		defense: 2,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		law: 1
+		law: 1,
 	}
 	discounts = []
 	discountedBy = [MilitaryAcademy, TownHall]
@@ -264,12 +307,12 @@ class BlackMarket {
 		...Building.bonus,
 		economy: 2,
 		loyalty: 1,
-		unrest: 1
+		unrest: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		corruption: 2,
-		crime: 2
+		crime: 2,
 	}
 	discounts = [Brothel]
 	discountedBy = [Waterfront, Market]
@@ -291,7 +334,7 @@ class Brewery {
 	bonus = {
 		...Building.bonus,
 		loyalty: 1,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
@@ -313,7 +356,7 @@ class Bridge {
 	size = 1
 	bonus = {
 		...Building.bonus,
-		economy: 1
+		economy: 1,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
@@ -337,12 +380,12 @@ class Brothel {
 		...Building.bonus,
 		economy: 1,
 		loyalty: 1,
-		unrest: 1
+		unrest: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		corruption: 1,
-		crime: 1
+		crime: 1,
 	}
 	discounts = []
 	discountedBy = [BlackMarket, Theater, Arena]
@@ -365,12 +408,12 @@ class Bureau {
 		...Building.bonus,
 		economy: 1,
 		loyalty: -1,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		corruption: 1,
-		crime: 1
+		crime: 1,
 	}
 	discounts = []
 	discountedBy = []
@@ -393,7 +436,7 @@ class CastersTower {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		loyalty: 1
+		loyalty: 1,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
@@ -419,7 +462,7 @@ class Castle {
 		stability: 2,
 		unrest: -4,
 		fame: 1,
-		defense: 8
+		defense: 8,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = [NobleVilla, TownHall]
@@ -438,7 +481,7 @@ class Cathedral {
 		Cathedral_1Img,
 		Cathedral_3Img,
 		Cathedral_2Img,
-		CathedralImg
+		CathedralImg,
 	]
 	name = "Cathedral"
 
@@ -449,11 +492,11 @@ class Cathedral {
 		loyalty: 4,
 		stability: 4,
 		unrest: -4,
-		fame: 1
+		fame: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		law: 2
+		law: 2,
 	}
 	discounts = [Academy, Temple]
 	discountedBy = []
@@ -493,7 +536,7 @@ class CityWall {
 	bonus = {
 		...Building.bonus,
 		unrest: -2,
-		defense: 1
+		defense: 1,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
@@ -515,7 +558,7 @@ class Dump {
 	size = 1
 	bonus = {
 		...Building.bonus,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
@@ -557,7 +600,7 @@ class ExoticArtisan {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
@@ -576,7 +619,7 @@ class ForeignQuarter {
 		ForeignQuarter_1Img,
 		ForeignQuarter_3Img,
 		ForeignQuarter_2Img,
-		ForeignQuarterImg
+		ForeignQuarterImg,
 	]
 	name = "Foreign Quarter"
 
@@ -585,13 +628,13 @@ class ForeignQuarter {
 	bonus = {
 		...Building.bonus,
 		economy: 3,
-		stability: -1
+		stability: -1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		crime: 1,
 		lore: 1,
-		society: 2
+		society: 2,
 	}
 	discounts = []
 	discountedBy = []
@@ -614,11 +657,11 @@ class Foundry {
 		...Building.bonus,
 		economy: 1,
 		stability: 1,
-		unrest: 1
+		unrest: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		productivity: 1
+		productivity: 1,
 	}
 	discounts = [Smithy]
 	discountedBy = []
@@ -642,7 +685,7 @@ class Granary {
 	bonus = {
 		...Building.bonus,
 		loyalty: 1,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
@@ -665,7 +708,7 @@ class Graveyard {
 	size = 1
 	bonus = {
 		...Building.bonus,
-		loyalty: 1
+		loyalty: 1,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
@@ -688,7 +731,7 @@ class Herbalist {
 	bonus = {
 		...Building.bonus,
 		loyalty: 1,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
@@ -710,12 +753,12 @@ class Hospital {
 	bonus = {
 		...Building.bonus,
 		loyalty: 1,
-		stability: 2
+		stability: 2,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		lore: 1,
-		productivity: 2
+		productivity: 2,
 	}
 	discounts = []
 	discountedBy = []
@@ -737,11 +780,11 @@ class Inn {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		loyalty: 1
+		loyalty: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		society: 1
+		society: 1,
 	}
 	discounts = []
 	discountedBy = [Market, Theater, Arena]
@@ -764,15 +807,15 @@ class Jail {
 		...Building.bonus,
 		loyalty: 2,
 		stability: 2,
-		unrest: -2
+		unrest: -2,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		crime: -1,
-		law: 1
+		law: 1,
 	}
 	discounts = []
-	discountedBy = [Garrison, TownHall]
+	discountedBy = [Garrison, TownHall, Courthouse]
 	upgradesFrom = null
 	limit = ""
 	special = ""
@@ -791,11 +834,11 @@ class Library {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		loyalty: 1
+		loyalty: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		lore: 1
+		lore: 1,
 	}
 	discounts = []
 	discountedBy = [Academy, BardicCollege, MagicalAcademy, University]
@@ -816,12 +859,12 @@ class MagicalAcademy {
 	bonus = {
 		...Building.bonus,
 		economy: 2,
-		fame: 1
+		fame: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		lore: 2,
-		society: 1
+		society: 1,
 	}
 	discounts = [CastersTower, Library, MagicShop]
 	discountedBy = [University]
@@ -844,7 +887,7 @@ class MagicalStreetlamps {
 	bonus = { ...Building.bonus }
 	settlementBonus = {
 		...Building.settlementBonus,
-		crime: -1
+		crime: -1,
 	}
 	discounts = []
 	discountedBy = []
@@ -866,12 +909,12 @@ class Mansion {
 	size = 1
 	bonus = {
 		...Building.bonus,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		law: 1,
-		society: 1
+		society: 1,
 	}
 	discounts = []
 	discountedBy = [NobleVilla, Palace]
@@ -889,7 +932,7 @@ class Menagerie {
 		Menagerie_1Img,
 		Menagerie_3Img,
 		Menagerie_2Img,
-		MenagerieImg
+		MenagerieImg,
 	]
 	name = "Menagerie"
 
@@ -898,11 +941,11 @@ class Menagerie {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		fame: 1
+		fame: 1,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
-	discountedBy = []
+	discountedBy = [HangingGardens]
 	upgradesFrom = null
 	limit = ""
 	special =
@@ -922,12 +965,12 @@ class MilitaryAcademy {
 		...Building.bonus,
 		loyalty: 2,
 		stability: 1,
-		fame: 1
+		fame: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		law: 1,
-		lore: 1
+		lore: 1,
 	}
 	discounts = [Barracks]
 	discountedBy = [University]
@@ -952,11 +995,11 @@ class Mill {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		productivity: 1
+		productivity: 1,
 	}
 	discounts = []
 	discountedBy = []
@@ -981,7 +1024,7 @@ class Mint {
 		economy: 3,
 		loyalty: 3,
 		stability: 1,
-		fame: 1
+		fame: 1,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
@@ -1003,7 +1046,7 @@ class Moat {
 	bonus = {
 		...Building.bonus,
 		unrest: -1,
-		defense: 1
+		defense: 1,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
@@ -1025,12 +1068,12 @@ class Monastery {
 	size = 2
 	bonus = {
 		...Building.bonus,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		law: 1,
-		lore: 1
+		lore: 1,
 	}
 	discounts = []
 	discountedBy = []
@@ -1053,11 +1096,11 @@ class Monument {
 	bonus = {
 		...Building.bonus,
 		loyalty: 1,
-		unrest: -1
+		unrest: -1,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
-	discountedBy = [Temple]
+	discountedBy = [Temple, Colossus, HangingGardens]
 	upgradesFrom = null
 	limit = ""
 	special = ""
@@ -1077,12 +1120,12 @@ class Museum {
 		...Building.bonus,
 		economy: 1,
 		loyalty: 1,
-		fame: 1
+		fame: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		lore: 2,
-		society: 1
+		society: 1,
 	}
 	discounts = []
 	discountedBy = [BardicCollege]
@@ -1105,14 +1148,14 @@ class Observatory {
 	size = 1
 	bonus = {
 		...Building.bonus,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		lore: 2
+		lore: 2,
 	}
 	discounts = []
-	discountedBy = []
+	discountedBy = [Colossus]
 	upgradesFrom = null
 	limit = ""
 	special = ""
@@ -1131,7 +1174,7 @@ class Orphanage {
 	bonus = {
 		...Building.bonus,
 		stability: 1,
-		unrest: -1
+		unrest: -1,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
@@ -1155,11 +1198,11 @@ class Palace {
 		economy: 2,
 		loyalty: 6,
 		stability: 2,
-		fame: 1
+		fame: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		law: 2
+		law: 2,
 	}
 	discounts = [Mansion, Mint, NobleVilla]
 	discountedBy = []
@@ -1183,11 +1226,11 @@ class Park {
 	bonus = {
 		...Building.bonus,
 		loyalty: 1,
-		unrest: -1
+		unrest: -1,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
-	discountedBy = [Theater]
+	discountedBy = [Theater, Colossus, HangingGardens]
 	upgradesFrom = null
 	limit = ""
 	special = ""
@@ -1204,11 +1247,11 @@ class PavedStreets {
 	bonus = {
 		...Building.bonus,
 		economy: 2,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		productivity: 2
+		productivity: 2,
 	}
 	discounts = []
 	discountedBy = []
@@ -1230,14 +1273,14 @@ class Pier {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		crime: 1
+		crime: 1,
 	}
 	discounts = []
-	discountedBy = [Guildhall, Waterfront]
+	discountedBy = [Guildhall, Waterfront, Lighthouse]
 	upgradesFrom = null
 	limit = "Adjacent to district water border"
 	special = "Base value +1,00gp"
@@ -1255,12 +1298,12 @@ class SewerSystem {
 	bonus = {
 		...Building.bonus,
 		loyalty: 1,
-		stability: 2
+		stability: 2,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		crime: 1,
-		productivity: 1
+		productivity: 1,
 	}
 	discounts = [Cistern, Dump]
 	discountedBy = []
@@ -1282,11 +1325,11 @@ class Shop {
 	size = 1
 	bonus = {
 		...Building.bonus,
-		economy: 1
+		economy: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		productivity: 1
+		productivity: 1,
 	}
 	discounts = []
 	discountedBy = [Market]
@@ -1308,7 +1351,7 @@ class Shrine {
 	bonus = {
 		...Building.bonus,
 		loyalty: 1,
-		unrest: -1
+		unrest: -1,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
@@ -1332,7 +1375,7 @@ class Smithy {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
@@ -1356,7 +1399,7 @@ class Stable {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		loyalty: 1
+		loyalty: 1,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
@@ -1375,7 +1418,7 @@ class Stockyard {
 		Stockyard_1Img,
 		Stockyard_3Img,
 		Stockyard_2Img,
-		StockyardImg
+		StockyardImg,
 	]
 	name = "Stockyard"
 
@@ -1384,18 +1427,18 @@ class Stockyard {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		stability: -1
+		stability: -1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		productivity: 1
+		productivity: 1,
 	}
 	discounts = [Stable, Tannery]
 	discountedBy = []
 	upgradesFrom = null
 	limit = ""
 	special =
-		"Farms in this hex or Adjacent to hexes reduce Consumption by 3 instead of 2"
+		"Farms in this and adjacent hexes reduce Consumption by 3 instead of 2"
 	magicItems = ""
 	text =
 		"Barns and pens that store herd animals and prepare them for nearby slaughterhouses."
@@ -1412,11 +1455,11 @@ class Tannery {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		society: -1
+		society: -1,
 	}
 	discounts = []
 	discountedBy = [Stockyard]
@@ -1438,11 +1481,11 @@ class Tavern {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		loyalty: 1
+		loyalty: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		corruption: 1
+		corruption: 1,
 	}
 	discounts = []
 	discountedBy = [Theater]
@@ -1463,7 +1506,7 @@ class Tenement {
 	size = 1
 	bonus = {
 		...Building.bonus,
-		unrest: 2
+		unrest: 2,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
@@ -1485,7 +1528,7 @@ class Theater {
 	bonus = {
 		...Building.bonus,
 		economy: 2,
-		stability: 2
+		stability: 2,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = [Brothel, ExoticArtisan, Inn, Park, Tavern]
@@ -1508,11 +1551,11 @@ class TownHall {
 		...Building.bonus,
 		economy: 1,
 		loyalty: 1,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		law: 1
+		law: 1,
 	}
 	discounts = [Barracks, Cistern, Dump, Jail, Watchtower]
 	discountedBy = [Castle]
@@ -1535,11 +1578,11 @@ class TradeShop {
 	bonus = {
 		...Building.bonus,
 		economy: 1,
-		stability: 1
+		stability: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		productivity: 1
+		productivity: 1,
 	}
 	discounts = []
 	discountedBy = [Guildhall]
@@ -1563,7 +1606,7 @@ class Watchtower {
 		...Building.bonus,
 		stability: 1,
 		unrest: -1,
-		defense: 2
+		defense: 2,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
@@ -1624,13 +1667,13 @@ class Academy {
 	bonus = {
 		...Building.bonus,
 		economy: 2,
-		loyalty: 2
+		loyalty: 2,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		lore: 2,
 		productivity: 1,
-		society: 2
+		society: 2,
 	}
 	discounts = [CastersTower, Library, MagicShop]
 	discountedBy = [Cathedral, University]
@@ -1646,11 +1689,11 @@ class Arena {
 	id = 3
 
 	image = [
-		require("../../../../res/img/BuildingImages/Arena_0.png"),
+		require("../../../../res/img/BuildingImagesNew/Arena_0.jpg"),
 		Arena_1Img,
 		Arena_3Img,
 		Arena_2Img,
-		ArenaImg
+		ArenaImg,
 	]
 	name = "Arena"
 
@@ -1659,11 +1702,11 @@ class Arena {
 	bonus = {
 		...Building.bonus,
 		stability: 4,
-		fame: 1
+		fame: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		crime: 1
+		crime: 1,
 	}
 	discounts = [Brothel, Garrison, Inn, Stable, Theater]
 	discountedBy = []
@@ -1685,7 +1728,7 @@ class Garrison {
 		...Building.bonus,
 		loyalty: 2,
 		stability: 2,
-		unrest: -2
+		unrest: -2,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = [CityWall, Granary, Jail]
@@ -1707,14 +1750,14 @@ class Guildhall {
 	bonus = {
 		...Building.bonus,
 		economy: 2,
-		loyalty: 2
+		loyalty: 2,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		law: 1,
-		productivity: 2
+		productivity: 2,
 	}
-	discounts = [Pier, Stable, TradeShop]
+	discounts = [Pier, Stable, TradeShop, Warehouse]
 	discountedBy = [Waterfront]
 	upgradesFrom = TradeShop
 	Shop
@@ -1734,7 +1777,7 @@ class House {
 	size = 1
 	bonus = {
 		...Building.bonus,
-		unrest: -1
+		unrest: -1,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
@@ -1757,7 +1800,7 @@ class LuxuryStore {
 	size = 1
 	bonus = {
 		...Building.bonus,
-		economy: 1
+		economy: 1,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
@@ -1779,7 +1822,7 @@ class MagicShop {
 	size = 1
 	bonus = {
 		...Building.bonus,
-		economy: 1
+		economy: 1,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = []
@@ -1802,7 +1845,7 @@ class Market {
 	bonus = {
 		...Building.bonus,
 		economy: 2,
-		stability: 2
+		stability: 2,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = [BlackMarket, Inn, Shop]
@@ -1826,11 +1869,11 @@ class NobleVilla {
 		economy: 1,
 		loyalty: 1,
 		stability: 1,
-		fame: 1
+		fame: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		society: 1
+		society: 1,
 	}
 	discounts = [ExoticArtisan, LuxuryStore, Mansion]
 	discountedBy = [Castle, Palace]
@@ -1853,7 +1896,7 @@ class Temple {
 		...Building.bonus,
 		loyalty: 2,
 		stability: 2,
-		unrest: -2
+		unrest: -2,
 	}
 	settlementBonus = { ...Building.settlementBonus }
 	discounts = [Graveyard, Monument, Shrine]
@@ -1872,7 +1915,7 @@ class University {
 		University_1Img,
 		University_3Img,
 		University_2Img,
-		UniversityImg
+		UniversityImg,
 	]
 	name = "University"
 
@@ -1882,12 +1925,12 @@ class University {
 		...Building.bonus,
 		economy: 3,
 		loyalty: 3,
-		fame: 1
+		fame: 1,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
 		lore: 4,
-		society: 3
+		society: 3,
 	}
 	discounts = [
 		Academy,
@@ -1895,7 +1938,7 @@ class University {
 		Library,
 		MagicalAcademy,
 		MilitaryAcademy,
-		Museum
+		Museum,
 	]
 	discountedBy = []
 	upgradesFrom = Academy
@@ -1915,7 +1958,7 @@ class Waterfront {
 		Waterfront_1Img,
 		Waterfront_3Img,
 		Waterfront_2Img,
-		WaterfrontImg
+		WaterfrontImg,
 	]
 	name = "Waterfront"
 
@@ -1923,13 +1966,13 @@ class Waterfront {
 	size = 4
 	bonus = {
 		...Building.bonus,
-		economy: 4
+		economy: 4,
 	}
 	settlementBonus = {
 		...Building.settlementBonus,
-		productivity: 2
+		productivity: 2,
 	}
-	discounts = [BlackMarket, Guildhall, Market, Pier]
+	discounts = [BlackMarket, Guildhall, Market, Pier, Warehouse]
 	discountedBy = [University]
 	upgradesFrom = Pier
 	limit = "Adjacent to district water border, 1 per settlement"
@@ -1940,16 +1983,440 @@ class Waterfront {
 		"A port for waterborne arrival and departure, with facilities for shipping and shipbuilding."
 }
 
+class Aerie {
+	id = 71
+
+	image = [AerieImg]
+	name = "Aerie"
+
+	bpCost = 18
+	size = 1
+	bonus = {
+		...Building.bonus,
+		stability: 2,
+		unrest: -1,
+		defense: 1,
+	}
+	settlementBonus = { ...Building.settlementBonus }
+	discounts = []
+	discountedBy = []
+	upgradesFrom = null
+	limit = ""
+	special = ""
+	magicItems = ""
+	text =
+		"A specialized tower suitable for raising and training hunting and message birds as well as stabling flying mounts."
+}
+class Bathhouse {
+	id = 72
+
+	image = [BathhouseImg]
+	name = "Bathhouse"
+
+	bpCost = 4
+	size = 1
+	bonus = {
+		...Building.bonus,
+		economy: 1,
+		stability: 1,
+	}
+	settlementBonus = { ...Building.settlementBonus }
+	discounts = []
+	discountedBy = []
+	upgradesFrom = null
+	limit =
+		"Adjacent to a Waterway or water border. This requirement can be ignored by doubling the construction cost of the Baths."
+	special = ""
+	magicItems = ""
+	text =
+		"A public building for bathing, often with hot running water and mineral soaks, sometimes heated by furnaces and other times by natural hot springs."
+}
+class Assembly {
+	id = 73
+
+	image = [Assembly_0Img, Assembly_1Img, AssemblyImg]
+	name = "Assembly"
+
+	bpCost = 30
+	size = 2
+	bonus = {
+		...Building.bonus,
+		economy: 2,
+		stability: 1,
+		fame: 1,
+	}
+	settlementBonus = {
+		...Building.settlementBonus,
+		corruption: 1,
+		law: 1,
+		society: 1,
+	}
+	discounts = []
+	discountedBy = []
+	upgradesFrom = null
+	limit = "1 per settlement"
+	special =
+		"When you issue an Improvement Edict, you can build one additional building in a city with an Assembly or one additional terrain improvement in a hex containing that city or adjacent to it."
+	magicItems = ""
+	text =
+		"A conclave of representatives from all sectors of society, including representatives from guilds, religious orders, civil authorities, allowing all factions a voice in governance."
+}
+class Bordello {
+	id = 74
+
+	image = [BordelloImg]
+	name = "Bordello"
+
+	bpCost = 4
+	size = 1
+	bonus = {
+		...Building.bonus,
+		economy: 1,
+		loyalty: 1,
+	}
+	settlementBonus = {
+		...Building.settlementBonus,
+		corruption: 1,
+		crime: 1,
+		society: 1,
+	}
+	discounts = []
+	discountedBy = []
+	upgradesFrom = null
+	limit = ""
+	special =
+		"Infamy +1 per 3 Bordellos or Gambling Dens. Each Bordello causes a -1 penalty to Stability checks to resist Drug Den and Plague events."
+	magicItems = ""
+	text =
+		"A place where carnal entertainments can be had, including lurid performances as well as personal services."
+}
+class Brickyard {
+	id = 75
+
+	image = [Brickyard_0Img, Brickyard_1Img, BrickyardImg]
+	name = "Brickyard"
+
+	bpCost = 16
+	size = 2
+	bonus = {
+		...Building.bonus,
+		economy: 1,
+		stability: 1,
+	}
+	settlementBonus = {
+		...Building.settlementBonus,
+		productivity: 1,
+	}
+	discounts = []
+	discountedBy = []
+	upgradesFrom = null
+	limit = ""
+	special =
+		"Quarries in in the settlement’s hex or adjacent hexes generate 1 additional BP for every 2 Quarries. If a Quarry is adjacent to two settlements with Brickyards, only one Brickyard may benefit from that Quarry each kingdom turn."
+	magicItems = ""
+	text =
+		"An industrial center for cutting and shaping stone, grinding gravel, and firing bricks for construction."
+}
+class Colossus {
+	id = 76
+
+	image = [
+		Colossus_0Img,
+		Colossus_1Img,
+		Colossus_3Img,
+		Colossus_2Img,
+		ColossusImg,
+	]
+	name = "Colossus"
+
+	bpCost = 60
+	size = 4
+	bonus = {
+		...Building.bonus,
+		economy: 2,
+		loyalty: 4,
+		stability: 2,
+		fame: 1,
+		unrest: -2,
+	}
+	settlementBonus = {
+		...Building.settlementBonus,
+		law: 2,
+	}
+	discounts = [Lighthouse, Monument, Observatory, Park]
+	discountedBy = []
+	upgradesFrom = null
+	limit = "1 per settlement"
+	special =
+		"When your armies in the same hex as a settlement with a Colossus, they gain a +1 bonus to Morale; if they are inside the city, they gain a +2 bonus. A Colossus can share the same space as a Lighthouse or Observatory (but not both)."
+	magicItems = ""
+	text =
+		"A towering edifice of stone and burnished metal displays your power to the world. A Colossus may be a great statue, obelisk, tower, pyramid, mausoleum, triumphal arch, or nearly anything else; all that is required is superior craftsmanship, titanic proportions, and grandiose civic pride."
+}
+class Courthouse {
+	id = 77
+
+	image = [CourthouseImg]
+	name = "Courthouse"
+
+	bpCost = 16
+	size = 1
+	bonus = {
+		...Building.bonus,
+		loyalty: 2,
+	}
+	settlementBonus = {
+		...Building.settlementBonus,
+		corruption: -1,
+		crime: -1,
+		law: 2,
+	}
+	discounts = [Jail]
+	discountedBy = []
+	upgradesFrom = null
+	limit = ""
+	special = ""
+	magicItems = ""
+	text =
+		"A hall of justice, for hearing cases and resolving disputes by the rule of law."
+}
+class Crematorium {
+	id = 78
+
+	image = [CrematoriumImg]
+	name = "Crematorium"
+
+	bpCost = 4
+	size = 1
+	bonus = {
+		...Building.bonus,
+		stability: 1,
+	}
+	settlementBonus = { ...Building.settlementBonus }
+	discounts = []
+	discountedBy = []
+	upgradesFrom = null
+	limit = "Adjacent to Dump or Graveyard"
+	special =
+		"+2 bonus to Stability checks against Plague events or Monster Attacks involving undead"
+	magicItems = ""
+	text =
+		"A specialized furnace building primarily used for burning the dead into ash, though also used for incineration of refuse."
+}
+class GamblingDen {
+	id = 79
+
+	image = [GamblingDenImg]
+	name = "Gambling Den"
+
+	bpCost = 10
+	size = 1
+	bonus = {
+		...Building.bonus,
+		economy: 2,
+		unrest: 1,
+	}
+	settlementBonus = {
+		...Building.settlementBonus,
+		corruption: 1,
+		crime: 1,
+	}
+	discounts = []
+	discountedBy = []
+	upgradesFrom = null
+	limit = "Adjacent to 1 House"
+	special =
+		"Infamy +1 per 3 Bordellos or Gambling Dens. Each Gambling Den causes a -1 penalty to Stability checks to resist Drug Den events."
+	magicItems =
+		"1 magic item (roll d% to determine type: 01-80, common item; 81-98, uncommon item; 99-100, rare item"
+	text =
+		"An illicit place for games of skill and chance, wagering all manner of stakes."
+}
+class HangingGardens {
+	id = 80
+
+	image = [
+		HangingGardens_0Img,
+		HangingGardens_1Img,
+		HangingGardens_3Img,
+		HangingGardens_2Img,
+		HangingGardensImg,
+	]
+	name = "Hanging Gardens"
+
+	bpCost = 48
+	size = 4
+	bonus = {
+		...Building.bonus,
+		economy: 2,
+		loyalty: 2,
+		fame: 1,
+		unrest: -2,
+	}
+	settlementBonus = {
+		...Building.settlementBonus,
+		lore: 1,
+		society: 2,
+	}
+	discounts = [Menagerie, Monument, Park, SacredGrove]
+	discountedBy = []
+	upgradesFrom = null
+	limit = "1 per settlement"
+	special = "Reduces Consumption in the city by 1"
+	magicItems = ""
+	text =
+		"A magnificent set of urban gardens, arboretums, and conservatories for the enjoyment of the nobility and common folk alike, containing both decorative and edible plants as well as elaborate public artworks, tatuary, and water features."
+}
+class Lumberyard {
+	id = 81
+
+	image = [Lumberyard_0Img, Lumberyard_1Img, LumberyardImg]
+	name = "Lumberyard"
+
+	bpCost = 12
+	size = 2
+	bonus = {
+		...Building.bonus,
+		economy: 1,
+		stability: 1,
+	}
+	settlementBonus = {
+		...Building.settlementBonus,
+		productivity: 1,
+	}
+	discounts = []
+	discountedBy = []
+	upgradesFrom = null
+	limit = ""
+	special =
+		"Sawmills in in the settlement’s hex or adjacent hexes generate 1 additional BP for every 2 Sawmills. If a Sawmill is adjacent to two settlements with Lumberyards, only one Lumberyard may benefit from that Sawmill each kingdom turn."
+	magicItems = ""
+	text =
+		"A mill and carpentry works for producing precut logs, boards, and wood products for construction."
+}
+class SacredGrove {
+	id = 82
+
+	image = [SacredGroveImg]
+	name = "Sacred Grove"
+
+	bpCost = 12
+	size = 1
+	bonus = {
+		...Building.bonus,
+		loyalty: 2,
+		stability: 1,
+		unrest: -1,
+	}
+	settlementBonus = {
+		...Building.settlementBonus,
+		society: -1,
+	}
+	discounts = []
+	discountedBy = [HangingGardens]
+	upgradesFrom = null
+	limit =
+		"Limit Adjacent to Park or to city district border with no City Wall or Moat"
+	special =
+		"+2 bonus to Stability checks against Crop Failure events or Monster Attacks involving animals, plants, or fey. Each Sacred Grove provides a +1 bonus to Stability checks to resist Plague events."
+	magicItems = "1 common item"
+	text =
+		"A bastion of the old druidic nature religions, often centered on runic megaliths and stone circles."
+}
+class Warehouse {
+	id = 83
+
+	image = [Warehouse_0Img, Warehouse_1Img, WarehouseImg]
+	name = "Warehouse"
+
+	bpCost = 8
+	size = 2
+	bonus = {
+		...Building.bonus,
+		economy: 1,
+	}
+	settlementBonus = {
+		...Building.settlementBonus,
+		productivity: 1,
+	}
+	discounts = []
+	discountedBy = [Guildhall, Waterfront]
+	upgradesFrom = null
+	limit =
+		"Adjacent to a water border or a Guildhall, Market, Pier, Trade Shop, or Waterfront"
+	special = ""
+	magicItems = ""
+	text =
+		"A cavernous structure or cluster of buildings for storage and transfer of trade goods."
+}
+class Windmill {
+	id = 84
+
+	image = [WindmillImg]
+	name = "Windmill"
+
+	bpCost = 6
+	size = 1
+	bonus = {
+		...Building.bonus,
+		economy: 1,
+	}
+	settlementBonus = {
+		...Building.settlementBonus,
+		productivity: 1,
+	}
+	discounts = []
+	discountedBy = []
+	upgradesFrom = null
+	limit = ""
+	special =
+		"A Windmill adjacent to a Cistern or Granary increases the Stability bonus provided by that building by +1."
+	magicItems = ""
+	text = "A wind-driven mill for grinding grain or pumping water."
+}
+class Lighthouse {
+	id = 85
+
+	image = [LighthouseImg]
+	name = "Lighthouse"
+
+	bpCost = 24
+	size = 1
+	bonus = {
+		...Building.bonus,
+		economy: 2,
+		stability: 2,
+	}
+	settlementBonus = {
+		...Building.settlementBonus,
+		productivity: 1,
+	}
+	discounts = [Pier]
+	discountedBy = [Colossus]
+	upgradesFrom = null
+	limit =
+		"1 per settlement; must be on a water border at the edge of a district grid"
+	special =
+		"Special The cost to create Fisheries in hexes adjacent to the settlement is reduced to 3 BP. If you establish a trade route from a city with a Lighthouse, water hexes count as one-fourth (rather than one-half) when calculating Trade Route Length."
+	magicItems = ""
+	text =
+		"A high tower with a signal light to guide ships at sea and keep watch on waves and weather."
+}
+
 class BuildingList {
 	static buildings = [
-		new Academy(),
+		new Aerie(),
 		new Alchemist(),
 		new Arena(),
+		new Assembly(),
 		new Bank(),
 		new BardicCollege(),
 		new Barracks(),
+		new Bathhouse(),
 		new BlackMarket(),
+		new Bordello(),
 		new Brewery(),
+		new Brickyard(),
 		new Bridge(),
 		new Brothel(),
 		new Bureau(),
@@ -1958,25 +2425,32 @@ class BuildingList {
 		new Cathedral(),
 		new Cistern(),
 		new CityWall(),
+		new Colossus(),
+		new Courthouse(),
+		new Crematorium(),
 		new Dump(),
 		new EverflowingSpring(),
 		new ExoticArtisan(),
 		new ForeignQuarter(),
 		new Foundry(),
+		new GamblingDen(),
 		new Garrison(),
 		new Granary(),
 		new Graveyard(),
 		new Guildhall(),
+		new HangingGardens(),
 		new Herbalist(),
 		new Hospital(),
 		new House(),
 		new Inn(),
 		new Jail(),
 		new Library(),
+		new Lighthouse(),
+		new Lumberyard(),
 		new LuxuryStore(),
-		new MagicShop(),
 		new MagicalAcademy(),
 		new MagicalStreetlamps(),
+		new MagicShop(),
 		new Mansion(),
 		new Market(),
 		new Menagerie(),
@@ -1994,6 +2468,7 @@ class BuildingList {
 		new Park(),
 		new PavedStreets(),
 		new Pier(),
+		new SacredGrove(),
 		new SewerSystem(),
 		new Shop(),
 		new Shrine(),
@@ -2008,10 +2483,13 @@ class BuildingList {
 		new TownHall(),
 		new TradeShop(),
 		new University(),
+		new Warehouse(),
 		new Watchtower(),
 		new Waterfront(),
 		new Watergate(),
-		new Waterway()
+		new Waterway(),
+		new Windmill(),
+		new Academy(),
 	]
 	static _init = () => {
 		BuildingList.buildings.forEach((building) => {

@@ -26,7 +26,7 @@ const getUser = (id) => {
 	return foundUser ? foundUser.name : "<undefined>"
 }
 io.on("connection", (socket) => {
-	console.log("connected from " + socket.id)
+	console.info("connected from " + socket.id)
 	socket.on("greet", ({ clientName }) => {
 		if (getUser(socket.id) === "<undefined>")
 			users.push({ id: socket.id, name: clientName })
@@ -36,10 +36,11 @@ io.on("connection", (socket) => {
 	socket.on(
 		"find",
 		({ collection, findObj, options, causedBy, projection }) => {
-			console.log(
+			console.info(
 				`received find from ${getUser(socket.id)} with `,
 				collection,
-				findObj
+				findObj, 
+				projection
 			)
 			if (findObj && "_id" in findObj) findObj._id = ObjectID(findObj._id)
 			db.find(findObj, collection, options, projection).then((result) => {
@@ -57,7 +58,7 @@ io.on("connection", (socket) => {
 	)
 
 	socket.on("delete", async ({ collection, findObj, options }) => {
-		console.log(
+		console.info(
 			`received delete from ${getUser(socket.id)} with `,
 			collection,
 			findObj
@@ -70,7 +71,7 @@ io.on("connection", (socket) => {
 	})
 
 	socket.on("update", async ({ collection, findObj, newObj, options }) => {
-		console.log(
+		console.info(
 			`received update from ${getUser(socket.id)} with `,
 			collection,
 			findObj,
@@ -83,7 +84,7 @@ io.on("connection", (socket) => {
 	})
 
 	socket.on("insert", ({ collection, newObj, options }) => {
-		console.log(`received insert from ${getUser(socket.id)} with `, collection)
+		console.info(`received insert from ${getUser(socket.id)} with `, collection)
 		db.insert(newObj, collection, options).then(
 			makeReply("insert", collection, undefined, options, undefined, newObj)
 		)
@@ -125,9 +126,7 @@ async function getIdToChange(findObj, collection) {
 	const idsList = findObj._id
 		? [findObj._id]
 		: await getIds(collection, findObj)
-	console.log(idsList)
 	const idToChange = idsList ? idsList[0] : ""
-	console.log("Id to change: ", idToChange || "no id")
 	return idToChange
 }
 

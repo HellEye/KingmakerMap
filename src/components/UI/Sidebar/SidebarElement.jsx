@@ -4,11 +4,6 @@ import {Link} from "react-router-dom"
 
 class SidebarElement extends Component {
 
-	constructor(props) {
-		super(props)
-		this.onClick = () => console.log("clicked " + this.props.children)
-	}
-
 
 	render() {
 		return (

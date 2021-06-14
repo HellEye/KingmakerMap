@@ -1,10 +1,8 @@
 import { observable, makeObservable, action } from "mobx"
-import dbLoader from "../../../utils/dbLoader"
 import { BuildingList } from "../buildings/buildings"
 import { computedFn } from "mobx-utils"
 import { buildingReducer } from "./buildingReducer"
 import { District } from "./District"
-import fieldChangeObserver, { fieldChanged } from "./fieldChangeObserver"
 import dotNotation from "mongo-dot-notation"
 import socketHandler from "../../../utils/socketHandler"
 import socketDataReplacer from "../../../utils/socketDataReplacer"
@@ -70,7 +68,6 @@ export class Settlement {
 	}
 
 	_onUpdate = (obj) => {
-		console.log("onUpdate districts test", obj)
 		if(this.hex.id!==obj.hexId) return
 		const index = this.districts.findIndex((v) => v.id === obj._id)
 		if (index >= 0) this.districts[index].update(obj)
@@ -104,7 +101,6 @@ export class Settlement {
 		return this.hex.getFindPath()
 	}
 	addDiscountsFor = (buildings) => {
-		console.log(buildings)
 		buildings.forEach(v=>this.discounts.push(BuildingList.getByType(v)))
 		this.fieldChanged("discounts")
 	}
@@ -125,6 +121,13 @@ export class Settlement {
 		this.districts.push(newDistrict)
 		return newDistrict
 	})
+	toJson=()=>{
+		return { 
+			name:this.name, 
+			settlementImprovements: this.settlementImprovements, 
+			discounts:this.discounts
+		}
+	}
 
 	addDistrict = () => {
 		socketHandler.emit("insert", {
